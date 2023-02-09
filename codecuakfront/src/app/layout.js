@@ -1,4 +1,4 @@
-import './globals.css'
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
@@ -13,7 +13,8 @@ export default function RootLayout({ children }) {
       jkasdj
 
       jaoisdjoais */}
+
       <body>{children}</body>
     </html>
-  )
+  );
 }

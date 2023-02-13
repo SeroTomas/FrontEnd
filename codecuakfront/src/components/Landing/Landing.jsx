@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-const Landing = () => {
-  return (
-    <div>
-    </div>
-  )
-}
-=======
 import React from "react";
 import styles from "./Landing.module.css";
 import { Link } from "react-router-dom";
@@ -120,6 +110,5 @@ const Landing = () => {
     </div>
   );
 };
->>>>>>> 08282a0fa9f2d62d14ef13482c65e178aae7e265
 
 export default Landing

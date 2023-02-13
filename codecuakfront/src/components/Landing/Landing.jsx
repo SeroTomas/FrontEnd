@@ -3,7 +3,7 @@ import styles from "./Landing.module.css"
 
 const Landing = () => {
   return (
-    <>
+    <div>
       <nav className={styles.nav}>
         <ul>
           <li>
@@ -64,7 +64,7 @@ const Landing = () => {
           apliquen a ellas.
         </p>
       </section>
-    </>
+    </div>
   );
 };
 

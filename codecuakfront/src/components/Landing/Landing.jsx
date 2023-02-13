@@ -1,9 +1,25 @@
 import React from "react";
+import styles from "./Landing.module.css"
 
 const Landing = () => {
   return (
     <>
-    
+      <nav className={styles.nav}>
+        <ul>
+          <li>
+            <a href="#social">socialCuak</a>
+          </li>
+          <li>
+            <a href="#Q&A">Q&A-Cuak</a>
+          </li>
+          <li>
+            <a href="#work">workCuak</a>
+          </li>
+          <li>
+            <a href="#hiring">hiringCuak</a>
+          </li>
+        </ul>
+      </nav>
       <section>
         <h1>codeCuak</h1>
         <h2>La red social por y para desarrolladores</h2>
@@ -14,7 +30,7 @@ const Landing = () => {
           buscar trabajo. Todo dentro de un mismo espacio
         </p>
       </section>
-      <section>
+      <section id="social">
         <h2>socialCuak</h2>
         <h3>Aquí podrás expresarte</h3>
         <p>
@@ -22,7 +38,7 @@ const Landing = () => {
           encontrar un clima agradable para despejar la mente.
         </p>
       </section>
-      <section>
+      <section id="Q&A">
         <h2>Q&A-Cuak</h2>
         <h3>Para crecer necesitamos ayudarnos entre todos</h3>
         <p>
@@ -30,7 +46,7 @@ const Landing = () => {
           solicitando ayuda o responder las consultas ya existentes.
         </p>
       </section>
-      <section>
+      <section id="work">
         <h2>workCuak</h2>
         <h3>La programación es un trabajo de equipo</h3>
         <p>
@@ -38,7 +54,7 @@ const Landing = () => {
           proyectos propios.
         </p>
       </section>
-      <section>
+      <section id="hiring">
         <h2>hiringCuak</h2>
         <h3>En codeCuak nos preocupamos por el futuro de nuestros miembros</h3>
         <p>

@@ -3,6 +3,7 @@ import React from "react";
 const Landing = () => {
   return (
     <>
+    
       <section>
         <h1>codeCuak</h1>
         <h2>La red social por y para desarrolladores</h2>

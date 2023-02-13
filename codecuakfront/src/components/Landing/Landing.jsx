@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./Landing.module.css"
+import styles from "./Landing.module.css";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   return (
@@ -37,6 +38,11 @@ const Landing = () => {
           lo que buscamos con “social-Cuak” es distendernos y conocernos;
           encontrar un clima agradable para despejar la mente.
         </p>
+        <Link to="/social">
+          <button>
+            <span>Ir a socialCuak</span>
+          </button>
+        </Link>
       </section>
       <section id="Q&A">
         <h2>Q&A-Cuak</h2>
@@ -45,6 +51,12 @@ const Landing = () => {
           Por eso en “Q&A-Cuak” los usuarios podrán generar nuevas publicaciones
           solicitando ayuda o responder las consultas ya existentes.
         </p>
+
+        <Link to="/qanda">
+          <button>
+            <span>Ir a Q&A-Cuak</span>
+          </button>
+        </Link>
       </section>
       <section id="work">
         <h2>workCuak</h2>
@@ -53,6 +65,12 @@ const Landing = () => {
           “work-Cuack” está diseñado para buscar colaboradores para desarrollar
           proyectos propios.
         </p>
+
+        <Link to="/work">
+          <button>
+            <span>Ir a workCuak</span>
+          </button>
+        </Link>
       </section>
       <section id="hiring">
         <h2>hiringCuak</h2>
@@ -63,7 +81,14 @@ const Landing = () => {
           registrarse y publicar ofertas laborales para que los desarrolladores
           apliquen a ellas.
         </p>
+
+        <Link to="/hiring">
+          <button>
+            <span>Ir a hiringCuak</span>
+          </button>
+        </Link>
       </section>
+      
     </div>
   );
 };

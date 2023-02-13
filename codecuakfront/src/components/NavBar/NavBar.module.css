@@ -1,0 +1,30 @@
+.navContainer {
+    display: flex;
+    max-width: 1500px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: bisque;
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.ulContainer ul {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    list-style: none;
+}
+
+.ulContainer a {
+    text-decoration: none;
+}
+
+.iconsContainer{
+
+}

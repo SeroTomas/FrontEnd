@@ -1,9 +1,8 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import style from "./NavBar.module.css";
 
 const NavBar = () => {
-
-    const dispatch = useDispatch();
 
     const [search, setSearch] = useState('')
 
@@ -16,7 +15,6 @@ const NavBar = () => {
         //manejar la ruta para hacer la busqueda
     }
 
-
     return (
         <nav className={style.navContainer}>
 
@@ -25,8 +23,8 @@ const NavBar = () => {
             </div>
 
             <div className={style.searchContainer}>
-                <FontAwesomeIcon icon="fa-sharp fa-solid fa-magnifying-glass" />
-                <input type="text" value={search} onChange={handlerChange}/>
+                <i class="fa-sharp fa-solid fa-magnifying-glass fa-xl"></i>
+                <input type="text" value={search} onChange={handlerChange} />
                 <button onClick={handlerSubmit}>Buscar</button>
             </div>
 
@@ -40,8 +38,8 @@ const NavBar = () => {
             </div>
 
             <div className={style.iconsContainer}>
-            <FontAwesomeIcon icon="fa-sharp fa-solid fa-user" />
-            <FontAwesomeIcon icon="fa-sharp fa-solid fa-duck" />
+                <i class="fa-sharp fa-solid fa-bucket fa-xl"></i>
+                <i class="fa-sharp fa-solid fa-user fa-xl"></i>
             </div>
         </nav>
     )

@@ -1,8 +1,10 @@
 import React from 'react'
+import LoginButton from '../blueprints/LoginButton'
 
 const Auth = () => {
   return (
-    <div>Auth</div>
+    <div>
+    </div>
   )
 }
 

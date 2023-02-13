@@ -10,7 +10,7 @@ const Landing = () => {
           Nace con la idea de crear un espacio amigable en el que los
           desarrolladores puedan distenderse, compartir ideas y proyectos
           propios, resolver dudas, buscar compañeros para trabajar en equipo y
-          buscar trabajo. Todo dentro de un mismo espacio.
+          buscar trabajo. Todo dentro de un mismo espacio
         </p>
       </section>
       <section>

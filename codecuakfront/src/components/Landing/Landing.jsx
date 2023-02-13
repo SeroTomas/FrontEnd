@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Landing.module.css";
 import { Link } from "react-router-dom";
+import logo from "./img/LOGO_SIN_FONDO.png"
 
 const Landing = () => {
   return (
@@ -88,7 +89,24 @@ const Landing = () => {
           </button>
         </Link>
       </section>
-      
+      <hr></hr>
+      <footer className={styles.footer}>
+        <div>
+          <p>&copy; Copyright 2023. Todos los derechos reservados.</p>
+          <ul>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+            <Link to="/terminos">Terminos y Condiciones</Link>
+            </li>
+            <li>
+            <Link to="/contacto">Contacto</Link>
+            </li>
+          </ul>
+        </div>
+      </footer>
+            <img src={logo} alt="logofooter" className={styles.logoFooter}/>
     </div>
   );
 };

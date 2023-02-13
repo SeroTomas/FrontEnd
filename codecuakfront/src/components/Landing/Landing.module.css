@@ -13,3 +13,21 @@
     display: inline-block;
     margin-right: 10px;
 }
+
+.footer ul{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  
+}
+.footer ul li{
+    display: inline-block;
+    margin-right: 10px;
+}
+.logoFooter{
+    display: flex;
+    margin-top: -4.5rem;
+    width: 5rem;
+}

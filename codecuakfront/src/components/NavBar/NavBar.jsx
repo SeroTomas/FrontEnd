@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
 import style from "./NavBar.module.css";
-import logo from "../Landing/img/LOGO_SIN_FONDO.png"
+import logo from "../../Media/logo-03.png"
 
 const NavBar = () => {
 

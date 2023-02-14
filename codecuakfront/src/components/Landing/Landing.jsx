@@ -2,36 +2,44 @@ import React from "react";
 import styles from "./Landing.module.css";
 import { Link } from "react-router-dom";
 import LoginButton from "../blueprints/LoginButton";
-import logo from "../../Media/logo-03.png"
+import logo from "../../Media/logo-03.png";
 
 const Landing = () => {
   return (
-    <div className={styles.container}>
+    <>
       <nav className={styles.nav}>
-        <ul>
-          <li>
-            <a href="#social">socialCuak</a>
-          </li>
-          <li>
-            <a href="#Q&A">Q&A-Cuak</a>
-          </li>
-          <li>
-            <a href="#work">workCuak</a>
-          </li>
-          <li>
-            <a href="#hiring">hiringCuak</a>
-          </li>
-        </ul>
-        <LoginButton/>
+        <div className={styles.ul}>
+          <ul>
+            <li>
+              <a href="#social">socialCuak</a>
+            </li>
+            <li>
+              <a href="#Q&A">Q&A-Cuak</a>
+            </li>
+            <li>
+              <a href="#work">workCuak</a>
+            </li>
+            <li>
+              <a href="#hiring">hiringCuak</a>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.loginbtn}>
+          <LoginButton />
+        </div>
       </nav>
       <section className={styles.sectionCode}>
         <h1>codeCuak</h1>
         <h2>La red social por y para desarrolladores</h2>
-        <p>
+        <p className={styles.codeP}>
           Nace con la idea de crear un espacio amigable en el que los
           desarrolladores puedan distenderse, compartir ideas y proyectos
-          propios, resolver dudas, buscar compañeros para trabajar en equipo y
-          buscar trabajo. Todo dentro de un mismo espacio
+          propios,
+        </p>
+        <p>
+          {" "}
+          resolver dudas, buscar compañeros para trabajar en equipo y buscar
+          trabajo. Todo dentro de un mismo espacio
         </p>
       </section>
       <section id="social">
@@ -100,17 +108,17 @@ const Landing = () => {
               <Link to="/about">About</Link>
             </li>
             <li>
-            <Link to="/terminos">Terminos y Condiciones</Link>
+              <Link to="/terminos">Terminos y Condiciones</Link>
             </li>
             <li>
-            <Link to="/contacto">Contacto</Link>
+              <Link to="/contacto">Contacto</Link>
             </li>
           </ul>
         </div>
       </footer>
-            <img src={logo} alt="logofooter" className={styles.logoFooter}/>
-    </div>
+      <img src={logo} alt="logofooter" className={styles.logoFooter} />
+    </>
   );
 };
 
-export default Landing
+export default Landing;

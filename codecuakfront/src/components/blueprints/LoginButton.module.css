@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Sen&display=swap");
+.loginBtn{
+    width: 8rem;
+    height: 3rem;
+    border-radius: 1rem;
+    font-family: "Ruda", sans-serif;
+    font-size: 17px;
+    cursor: pointer;
+    color:#b6f7c1;
+    background-color:#373640 ;
+    border-color: #b6f7c1;
+    transition: ease-out .3s;
+}
+.loginBtn:hover{
+    background-color: #414448;
+    color: #b6f7c1;
+    transition: ease-in .2s;
+}

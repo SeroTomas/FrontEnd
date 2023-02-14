@@ -11,7 +11,7 @@
     margin: 0px;
 }
 
-.subContainer{
+.subContainer1{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,39 +23,62 @@
     padding-top: 200px;
 }
 
+.subContainer2{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: red; */
+    width: 815px;
+    padding-bottom: 30px;
+    border-bottom: 1.5px solid #B6F7C1;
+}
+
 .subContainerData{
     display: flex;
     justify-content: space-between;
     width: 815px;
     background-color: #373640;
-    border-bottom: 1.5px solid #B6F7C1;
 }
 
 .containerSkills{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 80%;
+    width: 60%;
     font-family: 'Ruda', sans-serif;
     font-size: small;
     color: #B6F7C1;
-    border-bottom: 1.5px solid #B6F7C1;
     padding-bottom: 10px;
+    /* background-color: green; */
+}
+.containerExperience{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 40%;
+    font-family: 'Ruda', sans-serif;
+    font-size: small;
+    color: #B6F7C1;
+    padding-bottom:10px;
+    padding-left: 20px;
+    border-left: 2px solid #B6F7C1;
+    /* background-color: aqua; */
 }
 
 .title{
-    margin-top: 10px;
-    align-self: center;
+    padding-top: 5px;
     width: 100%;
     font-family: 'Ruda', sans-serif;
     font-size: small;
     color: #B6F7C1;
+    /* background-color: aqua; */
 }
 
 .TechnicalSkills{
     display: flex;
     justify-content: center;
     width: 50%;
+    padding-top: 10px;
 
 }
 .TechnicalSkills div{
@@ -67,6 +90,7 @@
     display: flex;
     justify-content: center;
     width: 50%;
+    padding-top: 10px;
 }
 .SoftSkills div{
     display: flex;
@@ -91,3 +115,5 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
+
+

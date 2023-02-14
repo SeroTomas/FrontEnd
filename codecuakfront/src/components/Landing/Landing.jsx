@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./Landing.module.css";
 import { Link } from "react-router-dom";
-import logo from "./img/LOGO_SIN_FONDO.png"
+import LoginButton from "../blueprints/LoginButton";
+import logo from "../../Media/logo-03.png"
 
 const Landing = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <nav className={styles.nav}>
         <ul>
           <li>
@@ -21,8 +22,9 @@ const Landing = () => {
             <a href="#hiring">hiringCuak</a>
           </li>
         </ul>
+        <LoginButton/>
       </nav>
-      <section>
+      <section className={styles.sectionCode}>
         <h1>codeCuak</h1>
         <h2>La red social por y para desarrolladores</h2>
         <p>

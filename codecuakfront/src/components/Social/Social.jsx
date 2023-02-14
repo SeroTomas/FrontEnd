@@ -1,8 +1,14 @@
 import React from 'react'
+import NavBar from '../NavBar/NavBar'
 
 const Social = () => {
   return (
-    <div>Social</div>
+    <>
+      <NavBar />
+      <h1>esto es social</h1>
+
+
+    </>
   )
 }
 

@@ -14,6 +14,12 @@ const FormPost = () => {
 
     const [text, setText] = useState('')
 
+    const [formExpanded, setFormExpanded] = useState(false)
+
+    const handlerExpanded = () => {
+        setFormExpanded(!formExpanded)
+    }
+
     const handlerText = (event) => {
         const value = event.target.value;
         setText(value)
@@ -29,16 +35,13 @@ const FormPost = () => {
                 <div className={style.imgContainer}>
                     <img src={user.image} alt="Foto de perfil del usuario" />
                 </div>
-                <div className={style.btnContainer}>
-                    <button>Quieres hacer una publicacion?</button>
+                <div>
+            
+                    <form onSubmit={handlerSubmit}>
+                        <input type="text" value={text} onChange={handlerText} />
+                        <button type="submit">Postear</button>
+                    </form>
                 </div>
-            </div>
-
-            <div className={style.formContainer}>
-                <form onSubmit={handlerSubmit}>
-                    <input type="text" value={text} onChange={handlerText} />
-                    <button type="submit">Postear</button>
-                </form>
             </div>
 
         </>

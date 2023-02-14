@@ -25,7 +25,7 @@ const NavBar = () => {
                     <img src={logo} alt="loguito" />
                 </div>
                 <div className={style.searchContainer}>
-                    <i class="fa-sharp fa-solid fa-magnifying-glass fa-lg" />
+                    <i className="fa-sharp fa-solid fa-magnifying-glass fa-lg" />
                     <input type="text" value={search} onChange={handlerChange} placeholder="Buscar en codeCuak" />
                 </div>
                 <div className={style.ulContainer}>
@@ -37,8 +37,8 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className={style.iconsContainer}>
-                    <button onClick={handlerNotifications}><i class="fa-sharp fa-solid fa-layer-group fa-xl" /></button>
-                    <Link to={"/user"}><i class="fa-sharp fa-solid fa-circle-user fa-xl" /></Link>
+                    <button onClick={handlerNotifications}><i className="fa-sharp fa-solid fa-layer-group fa-xl" /></button>
+                    <Link to={"/user"}><i className="fa-sharp fa-solid fa-circle-user fa-xl" /></Link>
                 </div>
                 <div className={
                     notiExpanded ? style.notiExpanded : style.notiNotExpanded

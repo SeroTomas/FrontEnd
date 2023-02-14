@@ -3,6 +3,7 @@ import style from "./social.module.css";
 //importamos hooks
 import {useDispatch} from "react-redux";
 import { fetchUser } from "../../redux/slices/user";
+import { useEffect } from "react";
 //importamos componentes
 import NavBar from '../NavBar/NavBar';
 import FormPost from "../FormPost/FormPost";

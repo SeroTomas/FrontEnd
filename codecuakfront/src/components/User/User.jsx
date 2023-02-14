@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Card from './Card';
+import { userPrueba } from './userPrueba'
 
 const User = () => {
   return (
-    <div>User</div>
+    <>
+      <Card props={userPrueba}/>
+    </>
   )
 }
 

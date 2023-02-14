@@ -8,15 +8,16 @@
     justify-content: space-around;
     align-items: center;
     background-color: #373640;
+    position: relative;
 }
 
 .searchContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
-    gap: 5px;
+    gap: 10px;
     background-color: #63686E;
 }
 
@@ -70,7 +71,50 @@
 .iconsContainer i {
     color:#B6F7C1 ;
 }
+.iconsContainer button{
+    background: none;
+    border: none;
+}
+
+.iconsContainer button:hover{
+    cursor: pointer;
+}
 
 .logoContainer img{
     height: 90px;
+}
+
+.notiExpanded{
+    height: 600px;
+    width: 350px;
+    background-color: #373640;
+    position: absolute;
+    top: 90px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 0px 0px 10px 10px;
+    overflow-y: scroll;
+}
+
+.notiNotExpanded{
+    display: none;
+}
+
+.notiContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notiHeader{
+    height: 40px;
+    border-bottom: 1px solid#63686E;
+    color: #7e97a6;
+}
+
+.notifications{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 5px;
 }

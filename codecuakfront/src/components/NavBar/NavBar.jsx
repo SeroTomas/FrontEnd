@@ -7,9 +7,15 @@ const NavBar = () => {
 
     const [search, setSearch] = useState("")
 
+    const [notiExpanded, setNotiExpanded] = useState(false)
+
     const handlerChange = (event) => {
         const value = event.target.value;
         setSearch(value);
+    }
+
+    const handlerNotifications = () => {
+        setNotiExpanded(!notiExpanded)
     }
 
     return (
@@ -25,13 +31,38 @@ const NavBar = () => {
                 <ul>
                     <li><Link to={"/social"}>SocialCuak</Link></li>
                     <li><Link to={"/work"}>WorkCuak</Link></li>
-                    <li><Link to={"qanda"}>Q&A-Cuak</Link></li>
+                    <li><Link to={"/qanda"}>Q&A-Cuak</Link></li>
                     <li><Link to={"/hiring"}>HiringCuak</Link></li>
                 </ul>
             </div>
             <div className={style.iconsContainer}>
-                <i class="fa-sharp fa-solid fa-layer-group fa-xl" />
-                <i class="fa-sharp fa-solid fa-circle-user fa-xl" />
+                <button onClick={handlerNotifications}><i class="fa-sharp fa-solid fa-layer-group fa-xl" /></button>
+                <Link to={"/user"}><i class="fa-sharp fa-solid fa-circle-user fa-xl" /></Link>
+            </div>
+            <div className={
+                notiExpanded ? style.notiExpanded : style.notiNotExpanded
+            }>
+                <div className={style.notiContainer}>
+                    <div className={style.notiHeader}>
+                        <h2>Notificaciones</h2>
+                    </div>
+                    <div className={style.notifications}>
+                        <div>
+                            <h3>Notificacion</h3>
+                        </div>
+                        <div>
+                            <h3>Notificacion</h3>
+                        </div>
+                        <div>
+                            <h3>Notificacion</h3>
+                        </div>
+                        <div>
+                            <h3>Notificacion</h3>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </nav>
     )

@@ -1,0 +1,28 @@
+.sectionsContenedor {
+    font-family: "Sen", sans-serif;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+  .section {
+    width: 420px;
+    display: flex;
+    background-color: #7e97a6;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .imgProfile {
+    width: 100px;
+    height: 100px;
+    margin-right: 5px;
+  }
+  .divlogos {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+  }
+  

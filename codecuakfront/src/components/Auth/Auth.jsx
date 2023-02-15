@@ -1,7 +1,7 @@
 import React from 'react'
-import LoginButton from '../blueprints/LoginButton'
-import LogoutButton from '../blueprints/LogOut'
-import Profile from '../blueprints/Perfil'
+import LoginButton from '../blueprints/buttonsAuth/LoginButton'
+import LogoutButton from '../blueprints/buttonsAuth/LogOut'
+import Profile from '../blueprints/buttonsAuth/Perfil'
 const Auth = () => {
   return (
     <div>

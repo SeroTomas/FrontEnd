@@ -87,12 +87,14 @@ const About = () => {
               <div>
               <h2>{element.name}</h2>
               <p>{element.descripcion}</p>
+              <div className={Style.divlogos}>
               <Link to={element.github}>
-                <i class="fa-brands fa-github"></i>
+                <i class="fa-brands fa-github fa-xl"></i>
               </Link>
               <Link to={element.linkdin}>
-                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-brands fa-linkedin fa-xl" ></i>
               </Link>
+              </div>
               </div>
             </section>
           );

@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         domain="dev-gbi7cjff7l8crood.us.auth0.com"
         clientId="dTrZkdtUNeHxOG4gm9orVcattagEItFR"
         authorizationParams={{
-          redirect_uri: window.location.origin
+          redirect_uri: "window.location.origin"
         }}
       >
         <Provider store={store}>

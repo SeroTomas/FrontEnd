@@ -5,7 +5,13 @@ const QandA = () => {
   return (
     <div className={Style.background}>
       <NavBar />
+      <div className={Style.contenedor}>
       <h1>QandA Cuak 🦆</h1>
+      <br/>
+      <div className={Style.proximamente}>
+      <h2>PROXIMAMENTE...</h2>
+      </div>
+      </div>
     </div>
   )
 }

@@ -5,8 +5,8 @@ const Terminos = () => {
   return (
     <div className={Style.background}>
        <BacktoHome/>
-      <h1>Terminos y Condiciones </h1>
-      <br />
+      <h1 className={Style.title}>Terminos y Condiciones </h1>
+
       <p>
         Licencia de uso: CodeCuak concede a los usuarios una licencia limitada,
         no exclusiva y no transferible para usar la plataforma y el contenido

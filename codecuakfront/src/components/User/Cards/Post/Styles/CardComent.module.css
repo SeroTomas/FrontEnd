@@ -2,14 +2,12 @@
     display: flex;
     align-items: center;
     width: 100%;
-    /* background-color: aqua; */
     min-height: 80px;
     border: solid 1.5px #63686e;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 .containerImg{
-    /* background-color: blueviolet; */
     align-self: flex-start;
     height: 100%;
     width: 75px;
@@ -23,7 +21,6 @@
 }
 
 .coment{
-    /* background-color: green; */
     width: 560px;
     min-height: 50px;
     height:max-content;

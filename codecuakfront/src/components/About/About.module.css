@@ -1,0 +1,34 @@
+.background{
+    padding: 20px 10rem;
+    height:100%;
+    background-color: #63686E;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+.head{
+font-family: "Sen", sans-serif;
+ flex-direction: column;
+ color: white;
+}
+.sectionsContenedor{
+    font-family: "Sen", sans-serif;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+
+}
+.section{
+    width: 420px;
+    display: flex;
+    background-color: #7e97a6;
+    border-radius: 10px;
+    padding: 1rem;
+}
+.imgProfile{
+    width: 100px;
+    height: 100px;
+}

@@ -1,0 +1,11 @@
+.button{
+    height: 50px;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-family: "Ruda", sans-serif;
+    font-size: 17px;
+    cursor: pointer;
+    color: #b6f7c1;
+    background-color: #373640;
+    border-color: #b6f7c1;
+  }

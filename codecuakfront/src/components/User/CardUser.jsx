@@ -2,7 +2,6 @@ import React from "react";
 import style from "./CardUser.module.css"
 
 const Card=({ props })=>{
-    console.log(props)
     return(
        
         <div className={style.container}>

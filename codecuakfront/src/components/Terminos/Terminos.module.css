@@ -1,0 +1,9 @@
+.background{
+    font-family: "Sen", sans-serif;
+    padding: 20px 10rem;
+    height:100vh;
+    background-color: #63686E;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}

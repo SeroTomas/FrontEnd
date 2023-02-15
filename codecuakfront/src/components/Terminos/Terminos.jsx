@@ -1,8 +1,10 @@
 import React from "react";
-
+import Style from "./Terminos.module.css"
+import BacktoHome from "../blueprints/BacktoHome";
 const Terminos = () => {
   return (
-    <div>
+    <div className={Style.background}>
+       <BacktoHome/>
       <h1>Terminos y Condiciones </h1>
       <br />
       <p>

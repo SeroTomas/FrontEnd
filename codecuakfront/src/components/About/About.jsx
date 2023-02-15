@@ -88,10 +88,10 @@ const About = () => {
               <h2>{element.name}</h2>
               <p>{element.descripcion}</p>
               <Link to={element.github}>
-                <i class="fa-brands fa-github"></i>
+                <i class="fa-brands fa-github fa-xl"></i>
               </Link>
               <Link to={element.linkdin}>
-                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-brands fa-linkedin fa-xl" ></i>
               </Link>
               </div>
             </section>

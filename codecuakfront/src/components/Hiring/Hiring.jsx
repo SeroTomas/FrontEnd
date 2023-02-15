@@ -5,7 +5,13 @@ const Hiring = () => {
   return (
     <div className={Style.background}>
       <NavBar />
-      <h1>Work Cuak 🦆</h1>
+      <div className={Style.contenedor}>
+      <h1>Hiring Cuak 🦆</h1>
+      <br/>
+      <div className={Style.proximamente}>
+      <h2>PROXIMAMENTE...</h2>
+      </div>
+      </div>
     </div>
   )
 }

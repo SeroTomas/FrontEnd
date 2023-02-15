@@ -22,7 +22,9 @@ const NavBar = () => {
         <div className={style.container}>
             <nav className={style.navContainer}>
                 <div className={style.logoContainer}>
+                    <Link to={"/"}>
                     <img src={logo} alt="loguito" />
+                    </Link>
                 </div>
                 <div className={style.searchContainer}>
                     <i className="fa-sharp fa-solid fa-magnifying-glass fa-lg" />

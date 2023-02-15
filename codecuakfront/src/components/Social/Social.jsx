@@ -6,9 +6,11 @@ import { fetchUser } from "../../redux/slices/user";
 import { useEffect } from "react";
 //importamos componentes
 import NavBar from '../NavBar/NavBar';
-import FormPost from "../FormPost/FormPost";
+import FormPost from "../blueprints/FormPost/FormPost";
 
 const Social = () => {
+
+
   const dispatch = useDispatch();
   // cuando se monta el componente fetcheamos el usuario de la persona que inicio sesion 
   // para luego utilizarlo en las cards de los posts y pagina de perfil

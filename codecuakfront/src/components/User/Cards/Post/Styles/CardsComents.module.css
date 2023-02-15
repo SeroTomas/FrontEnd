@@ -4,6 +4,17 @@
     align-items: center;
     width: 95%;
     border-radius: 5px;
-    margin-top: 60px;
-    /* background-color: red; */
+    margin-top: 15px;
+}
+
+.buttonComents{
+    background-color: #63686e;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 28px;
+    font-family: 'Ruda', sans-serif;
+    color: #B6F7C1;
+    margin-left: 520px;
+    margin-bottom: 10px;
 }

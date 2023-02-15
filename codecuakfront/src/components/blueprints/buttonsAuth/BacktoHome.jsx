@@ -5,7 +5,7 @@ const BacktoHome = () => {
   return (
     <div >
         <Link to="/">
-      <button className={Style.button}>Voler al Home</button>
+      <button className={Style.button}>Volver al Home</button>
         </Link>
       </div>
   )

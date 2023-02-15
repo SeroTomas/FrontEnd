@@ -21,9 +21,21 @@
 .likes{
     display: flex;
     justify-content: center;
-    border-top: solid 1.5px #63686e;
+    align-items: center;
+    border-top: solid 1.5px #B6F7C1;
     height: 30px;
-    width: 95%;
+    width: 15%;
+    font-size: large;
+    color: #B6F7C1;
+    margin-left: 80%;
+}
+
+.likes button{
+    background: none;
+    border: none;
+    font-size: large;
+    color: #B6F7C1;
+    margin-right: 5px;
 }
 
 .addComent{

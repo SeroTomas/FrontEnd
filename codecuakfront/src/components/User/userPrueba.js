@@ -6,5 +6,6 @@ export const userPrueba={
     image: 'https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png' ,
     portada: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTZZeLZAzPyAtBhCUl384gDJYN3ROMfPXtPDUlu3QAX9gyEEX6',
     technicalSkills: ["JavaScript", "React", "Redux", "Nextjs", "Sequelize"],
-    softSkills: ["Liderazgo", "Proactividad", "Trabajo en equipo", "Resiliencia", "Empatía"]
+    softSkills: ["Liderazgo", "Proactividad", "Trabajo en equipo", "Resiliencia", "Empatía"],
+    experiences: ["Lider tecnico en Amazon (2años)", "Freelancer (5 años)"],
 }

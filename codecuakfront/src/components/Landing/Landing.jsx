@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./Landing.module.css";
 import { Link } from "react-router-dom";
-import LoginButton from "../blueprints/LoginButton";
+import LoginButton from "../blueprints/buttonsAuth/LoginButton";
 import logo from "../../Media/logo-03.png";
 import social from "../../Media/social.png";
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../blueprints/LogOut"
+import LogoutButton from "../blueprints/buttonsAuth/LogOut"
 const Landing = () => {
   const {isAuthenticated} = useAuth0()
   return (

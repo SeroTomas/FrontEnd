@@ -39,7 +39,6 @@
 }
 
 .addComent{
-    /* background-color: blueviolet; */
     display: flex;
     justify-content: center;
     border-top: solid 1.5px #63686e;
@@ -48,7 +47,6 @@
 }
 
 .userData{
-    /* background-color: burlywood; */
     width: 100%;
     display: flex;
     align-items: center;

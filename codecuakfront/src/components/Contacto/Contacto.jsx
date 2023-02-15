@@ -1,9 +1,47 @@
-import React from 'react'
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
+import styles from "./Contacto.module.css"
 
 const Contacto = () => {
-  return (
-    <div>Contacto</div>
-  )
-}
+  const SERVICE_ID = "service_oaksvac";
+  const TEMPLATE_ID = "template_trfjcil";
+  const PUBLIC_KEY = "O7jgSb2G6PiunQMKB";
+  const [result, setResult] = useState(false)
+  const navigateTo = useNavigate()
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-export default Contacto
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      alert("mensaje enviado")
+      e.target.reset()
+      
+      navigateTo("/social")
+    };
+   
+  return (
+    <div className={styles.divCont}>
+      <h1>Contacto</h1>
+      <div  className={styles.divForm}>
+        <form ref={form} onSubmit={sendEmail} className={styles.form}>
+          <label>Name</label>
+          <input type="text" name="user_name" className={styles.input}required />
+          <label>Email</label>
+          <input type="email" name="user_email" className={styles.input} required/>
+          <label>Message</label>
+          <textarea name="message" className={styles.message} required/>
+          <button type="submit" className={styles.btn}>Enviar</button>
+          <div>{result ? <p>el mensaje ha sido enviado con exito</p> : null}</div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Contacto;

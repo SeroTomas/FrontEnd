@@ -1,7 +1,7 @@
 import React from 'react'
 import Style from "./AboutCards.module.css"
 import { Link } from 'react-router-dom';
-import foto from "../../../Media/edu.jpg"
+
 const AboutCards = () => {
     const developers = [
         {

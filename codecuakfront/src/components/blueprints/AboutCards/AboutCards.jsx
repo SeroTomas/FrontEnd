@@ -1,6 +1,7 @@
 import React from 'react'
 import Style from "./AboutCards.module.css"
 import { Link } from 'react-router-dom';
+import foto from "../../../Media/edu.jpg"
 const AboutCards = () => {
     const developers = [
         {
@@ -11,8 +12,8 @@ const AboutCards = () => {
           descripcion: "Full Stack Web Developer",
         },
         {
-          img:"https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png",
-          name: "Abraham Jose Emir ",
+          img:"https://avatars.githubusercontent.com/u/101676297?v=4",
+          name: "Abraham Emir Jose ",
           linkdin: "https://www.linkedin.com/in/emirabraham/",
           github: "https://github.com/EmirAbraham",
           descripcion: "Full Stack Web Developer",
@@ -25,7 +26,7 @@ const AboutCards = () => {
           descripcion: "Full Stack Web Developer",
         },
         {
-          img:"https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png",
+          img:"https://avatars.githubusercontent.com/u/107959000?v=4",
           name: "Peralta Santiago",
           linkdin: "https://www.linkedin.com/in/santiago-peralta-1961b8258/",
           github: "https://github.com/SantiagoPeralta30",
@@ -72,7 +73,7 @@ const AboutCards = () => {
             <h2>{element.name}</h2>
             <p>{element.descripcion}</p>
             <div className={Style.divlogos}>
-            <Link to={element.github}>
+            <Link to={element.github}> 
               <i class="fa-brands fa-github fa-xl"></i>
             </Link>
             <Link to={element.linkdin}>

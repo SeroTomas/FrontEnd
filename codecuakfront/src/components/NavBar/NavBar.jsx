@@ -27,7 +27,7 @@ const NavBar = () => {
                     </Link>
                 </div>
                 <div className={style.searchContainer}>
-                    <i className="fa-sharp fa-solid fa-magnifying-glass fa-lg" />
+                    <i className="fa-sharp fa-solid fa-magnifying-glass fa-lm" />
                     <input type="text" value={search} onChange={handlerChange} placeholder="Buscar en codeCuak" />
                 </div>
                 <div className={style.ulContainer}>

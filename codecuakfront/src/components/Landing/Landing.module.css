@@ -12,8 +12,12 @@
   justify-content: space-between;
   align-items: center;
   background-color: #373640dc;
+ 
   position: fixed;
   top: 0;
+}
+html{
+ scroll-behavior: smooth; 
 }
 
 .ul ul {

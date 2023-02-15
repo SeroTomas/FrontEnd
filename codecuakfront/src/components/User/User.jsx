@@ -1,8 +1,9 @@
 import React from "react";
-import CardUser from "./CardUser";
+import CardUser from "./Cards/CardUser";
 import NavBar from "../NavBar/NavBar";
-import { userPrueba } from "./userPrueba"
-import styles from "./User.module.css"
+import { userPrueba } from "./userPrueba";
+import CardsPost from "./Cards/Post/CardsPost";
+import styles from "./User.module.css";
 
 const User = () => {
   return (
@@ -64,6 +65,7 @@ const User = () => {
             </div>
           </div>
 
+          <CardsPost/>
         </div>
       </div>
     </>

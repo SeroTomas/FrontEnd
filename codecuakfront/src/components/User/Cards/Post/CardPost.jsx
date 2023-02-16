@@ -7,7 +7,7 @@ import styles from "./Styles/CardPost.module.css";
 const CardPost=({ props })=>{
     const {post, userPrueba} = props;
     const { image, name } = userPrueba;
-    const {content, likes, coments} = post;
+    const {content, likes, coments, imagePost} = post;
     const [ like, setLike] = useState(false);
 
     
@@ -18,6 +18,12 @@ const CardPost=({ props })=>{
                     <img src={image} alt="Foto de perfil" />
                     <span>{name}</span>
                 </div>
+                { imagePost? 
+                    <div className={styles.imagePost}>
+                        <img src={imagePost} alt="Imagen del posteo" />
+                    </div> :
+                    <></>
+                }
                 <div className={styles.content}>
                     <span>{content}</span>
                 </div>

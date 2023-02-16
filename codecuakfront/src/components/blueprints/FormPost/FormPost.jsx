@@ -3,7 +3,6 @@ import style from "./formPost.module.css"
 //importamos hooks
 import { useState } from "react"
 // componentes
-import PostInfo from "../PostInfo/PostInfo"
 
 const FormPost = () => {
 
@@ -13,26 +12,42 @@ const FormPost = () => {
         name: "Magali"
     }
 
-    const [formExpanded, setFormExpanded] = useState(false)
+    const [form, setForm] = useState("");
+    const text = form.length;
 
-    const handlerExpanded = () => {
-        setFormExpanded(!formExpanded)
+    const handlerChange = (event) => {
+        const value = event.target.value;
+        setForm(value)
+    }
+
+    const handlerSubmit = (event) => {
+        event.preventDefault();
     }
 
     return (
-        <>
-            <div className={style.container}>
-                <div className={style.imgContainer}>
-                    <img src={user.image} alt="Foto de perfil del usuario" />
+        <div className={style.container}>
+            <div className={style.wrapper}>
+                <div className={style.infoContainer}>
+                    <div className={style.imgContainer}>
+                        <img src={user.image} alt="foto del usuario" />
+                    </div>
+                    <p>{user.name}</p>
+
                 </div>
-                <button>Desea crear una publicacion?</button>
+                <div className={style.formContainer}>
+                    <form onSubmit={handlerSubmit}>
+                        <textarea value={form} onChange={handlerChange} placeholder={"Que es lo que quieres compartir?"} />
+                        <div>
+                            {
+                                text > 1400 ? <p className={style.limitText}>{`${text}/1500 `}</p> : null
+                            }
+                            <button type="submit" disabled={text > 1500}>Publicar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <PostInfo
-                formExpanded={formExpanded}
-                setFormExpanded={setFormExpanded}
-                user={user}
-            />
-        </>
+        </div>
+
     )
 
 }

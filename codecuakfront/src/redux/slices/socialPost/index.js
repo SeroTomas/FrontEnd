@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const socialPostSlice = createSlice({
    name: "socialPost",
    initialState: {
-      posts: []
+      posts: [],
+      comments:[]
    },
    reducers: {
       getPosts: (state, action) => {

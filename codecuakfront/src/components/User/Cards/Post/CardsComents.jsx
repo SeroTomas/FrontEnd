@@ -5,6 +5,7 @@ import styles from "./Styles/CardsComents.module.css";
 
 const Coments=({props})=>{
     const coments = props;
+    
     const [viewComents, setViewComents] = useState(false)
     return(
         <div className={styles.container}>

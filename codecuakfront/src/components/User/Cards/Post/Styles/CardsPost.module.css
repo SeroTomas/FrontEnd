@@ -1,5 +1,6 @@
 .container{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     width: 815px;
     border-radius: 10px;

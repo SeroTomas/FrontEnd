@@ -22,7 +22,7 @@ const CardPost=({ post })=>{
                     <img src={image} alt="Foto de perfil" />
                     <span>{name}</span>
                 </div>
-                { imagePost? 
+                { post.imagePost? 
                     <div className={styles.imagePost}>
                         <img src={imagePost} alt="Imagen del posteo" />
                     </div> :

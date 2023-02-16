@@ -29,6 +29,9 @@
   justify-content: space-around;
   margin: 2rem;
 }
+.form label{
+  font-size: 20px;
+}
 .input {
   width: 16rem;
   height: 2rem;
@@ -36,6 +39,7 @@
   padding: 0.4rem;
   border-radius: 1rem;
   font-family: "Sen", sans-serif;
+  font-size: 20px;
   transition: ease-out 0.3s;
 }
 
@@ -51,6 +55,7 @@
   margin: 1rem auto;
   resize: none;
   font-family: "Sen", sans-serif;
+  font-size: 20px;
   transition: ease-out 0.3s;
 }
 .message:focus {
@@ -74,4 +79,26 @@
   background-color: #414448;
   color: #b6f7c1;
   transition: ease-in 0.2s;
+}
+.divBtn{
+  display: flex;
+  margin-left: 5rem;
+  margin-top: -20rem;
+}
+.homeBtn{
+  width: 8rem;
+  height: 3rem;
+  border-radius: 1rem;
+  font-family: "Ruda", sans-serif;
+  font-size: 17px;
+  cursor: pointer;
+  color:#b6f7c1;
+  background-color:#373640 ;
+  border-color: #b6f7c1;
+  transition: ease-out .3s;
+}
+.homeBtn:hover{
+  background-color: #414448;
+  color: #b6f7c1;
+  transition: ease-in .2s;
 }

@@ -26,3 +26,5 @@ export const fetchUser = () => {
         }
     }
 }
+// https://backend-production-c946.up.railway.app/users
+// https://backend-production-c946.up.railway.app/socialcuak

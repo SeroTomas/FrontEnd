@@ -9,6 +9,8 @@
     padding: 10px;
     border: solid 1.5px #B6F7C1;
     border-radius: 10px;
+    box-shadow: 10px 10px 20px #191919,
+              -10px -10px 20px #292929;
 }
 
 .content{
@@ -16,6 +18,10 @@
     height: 100px;
     padding: 10px;
     color: #B6F7C1;
+    font-family: 'Dosis', sans-serif;
+    letter-spacing: 1px;
+    font-size: medium;
+    font-weight: 400;
 }
 
 .likes{

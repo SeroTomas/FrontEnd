@@ -29,12 +29,19 @@
     border: none;
     border-radius: 5px;
     padding: 8px;
-    color: #373640;
+    color: #B6F7C1;
     resize: none;
+    font-family: 'Dosis', sans-serif;
+    letter-spacing: 1px;
+    font-size: medium;
+    font-weight: 400;
 }
 
 .form textarea::placeholder{
     color: #373640;
+    font-family: 'Dosis', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 400;
 }
 
 .form button{
@@ -46,5 +53,6 @@
     margin-top: 10px;
     width: 100px;
     height: 30px;
-    color: #373640;
+    color: #B6F7C1;
+    font-family: 'Ruda', sans-serif;
 }

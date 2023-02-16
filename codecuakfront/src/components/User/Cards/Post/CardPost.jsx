@@ -31,8 +31,6 @@ const CardPost=({ props })=>{
                 <div className={styles.comentarios}>
                     <CardsComents props={coments}/>
                 </div>
-                <div className={styles.corazon}>
-                </div>
             </div>
         </>
     )

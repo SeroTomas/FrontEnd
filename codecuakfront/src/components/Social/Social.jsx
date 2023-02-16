@@ -7,6 +7,7 @@ import { useEffect } from "react";
 //importamos componentes
 import NavBar from '../NavBar/NavBar';
 import FormPost from "../blueprints/FormPost/FormPost";
+import CardsPost from "./Post/CardsPost";
 
 const Social = () => {
 
@@ -19,10 +20,15 @@ const Social = () => {
   }, [dispatch])
   
   return (
-    <div className={style.socialContainer}>
+    <>
       <NavBar />
-      <FormPost/>
-    </div>
+      <div className={style.socialContainer}>
+        <div className={style.containerPost}>
+          <FormPost/>
+          <CardsPost/>
+        </div>
+      </div>
+    </>
   )
 }
 

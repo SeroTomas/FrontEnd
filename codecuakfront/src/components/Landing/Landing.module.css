@@ -2,19 +2,20 @@
 .containter {
   background-color: rgb(232, 232, 232);
   margin-top: 5rem;
+  width: 100%;
 }
 .nav {
   font-family: "Ruda", sans-serif;
   display: flex;
-  min-width: 100%;
+  
+  width: 100%;
   height: 5rem;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: #373640dc;
- 
   position: fixed;
-  top: 0;
+  top:0;
 }
 html{
  scroll-behavior: smooth; 
@@ -31,7 +32,7 @@ html{
 .ul ul li a {
   text-decoration: none;
   color: #b6f7c1;
-  font-size: 18px;
+  font-size: 20px;
 }
 .loginbtn {
   display: flex;
@@ -48,6 +49,7 @@ html{
   font-family: "Sen", sans-serif;
   background-color: #c4c2d1;
   scroll-margin-top: 10ex;
+  
 }
 .sectionCode h1 {
   color: #8af09b;
@@ -61,7 +63,7 @@ html{
   margin-top: 3rem;
 }
 .sectionCode p {
-  font-size: 20px;
+  font-size: 25px;
 }
 .codeP {
   margin-top: 5rem;
@@ -110,7 +112,7 @@ html{
   height: 6rem;
   border-radius: 1rem;
   font-family: "Ruda", sans-serif;
-  font-size: 17px;
+  font-size: 20px;
   cursor: pointer;
   color: #b6f7c1;
   background-color: #373640;
@@ -141,7 +143,7 @@ html{
   font-size: 45px;
 }
 .sectionQyA p {
-  font-size: 24px;
+  font-size: 28px;
 }
 .sectionWork {
   display: flex;
@@ -185,36 +187,7 @@ html{
   font-size: 40px;
 }
 .sectionHiring p {
-  font-size: 20px;
-}
-.footer {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-evenly;
-  height: 10rem;
-  font-family: "Sen", sans-serif;
-  background-color: #373640;
-}
-.contTextofoot {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-}
-.footer ul {
-  list-style: none;
-}
-.footer p {
-  color: #c8c8c8;
-}
-.footer ul li a {
-  color: #ececec;
-  text-decoration: none;
-}
-.footer ul li a:hover {
-  text-decoration: white underline;
+  font-size: 25px;
 }
 
 .logoFooter {

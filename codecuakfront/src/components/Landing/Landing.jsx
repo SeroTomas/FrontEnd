@@ -3,7 +3,7 @@ import styles from "./Landing.module.css";
 import { Link } from "react-router-dom";
 import LoginButton from "../blueprints/buttonsAuth/LoginButton";
 import logo from "../../Media/logo-03.png";
-import social from "../../Media/social.png";
+import Footer from "../blueprints/Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "../blueprints/buttonsAuth/LogOut"
 const Landing = () => {
@@ -119,24 +119,7 @@ const Landing = () => {
         </div>
       </section>
       <hr></hr>
-      <footer className={styles.footer}>
-        <div className={styles.contTextofoot}>
-          <p>&copy; Copyright 2023. Todos los derechos reservados.</p>
-          <ul>
-            <li>
-              <Link to="/about">
-                <span>About</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/terminos">Terminos y Condiciones</Link>
-            </li>
-            <li>
-              <Link to="/contacto">Contacto</Link>
-            </li>
-          </ul>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };

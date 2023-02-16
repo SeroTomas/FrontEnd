@@ -7,10 +7,3 @@ export const getPost = () => (dispatch) => {
     
 };
 
-
-// export function getPokeDetails(id) {
-//     return async function (dispatch) {
-//       const detail = await axios.get(`http://localhost:3001/pokemons/${id}`);
-//       return dispatch({ type: GET_POKE_DETAILS, payload: detail.data });
-//     };
-//   }

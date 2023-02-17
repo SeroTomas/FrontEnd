@@ -1,9 +1,9 @@
-import React from "react";
+//estilos
 import styles from "./AddComent.module.css";
+//hooks
 import { useState } from "react";
 
-const AddComent =({props})=>{
-    const image = props;
+const AddComent =({image})=>{
     const [textArea, setTextArea] = useState("")
 
     const submitHandler=(event)=>{

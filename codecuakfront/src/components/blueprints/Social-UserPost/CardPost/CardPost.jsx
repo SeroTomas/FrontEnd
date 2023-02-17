@@ -7,22 +7,22 @@ import AddComent from "../AddComent/AddComent";
 import ComentContainer from "../ComentContainer/ComentContainer";
 
 
-const CardPost = ( { post } ) => {
+const CardPost = ({ post }) => {
 
-
-
+  // datos del posteo
   const { content, coments, imagePost, likes } = post;
-  const {name,image} = post.userdev
+  //datos del usuario que hizo el posteo
+  const { name, image } = post.userdev
 
   const [likeState, setStateLike] = useState(false);
   const [like, setLike] = useState(likes);
 
-  const handlerClick=()=>{
-    if(likeState == true){
-      setLike(like-1)
+  const handlerClick = () => {
+    if (likeState == true) {
+      setLike(like - 1)
     }
-    else{
-      setLike(like+1)
+    else {
+      setLike(like + 1)
     }
     setStateLike(!likeState)
   }
@@ -56,7 +56,7 @@ const CardPost = ( { post } ) => {
           <span>{like}</span>
         </div>
         <div className={styles.addComent}>
-          <AddComent props={image} />
+          <AddComent image ={image} />
         </div>
         <div className={styles.comentarios}>
           <ComentContainer props={coments} />

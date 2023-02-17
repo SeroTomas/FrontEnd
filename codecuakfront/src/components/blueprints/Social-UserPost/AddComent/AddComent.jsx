@@ -15,7 +15,8 @@ const AddComent = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        sendComment(coment, props.userdevId, props.postId)
+        sendComment(coment, props.userdevId, props.postId);
+        setComent("");
     }
 
     return (

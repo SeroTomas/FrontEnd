@@ -15,7 +15,7 @@ const ComentContainer=({socialcomments})=>{
 
             <button className={styles.buttonComents} onClick={()=>setViewComents(!viewComents)}>Comentarios</button>
             
-            {viewComents ? socialcomments?.map((comment)=><CardComent comments = {comments}/>) :
+            {viewComents ? socialcomments?.map((comment)=><CardComent comment = {comment}/>) :
             <></>
             }
 

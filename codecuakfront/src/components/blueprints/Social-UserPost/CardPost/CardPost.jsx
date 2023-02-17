@@ -62,7 +62,7 @@ const CardPost = ({ post }) => {
           />
         </div>
         <div className={styles.comentarios}>
-          <ComentContainer comments={socialcomments} />
+          <ComentContainer socialcomments={socialcomments} />
         </div>
       </div>
     </>

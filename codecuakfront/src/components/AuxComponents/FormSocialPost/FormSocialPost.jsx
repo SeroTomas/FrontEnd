@@ -3,7 +3,7 @@ import style from "./formSocialPost.module.css";
 //importamos hooks
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { sendPost } from "../../../redux/action";
+import {sendPost} from "../../../axiosFunctions"
 // componentes
 const FormSocialPost = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const FormSocialPost = () => {
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    dispatch(sendPost({ content: form, userId: users }));
+    sendPost(form,users)
   };
 
   return (

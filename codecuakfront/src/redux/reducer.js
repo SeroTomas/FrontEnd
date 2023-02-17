@@ -1,7 +1,6 @@
 import {
   GET_ALL_POST,
   GET_BYID_POST,
-  POST_POST,
   PUT_POST,
   DELETE_POST,
   POST_COMMENT,
@@ -21,11 +20,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         post: action.payload.reverse(),
-      };
-    case POST_POST:
-      return {
-        ...state,
-        post: action.payload,
       };
     default:
       return {

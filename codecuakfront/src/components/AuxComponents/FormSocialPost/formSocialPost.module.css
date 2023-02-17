@@ -5,7 +5,7 @@
     align-items: center;
     margin: 15px;
     padding: 10px;
-    width: 915px;
+    width: 700px;
     background-color: #373640;
     border-radius: 10px;
     gap: 10px;
@@ -76,7 +76,16 @@
 }
 
 .formContainer div button{
-    
+    font-family: 'Ruda', sans-serif;
+    background-color: #63686e;
+    font-size: 1em;
+    border: none;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    margin: 15px;
+    color: #B6F7C1;
+    margin-right: 5px;
 }
 
 .limitText{

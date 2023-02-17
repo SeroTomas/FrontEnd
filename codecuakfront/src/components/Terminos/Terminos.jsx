@@ -1,6 +1,6 @@
 import React from "react";
 import Style from "./Terminos.module.css"
-import BacktoHome from "../blueprints/buttonsAuth/BacktoHome";
+import BacktoHome from "../blueprints/buttonsAuth/backToHome/BacktoHome";
 const Terminos = () => {
   return (
     <div className={Style.background}>

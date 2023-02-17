@@ -1,13 +1,13 @@
 // importamos estilos
 import style from "./social.module.css";
 //importamos hooks
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { useEffect } from "react";
 //importamos componentes
 import NavBar from '../NavBar/NavBar';
-import FormPost from "../blueprints/FormPost/FormPost";
-import CardsPost from "./Post/CardsPost";
+import FormSocialPost from "../AuxComponents/FormSocialPost/FormSocialPost";
+import PostSocialContainer from "../AuxComponents/PostSocialContainer/PostSocialContainer";
 
 const Social = () => {
 
@@ -18,15 +18,13 @@ const Social = () => {
   useEffect(() => {
     // dispatch(fetchUser)
   }, [dispatch])
-  
+
   return (
     <>
-      <NavBar />
       <div className={style.socialContainer}>
-        <div className={style.containerPost}>
-          <FormPost/>
-          <CardsPost/>
-        </div>
+        <NavBar />
+        <FormSocialPost />
+        <PostSocialContainer />
       </div>
     </>
   )

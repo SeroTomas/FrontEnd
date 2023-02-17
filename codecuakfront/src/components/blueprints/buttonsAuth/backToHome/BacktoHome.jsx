@@ -1,5 +1,5 @@
 import React from 'react'
-import Style from "./Styles/BacktoHome.module.css"
+import Style from "./BacktoHome.module.css"
 import { Link } from 'react-router-dom'
 const BacktoHome = () => {
   return (

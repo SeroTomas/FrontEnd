@@ -1,9 +1,11 @@
-import React from "react";
-import CardComent from "./CardComent.jsx";
+//estilos
+import styles from "./comentContainer.module.css";
+//hooks
 import { useState } from "react";
-import styles from "./Styles/CardsComents.module.css";
+//componentes
+import CardComent from "../CardComent/CardComent.jsx";
 
-const Coments=({props})=>{
+const ComentContainer=({props})=>{
     const coments = props;
     
     const [viewComents, setViewComents] = useState(false)
@@ -18,4 +20,4 @@ const Coments=({props})=>{
     )
 }
 
-export default Coments;
+export default ComentContainer;

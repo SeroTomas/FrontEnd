@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Styles/AddComent.module.css";
+import styles from "./AddComent.module.css";
 import { useState } from "react";
 
 const AddComent =({props})=>{

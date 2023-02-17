@@ -1,6 +1,7 @@
-import React from "react";
+//estilos
+import styles from "./CardComent.module.css"
+//hooks
 import { useState } from "react";
-import styles from "./Styles/CardComent.module.css"
 
 const CardComent=({props})=>{
     const coment = props;

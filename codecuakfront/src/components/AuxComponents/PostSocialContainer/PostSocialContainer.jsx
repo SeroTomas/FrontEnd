@@ -1,12 +1,13 @@
-import React from "react";
+//estilos
+import styles from "./postSocialContainer.module.css";
+//hooks
 import { useEffect } from "react";
-import CardPost from "../../User/Cards/Post/CardPost.jsx";
-import { postsHardCode } from "../../User/postSocial";
-import styles from "./Styles/CardsPost.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../../../redux/action";
+//componentes
+import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 
-const CardsPost = () => {
+const PostSocialContainer = () => {
   const data = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
@@ -23,4 +24,4 @@ const CardsPost = () => {
   );
 };
 
-export default CardsPost;
+export default PostSocialContainer;

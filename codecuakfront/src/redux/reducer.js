@@ -1,9 +1,6 @@
-
-import {
-  GET_POST
-} from "./action";
+import { GET_POST,ADD_POST } from "./action";
 const initialState = {
-  post: []
+  post: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -14,11 +11,10 @@ const rootReducer = (state = initialState, action) => {
         post: action.payload,
       };
     case ADD_POST:
-      return{
-    ...state,
-   post: action.payload
-
-    }
+      return {
+        ...state,
+        post: action.payload,
+      };
     default:
       return {
         ...state,

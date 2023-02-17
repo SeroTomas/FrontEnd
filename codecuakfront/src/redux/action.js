@@ -43,12 +43,7 @@ export const getAllPostById = ({ postId }) => {
 };
 // POST DEL POST XD
 // mandar post requiere contenido y el id de usuarion todo por body
-export const sendPost = ({ content, userId }) => {
-  return async function (dispatch) {
-    let data = await axios.post(URL.URL_SOCIAL, { content, userId });
-    return dispatch({ type: POST_POST, data });
-  };
-};
+
 // PUT DEL POST
 export const modifyPost = ({ postId, content }) => {
   return async function (dispatch) {

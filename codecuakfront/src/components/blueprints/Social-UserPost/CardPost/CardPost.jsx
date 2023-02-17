@@ -8,7 +8,7 @@ import ComentContainer from "../ComentContainer/ComentContainer";
 
 
 const CardPost = ( { post } ) => {
-console.log(post)
+
 
 
   const { content, coments, imagePost, likes } = post;

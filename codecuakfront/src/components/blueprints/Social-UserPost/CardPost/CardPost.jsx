@@ -1,8 +1,10 @@
-import React from "react";
-import AddComent from "./AddComent.jsx";
-import CardsComents from "./CardsComents";
+//estilos
+import styles from "./CardPost.module.css";
+//hooks
 import { useState } from "react";
-import styles from "./Styles/CardPost.module.css";
+//componentes
+import AddComent from "../AddComent/AddComent";
+import ComentContainer from "../ComentContainer/ComentContainer";
 
 
 const CardPost = ( { post } ) => {
@@ -57,7 +59,7 @@ console.log(post)
           <AddComent props={image} />
         </div>
         <div className={styles.comentarios}>
-          <CardsComents props={coments} />
+          <ComentContainer props={coments} />
         </div>
       </div>
     </>

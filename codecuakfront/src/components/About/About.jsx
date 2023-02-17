@@ -1,8 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import AboutCards from "../blueprints/AboutCards/AboutCards";
-import BacktoHome from "../blueprints/buttonsAuth/BacktoHome";
+
 import Style from "./About.module.css";
+
+import { Link } from "react-router-dom";
+
+import AboutCards from "../blueprints/AboutCards/AboutCards";
+import BacktoHome from "../blueprints/buttonsAuth/BacktoHome/BacktoHome";
+
 const About = () => {
    return (
     <div className={Style.background}>

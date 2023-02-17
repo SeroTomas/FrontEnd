@@ -11,7 +11,7 @@ const Coments=({props})=>{
         <div className={styles.container}>
             <button className={styles.buttonComents} onClick={()=>setViewComents(!viewComents)}>Comentarios</button>
             
-            {viewComents? coments.map((coment)=><CardComent props={coment}/>) :
+            {viewComents? coments?.map((coment)=><CardComent props={coment}/>) :
             <></>
             }
         </div>

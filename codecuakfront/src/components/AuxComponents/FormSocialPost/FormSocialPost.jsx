@@ -1,12 +1,11 @@
 //importamos estilos
-import style from "./formPost.module.css";
+import style from "./formSocialPost.module.css";
 //importamos hooks
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { sendPost } from "../../../redux/action";
 // componentes
-const FormPost = () => {
+const FormSocialPost = () => {
   const dispatch = useDispatch();
   //usuario de prueba, los verdaderos vienen por props ya que el contenedor social hace el fetch de datos
   const user = {
@@ -58,4 +57,4 @@ const FormPost = () => {
     </div>
   );
 };
-export default FormPost;
+export default FormSocialPost;

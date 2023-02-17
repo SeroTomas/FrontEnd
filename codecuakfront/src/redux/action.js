@@ -1,17 +1,101 @@
 import axios from "axios";
-export const GET_POST = "GET_POST";
-export const ADD_POST = "ADD_POST";
+// PARA CREAR UNA CONSTANTE DEL ACTION PRIMERO PONER
+//ejemplo GET_ALL_POST
+// primero tipo de peticion despues algo descriptivo de ser nesesario y depues la cosa con la que se trabaja xd
+//💥 POSTEOS 💥
+export const GET_ALL_POST = "GET_ALL_POST";
+export const GET_BYID_POST = "GET_BYID_POST";
+export const POST_POST = "POST_POST";
+export const PUT_POST = "PUT_POST";
+export const DELETE_POST = "DELETE_POST";
+// 💥COMENTARIOS💥
+export const POST_COMMENT = "POST_COMMENT";
+export const PUT_COMMENT = "PUT_COMMENT";
+export const DELETE_DESTROY_COMMENT = "DELETE_DESTROY_COMMENT";
+export const DELETE_LOGIC_COMMENT = "DELETE_LOGIC_COMMENT";
+// 💥USUARIOS💥
+export const GET_ALL_USER = "GET_ALL_USER";
+export const GET_BYID_USER = "GET_BYID_USER";
 
-export const getPost = () => {
+const URL = {
+  URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
+};
+
+// ##################### SOCIAL CUAK ########################
+// POSTEOS  🛑
+// GET ALL POST
+// solamente vamos a tener los post con la info usuario
+export const getAllPost = () => {
   return function (dispatch) {
-    axios.get("http://localhost:3001/socialcuak").then((response) => {
-      dispatch({ type: GET_POST, payload: response.data });
+    axios.get(URL.URL_SOCIAL).then((response) => {
+      dispatch({ type: GET_ALL_POST, payload: response.data });
     });
   };
 };
-export const sendPost = ({content,userId}) => {
-  return async function (dispatch){
-      let data = await axios.post(`http://localhost:3001/socialcuak`, {content,userId});
-      return dispatch({ type: ADD_POST, data  }); 
-  }
-}
+// GET POST POR ID
+// dentro del response vamos a tener el post con los comentarios y la info de usuarios
+export const getAllPostById = ({ postId }) => {
+  return function (dispatch) {
+    axios.get(`${URL.URL_SOCIAL}/${postId}`).then((response) => {
+      dispatch({ type: GET_POSTBYID, payload: response.data });
+    });
+  };
+};
+// POST DEL POST XD
+// mandar post requiere contenido y el id de usuarion todo por body
+export const sendPost = ({ content, userId }) => {
+  return async function (dispatch) {
+    let data = await axios.post(URL.URL_SOCIAL, { content, userId });
+    return dispatch({ type: POST_POST, data });
+  };
+};
+// PUT DEL POST
+export const modifyPost = ({ postId, content }) => {
+  return async function (dispatch) {
+    let data = await axios.put(`${URL.URL_SOCIAL}/${postId}`, { content });
+    return dispatch({ type: PUT_POST, data });
+  };
+};
+// DELETE DEL POST
+export const deletePost = ({ postId }) => {
+  return async function (dispatch) {
+    let data = await axios.put(`${URL.URL_SOCIAL}/${postId}`);
+    return dispatch({ type: DELETE_POST, data });
+  };
+};
+// COMENTARIOS  🛑
+// para mandar un comentario tenemos q mandar la ID DEL POST por PARAMS y por BODY tenemos que mandar el USERID y el CONTENIDO del COMENTARIO
+// POST DEL COMENTARIO
+export const sendComment = ({ content, userId, postId }) => {
+  return async function (dispatch) {
+    let data = await axios.post(`${URL.URL_SOCIAL}/${postId}/comment`, {
+      content,
+      userId,
+    });
+    return dispatch({ type: ADD_COMMENT_URL, data });
+  };
+};
+// PUT DE COMENTARIO
+export const modifyComment = ({ commentId, content }) => {
+  return async function (dispatch) {
+    let data = await axios.put(`${URL.URL_SOCIAL}/${commentId}/comment`, {
+      content,
+    });
+    return dispatch({ type: ADD_COMMENT_URL, data });
+  };
+};
+// DELETE COMPLETO DEL COMENTARIO NO HAY VUELTA ATRAS
+export const destroyDeleteComment = ({ commentId }) => {
+  return async function (dispatch) {
+    let data = await axios.delete(`${URL.URL_SOCIAL}/${commentId}/comment`);
+    return dispatch({ type: ADD_COMMENT_URL, data });
+  };
+};
+// COMENTADO POR EL MOMENTO FALTA CONFIRMACION DEL BACK
+// export const logicDeleteComment = ({content,userId,postId}) => {
+//   return async function (dispatch){
+//       let data = await axios.delete(`${URL.URL_SOCIAL}/${postId}/comment`, {content,userId});
+//       return dispatch({ type: ADD_COMMENT_URL, data  });
+//   }
+// }
+// DELETE DEL COMENTARIO

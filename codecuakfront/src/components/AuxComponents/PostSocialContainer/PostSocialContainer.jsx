@@ -1,20 +1,20 @@
-import React from "react";
+//estilos
+import styles from "./postSocialContainer.module.css";
+//hooks
 import { useEffect } from "react";
-import CardPost from "./CardPost";
-import { userPrueba } from "../../userPrueba";
-import { postsHardCode } from "../../postSocial";
-import styles from "./Styles/CardsPost.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getPost } from "../../../../redux/action";
+import { getAllPost } from "../../../redux/action";
+//componentes
+import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 
-const CardsPost = () => {
+const PostSocialContainer = () => {
   const data = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPost());
+    dispatch(getAllPost());
   }, []);
-  
+
   return (
     <div className={styles.container}>
       {data?.map((post) => {
@@ -24,4 +24,4 @@ const CardsPost = () => {
   );
 };
 
-export default CardsPost;
+export default PostSocialContainer;

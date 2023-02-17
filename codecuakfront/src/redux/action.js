@@ -5,7 +5,6 @@ import axios from "axios";
 //💥 POSTEOS 💥
 export const GET_ALL_POST = "GET_ALL_POST";
 export const GET_BYID_POST = "GET_BYID_POST";
-export const POST_POST = "POST_POST";
 export const PUT_POST = "PUT_POST";
 export const DELETE_POST = "DELETE_POST";
 // 💥COMENTARIOS💥

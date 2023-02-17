@@ -8,9 +8,8 @@ import ComentContainer from "../ComentContainer/ComentContainer";
 
 
 const CardPost = ({ post }) => {
-
   // datos del posteo
-  const { content, coments, imagePost, likes } = post;
+  const { content, socialcomments, imagePost, likes, userdevId, id } = post;
   //datos del usuario que hizo el posteo
   const { name, image } = post.userdev
 
@@ -56,10 +55,14 @@ const CardPost = ({ post }) => {
           <span>{like}</span>
         </div>
         <div className={styles.addComent}>
-          <AddComent image ={image} />
+          <AddComent
+            image={image}
+            userdevId={userdevId}
+            postId={id}
+          />
         </div>
         <div className={styles.comentarios}>
-          <ComentContainer props={coments} />
+          <ComentContainer comments={socialcomments} />
         </div>
       </div>
     </>

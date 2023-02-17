@@ -13,7 +13,10 @@ const PostSocialContainer = () => {
 
   useEffect(() => {
     dispatch(getAllPost());
-  }, []);
+  }, [dispatch]);
+  useEffect(()=>{
+    dispatch(getAllPost());
+  },[dispatch,data])
 
   return (
     <div className={styles.container}>

@@ -12,9 +12,9 @@ const PostUserContainer = () => {
   const data = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllPost());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getAllPost());
+  // }, []);
 
   return (
     <div className={styles.container}>

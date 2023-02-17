@@ -44,7 +44,7 @@
     font-weight: 400;
 }
 
-.form button{
+.buttonOn{
     background-color: #63686e;
     border: none;
     border-radius: 5px;
@@ -54,5 +54,22 @@
     width: 100px;
     height: 30px;
     color: #B6F7C1;
+    font-family: 'Ruda', sans-serif;
+}
+
+.buttonOn:hover{
+    border: 1px solid #B6F7C1;
+}
+
+.buttonOff{
+    background-color: #63686e85;
+    border: none;
+    border-radius: 5px;
+    align-self: flex-start;
+    margin-left: 40px;
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    color: #b6f7c16c;
     font-family: 'Ruda', sans-serif;
 }

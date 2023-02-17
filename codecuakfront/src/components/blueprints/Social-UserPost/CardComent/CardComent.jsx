@@ -12,7 +12,7 @@ const CardComent=({comment})=>{
                 <h4>{ comment.username }</h4>
             </div>
             <div className={styles.coment}>
-                <span>{ comment.content }</span>
+                <p>{ comment.content }</p>
             </div>
             <div className={styles.likes}>
                 <button className={like? "fa-sharp fa-solid fa-heart" : "fa-sharp fa-regular fa-heart"} onClick={()=>setStatuslike(!like)}/>

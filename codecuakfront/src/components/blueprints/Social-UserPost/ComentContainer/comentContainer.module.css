@@ -7,7 +7,7 @@
     margin-top: 15px;
 }
 
-.buttonComents{
+.buttonOn{
     background-color: #63686e;
     border: none;
     border-radius: 5px;
@@ -17,4 +17,21 @@
     color: #B6F7C1;
     margin-left: 520px;
     margin-bottom: 15px;
+}
+
+.buttonOn:hover{
+    border: 1px solid #B6F7C1;
+}
+
+.buttonOff{
+    background-color: #63686e85;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 28px;
+    font-family: 'Ruda', sans-serif;
+    color: #b6f7c16c;
+    margin-left: 520px;
+    margin-bottom: 15px;
+    pointer-events: none;
 }

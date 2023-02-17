@@ -3,9 +3,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 15px;
     margin: 15px;
-    padding: 10px;
-    width: 700px;
+    width: 915px;
     background-color: #373640;
     border-radius: 10px;
     gap: 10px;
@@ -17,14 +17,14 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     margin-bottom: 10px;
     border-bottom: 1px solid #7e97a6;
     gap: 10px;
 }
 
 .wrapper{
-
+    padding: 20px;
 }
 
 .infoContainer p {

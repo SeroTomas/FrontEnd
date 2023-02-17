@@ -39,7 +39,7 @@ const FormSocialPost = () => {
         <div className={style.formContainer}>
           <form onSubmit={handlerSubmit}>
             <textarea
-              value={form.content}
+              value={form}
               onChange={handlerChange}
               placeholder={"Que es lo que quieres compartir?"}
             />

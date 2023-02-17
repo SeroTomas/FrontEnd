@@ -57,7 +57,7 @@ const Landing = () => {
           <p> encontrar un clima agradable para despejar la mente.</p>
         </div>
         <div className={styles.divLink}>
-          <Link to="/social">
+          <Link to="/social" >
             <button className={styles.socialBtn}>Ir a socialCuak</button>
           </Link>
         </div>

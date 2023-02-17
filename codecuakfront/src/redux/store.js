@@ -1,13 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit'
-import socialPost from './slices/socialPost'
-import user from './slices/user'
+import { createStore, applyMiddleware, compose } from "redux";
+import rootReducer from "./reducer";
+import thunkMiddleware from "redux-thunk";
 
-const store = configureStore({
-   reducer: {
-      socialPost,
-      user
-   }
-})
-// export default the store 
-export default store
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const store = createStore(
+  rootReducer,
+  composeEnhancer(applyMiddleware(thunkMiddleware))
+);
+
+export default store;

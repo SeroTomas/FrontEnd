@@ -5,20 +5,20 @@ import { userPrueba } from "../../userPrueba";
 import { postsHardCode } from "../../postSocial";
 import styles from "./Styles/CardsPost.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getPost } from "../../../../redux/slices/socialPost/socialActions";
+import { getPost } from "../../../../redux/action";
 
 const CardsPost = () => {
-  const data = useSelector((state) => state.socialPost.posts);
+  const data = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPost());
   }, []);
-  console.log(data);
+  
   return (
     <div className={styles.container}>
-      {postsHardCode?.map((post) => {
-        return <CardPost post={post}/>;
+      {data?.map((post) => {
+        return <CardPost post={post} />;
       })}
     </div>
   );

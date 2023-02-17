@@ -8,20 +8,21 @@ import { getAllPost } from "../../../redux/action";
 import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 
 const PostSocialContainer = () => {
-  const data = useSelector((state) => state.post);
+  const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllPost());
   }, [dispatch]);
+  
   useEffect(()=>{
     dispatch(getAllPost());
-  },[dispatch,data])
+  },[dispatch,posts])
 
   return (
     <div className={styles.container}>
-      {data?.map((post) => {
-        return <CardPost post={post} />;
+      {posts?.map((post) => {
+        return <CardPost post={post} key={post.id}/>;
       })}
     </div>
   );

@@ -5,17 +5,20 @@ import { useState } from "react";
 //componentes
 import CardComent from "../CardComent/CardComent.jsx";
 
-const ComentContainer=({props})=>{
-    const coments = props;
+const ComentContainer=({socialcomments})=>{
     
-    const [viewComents, setViewComents] = useState(false)
+    const [viewComents, setViewComents] = useState(false);
+
     return(
+
         <div className={styles.container}>
+
             <button className={styles.buttonComents} onClick={()=>setViewComents(!viewComents)}>Comentarios</button>
             
-            {viewComents? coments?.map((coment)=><CardComent props={coment}/>) :
+            {viewComents ? socialcomments?.map((comment)=><CardComent comments = {comments}/>) :
             <></>
             }
+
         </div>
     )
 }

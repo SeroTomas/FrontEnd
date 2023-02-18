@@ -3,7 +3,7 @@ import styles from "./postSocialContainer.module.css";
 //hooks
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPost } from "../../../redux/action";
+import { getAllPost, cleanPost } from "../../../redux/action";
 //componentes
 import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 
@@ -17,7 +17,8 @@ const PostSocialContainer = () => {
   
   useEffect(()=>{
     dispatch(getAllPost());
-  },[dispatch,posts])
+    return () => dispatch(cleanPost());
+  },[dispatch])
 
   return (
     <div className={styles.container}>

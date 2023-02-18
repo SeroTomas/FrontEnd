@@ -1,8 +1,10 @@
 import {
   GET_ALL_POST,
   GET_BYID_POST,
+  GET_BYUSERID_POST,
   PUT_POST,
   DELETE_POST,
+  CLEAN_POST,
   POST_COMMENT,
   PUT_COMMENT,
   DELETE_DESTROY_COMMENT,
@@ -23,11 +25,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload
       };
+    case GET_BYUSERID_POST:
+      return {
+        ...state,
+        posts: action.payload
+      }
     case GET_BYID_USER:
       return {
         ...state,
         userData: action.payload,
       };
+    case CLEAN_POST:
+      return {
+        ...state,
+        posts: [],
+      }
     default:
       return {
         ...state,

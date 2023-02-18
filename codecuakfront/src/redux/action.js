@@ -18,6 +18,7 @@ export const GET_BYID_USER = "GET_BYID_USER";
 
 const URL = {
   URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
+  URL_USERS: "https://backend-production-c946.up.railway.app/users"
 };
 
 // ##################### SOCIAL CUAK ########################
@@ -93,3 +94,13 @@ export const destroyDeleteComment = ({ commentId }) => {
 //   }
 // }
 // DELETE DEL COMENTARIO
+
+// USERS  🛑
+// GET USERS BY ID
+export const getUserById = (userId)=>{
+  return function (dispatch){
+    axios.get(`${URL.URL_USERS}/${userId}`).then((response)=>{
+      dispatch({type: GET_BYID_USER, payload: response.data})  
+    });
+  };
+};

@@ -1,22 +1,30 @@
 import React from "react";
+//importo Hooks
+import { useSelector } from "react-redux";
+//Importo componentes react
 import CardUser from "../AuxComponents/CardUser/CardUser";
 import NavBar from "../NavBar/NavBar";
 import PostUserContainer from "../AuxComponents/PostUserContainer/PostUserContainer";
+//Importo estilos
 import styles from "./User.module.css";
 
 const User = () => {
 
-  const userPrueba = {
-    name: 'Juan',
-    email: 'juan@gmail.com',
-    nickName: 'Juanpito',
-    birthdate: '1998/08/25',
-    image: 'https://www.imagenesbonitasname.com/covers/preview/pues-si-wey-sticker-wasap.jpg',
-    portada: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTZZeLZAzPyAtBhCUl384gDJYN3ROMfPXtPDUlu3QAX9gyEEX6',
-    technicalSkills: ["JavaScript", "React", "Redux", "Nextjs", "Sequelize"],
-    softSkills: ["Liderazgo", "Proactividad", "Trabajo en equipo", "Resiliencia", "Empatía"],
-    experiences: ["Lider tecnico en Amazon (2años)", "Freelancer (5 años)"],
-  }
+  const userData = useSelector((state)=> state.userData);
+    
+    // imagenes portada y perfil por default
+    const portadaDefault= 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTZZeLZAzPyAtBhCUl384gDJYN3ROMfPXtPDUlu3QAX9gyEEX6';
+    const imageDefault= 'https://www.imagenesbonitasname.com/covers/preview/pues-si-wey-sticker-wasap.jpg';
+
+    // Creo un objeto con los datos necesarios en cardUser, para pasarlos por props
+    const cardUserData= {
+      name: userData.name,
+      nickName: userData.nickName,
+      image: userData.image || imageDefault,
+      email: userData.email,
+      gitHub: userData.gitHub
+    }
+
   return (
     <div>
       <NavBar />
@@ -24,10 +32,10 @@ const User = () => {
         <div className={styles.subContainer1}>
           <div className={styles.subContainerUser}>
             <div className={styles.portada}>
-              <img src={userPrueba.portada} alt="Imagen de portada" />
+              <img src={userData.portada || portadaDefault} alt="Imagen de portada" />
             </div>
             <div className={styles.subContainerData}>
-              <CardUser props={userPrueba} />
+              <CardUser userData={cardUserData} />
             </div>
 
             <div className={styles.subContainer2}>
@@ -35,11 +43,11 @@ const User = () => {
                 <div className={styles.title}>
                   <h4>Mis habilidades:</h4>
                 </div>
-                <div className={styles.TechnicalSkills}>
+                <div className={userData.TechnicalSkills}>
                   <h4>Technical Skills:</h4>
                   <div>
                     <ul>
-                      {userPrueba.technicalSkills.map((skill) => {
+                      {userData.technicalSkills?.map((skill) => {
                         return (
                           <li>{skill}</li>
                         )
@@ -51,7 +59,7 @@ const User = () => {
                   <h4>Soft Skills:</h4>
                   <div>
                     <ul>
-                      {userPrueba.softSkills.map((skill) => {
+                      {userData.softSkills?.map((skill) => {
                         return (
                           <li>{skill}</li>
                         )
@@ -67,7 +75,7 @@ const User = () => {
                 </div>
                 <div>
                   <ul>
-                    {userPrueba.experiences.map((exp) => {
+                    {userData.experiences?.map((exp) => {
                       return (
                         <li>{exp}</li>
                       )

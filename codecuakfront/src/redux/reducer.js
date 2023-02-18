@@ -10,7 +10,10 @@ import {
   GET_ALL_USER,
   GET_BYID_USER,
 } from "./action";
+
+
 const initialState = {
+  userData: {},
   posts: [],
 };
 
@@ -20,6 +23,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload.reverse(),
+      };
+    case GET_BYID_USER:
+      return {
+        ...state,
+        userData: action.payload,
       };
     default:
       return {

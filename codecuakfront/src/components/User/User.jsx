@@ -14,7 +14,7 @@ const User = () => {
     
     // imagenes portada y perfil por default
     const portadaDefault= 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTZZeLZAzPyAtBhCUl384gDJYN3ROMfPXtPDUlu3QAX9gyEEX6';
-    const imageDefault= 'https://www.imagenesbonitasname.com/covers/preview/pues-si-wey-sticker-wasap.jpg';
+    const imageDefault= 'https://st2.depositphotos.com/19428878/44645/v/600/depositphotos_446453832-stock-illustration-default-avatar-profile-icon-social.jpg';
 
     // Creo un objeto con los datos necesarios en cardUser, para pasarlos por props
     const cardUserData= {

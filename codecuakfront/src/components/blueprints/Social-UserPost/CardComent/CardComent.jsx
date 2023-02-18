@@ -8,8 +8,8 @@ const CardComent=({comment})=>{
     return(
         <div className={styles.container}>
             <div className={styles.containerData}>
-                <img src={comment.imageUser} alt="Foto de usuario" />
-                <h4>{ comment.username }</h4>
+                <img src={comment.userdev.image} alt="Foto de usuario" />
+                <h4>{ comment.userdev.name }</h4>
             </div>
             <div className={styles.coment}>
                 <p>{ comment.content }</p>

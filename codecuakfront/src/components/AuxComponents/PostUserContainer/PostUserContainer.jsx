@@ -4,17 +4,19 @@ import styles from "./postUserContainer.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //actions
-import { getAllPost } from "../../../redux/action";
+import { getPostByUserId, cleanPost } from "../../../redux/action";
 //componentes
 import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 
 const PostUserContainer = () => {
+  const userId = useSelector((state) => state.userData.id)
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getAllPost());
-  // }, []);
+  useEffect(() => {
+    dispatch(getPostByUserId(userId));
+    return () => dispatch(cleanPost());
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>

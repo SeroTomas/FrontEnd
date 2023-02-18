@@ -28,8 +28,8 @@ const URL = {
 export const getAllPost = () => {
   return function (dispatch) {
     axios.get(URL.URL_SOCIAL).then((response) => {
-      dispatch({ type: GET_ALL_POST, payload: response.data });
-    });
+      dispatch({ type: GET_ALL_POST, payload:response.data});
+   });
   };
 };
 // GET POST POR ID

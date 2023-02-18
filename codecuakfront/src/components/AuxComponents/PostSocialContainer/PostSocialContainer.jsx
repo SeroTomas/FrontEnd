@@ -21,7 +21,7 @@ const PostSocialContainer = () => {
 
   return (
     <div className={styles.container}>
-      {posts?.map((post) => {
+      {posts.map((post) => {
         return <CardPost post={post} key={post.id}/>;
       })}
     </div>

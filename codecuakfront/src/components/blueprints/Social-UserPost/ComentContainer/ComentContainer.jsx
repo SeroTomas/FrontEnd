@@ -9,11 +9,17 @@ const ComentContainer=({socialcomments})=>{
     
     const [viewComents, setViewComents] = useState(false);
 
+    const selectClass=()=>{
+        return(
+            socialcomments.length ? styles.buttonOn : styles.buttonOff
+        )
+    }
+
     return(
 
         <div className={styles.container}>
 
-            <button className={styles.buttonComents} onClick={()=>setViewComents(!viewComents)}>Comentarios</button>
+            <button className={selectClass()} onClick={()=>setViewComents(!viewComents)}>Comentarios</button>
             
             {viewComents ? socialcomments?.map((comment)=><CardComent comment = {comment}/>) :
             <></>

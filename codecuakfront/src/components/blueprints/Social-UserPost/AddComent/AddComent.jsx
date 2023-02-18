@@ -19,12 +19,18 @@ const AddComent = (props) => {
         setComent("");
     }
 
+    const selectClass=()=>{
+        return(
+            coment.length ? styles.buttonOn : styles.buttonOff
+        )
+    }
+
     return (
         <div className={styles.container}>
             <img src={props.image} alt="" />
             <form action="" className={styles.form} onSubmit={submitHandler}>
                 <textarea type="text" placeholder="Escribe un comentario..." onChange={handlerChange} value={coment} />
-                <button id="submit" type="submit">Enviar</button>
+                <button id="submit" type="submit" className={selectClass()}>Enviar</button>
             </form>
         </div>
     )

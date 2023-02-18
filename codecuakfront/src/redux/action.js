@@ -5,8 +5,10 @@ import axios from "axios";
 //💥 POSTEOS 💥
 export const GET_ALL_POST = "GET_ALL_POST";
 export const GET_BYID_POST = "GET_BYID_POST";
+export const GET_BYUSERID_POST = "GET_BYUSERID_POST";
 export const PUT_POST = "PUT_POST";
 export const DELETE_POST = "DELETE_POST";
+export const CLEAN_POST = "CLEAN_POST";
 // 💥COMENTARIOS💥
 export const POST_COMMENT = "POST_COMMENT";
 export const PUT_COMMENT = "PUT_COMMENT";
@@ -32,7 +34,17 @@ export const getAllPost = () => {
     });
   };
 };
-// GET POST POR ID
+//GET POST BY USERID
+//Los filtramos en el FRONT hasta que los del back hagan el filtro
+export const getPostByUserId = (userId) => {
+  return function (dispatch) {
+    axios.get(URL.URL_SOCIAL).then((response) => {
+      const data = response.data.filter((post)=> post.userdevId == userId );
+      dispatch({ type: GET_ALL_POST, payload: data });
+    });
+  };
+};
+// GET POST BY ID
 // dentro del response vamos a tener el post con los comentarios y la info de usuarios
 export const getAllPostById = ({ postId }) => {
   return function (dispatch) {
@@ -56,6 +68,13 @@ export const deletePost = ({ postId }) => {
   return async function (dispatch) {
     let data = await axios.put(`${URL.URL_SOCIAL}/${postId}`);
     return dispatch({ type: DELETE_POST, data });
+  };
+};
+
+// CLEAN POST
+export const cleanPost = () => {
+  return function (dispatch) {
+    return dispatch({ type: CLEAN_POST })
   };
 };
 // COMENTARIOS  🛑

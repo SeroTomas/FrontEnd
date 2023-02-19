@@ -142,7 +142,7 @@ export const getUsersName = (name) =>{
 }
 export const getUsersAlpha = (alpha) =>{
   return async function (dispatch){
-    const data = await axios.get(`https://backend-production-c946.up.railway.app/users?name=${alpha}`)
+    const data = await axios.get(`https://backend-production-c946.up.railway.app/users?alpha=${alpha}`)
     return dispatch({type: GET_USERS_ALPHA, payload: data.data.results})
   }
 }

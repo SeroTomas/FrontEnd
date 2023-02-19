@@ -4,21 +4,16 @@ import style from "./formSocialPost.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { sendPost } from "../../../axiosFunctions";
-// componentes
 import { getAllPost } from "../../../redux/action";
+// componentes
 
-const FormSocialPost = () => {
+const FormSocialPost = ({user}) => {
   const dispatch = useDispatch();
   //usuario de prueba, los verdaderos vienen por props ya que el contenedor social hace el fetch de datos
-  const user = {
-    image:
-      "https://www.dzoom.org.es/wp-content/uploads/2010/09/mirada-ojos-encuadre-primer-plano-sexy-810x540.jpg",
-    name: "Magali",
-  };
 
   const [form, setForm] = useState("");
   const text = form.length;
-  const [users, setUsers] = useState("a2e13a38-ae82-40e2-9a43-ac5a66310f1d");
+  //const [users, setUsers] = useState("a2e13a38-ae82-40e2-9a43-ac5a66310f1d");
 
   const handlerChange = (event) => {
     const value = event.target.value;
@@ -27,7 +22,7 @@ const FormSocialPost = () => {
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    sendPost(form, users);
+    sendPost(form, user.id);
     setForm("");
   };
 

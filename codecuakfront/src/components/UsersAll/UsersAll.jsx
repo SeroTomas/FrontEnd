@@ -22,11 +22,6 @@ const UsersAll = () => {
       </button>
     );
   }
-
-  useEffect(()=>{
-
-  },[data])
-
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);

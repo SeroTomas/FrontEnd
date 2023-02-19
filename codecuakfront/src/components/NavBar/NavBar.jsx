@@ -24,7 +24,6 @@ const NavBar = () => {
         alert("nada por aqui")
     }
   }
-  console.log(search)
   const handlerChange = (event) => {
     const value = event.target.value;
     setSearch(value);

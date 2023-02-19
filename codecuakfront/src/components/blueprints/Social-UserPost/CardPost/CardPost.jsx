@@ -1,7 +1,7 @@
 //estilos
 import styles from "./CardPost.module.css";
 //hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //componentes
 import AddComent from "../AddComent/AddComent";
 import ComentContainer from "../ComentContainer/ComentContainer";
@@ -15,6 +15,20 @@ const CardPost = ({ post }) => {
 
   const [likeState, setStateLike] = useState(false);
   const [like, setLike] = useState(likes);
+
+  useEffect(()=>{
+    if(Object.entries(post).length>0){
+      stringTohtml(content)
+    };
+  },[post.content])
+ 
+  // Función que inserta el contenido del post (post.content) como html. De esta forma manejamos el texto que nos llega con tags html.
+
+  function stringTohtml(text){
+    const $contentPost = document.getElementById(id);
+    $contentPost.innerHTML = text;
+    return $contentPost;
+  }
 
   const handlerClick = () => {
     if (likeState == true) {
@@ -41,7 +55,7 @@ const CardPost = ({ post }) => {
           <></>
         )}
         <div className={styles.content}>
-          <span>{content}</span>
+          <span id={id}/>
         </div>
         <div className={styles.likes}>
           <button

@@ -41,7 +41,7 @@ const CardPost = ({ post }) => {
           <></>
         )}
         <div className={styles.content}>
-          <span>{content}</span>
+          <p>{content}</p>
         </div>
         <div className={styles.likes}>
           <button

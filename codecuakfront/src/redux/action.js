@@ -22,7 +22,7 @@ export const GET_USERS_ALPHA = "GET_USERS_ALPHA";
 
 const URL = {
   URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
-  URL_USERS: "https://backend-production-c946.up.railway.app/users"
+  URL_USERS: "http://backend-production-c946.up.railway.app/users"
 };
 
 // ##################### SOCIAL CUAK ########################
@@ -129,8 +129,7 @@ export const getUserById = (userId)=>{
 export const getAllUsers = () =>{
   return async function (dispatch){
    const data = await axios.get(URL.URL_USERS)
-    console.log(data);
-   return dispatch({type: GET_ALL_USER, payload: data.data.results})
+   return dispatch({type: GET_ALL_USER, payload: data.data})
   }
 }
 
@@ -147,4 +146,12 @@ export const getUsersAlpha = (alpha) =>{
   }
 }
 
+
+export const getPage = (page)=>{
+  return async function (dispatch){
+    const data = await axios.get(`https://backend-production-c946.up.railway.app/users?page=${page}`)
+    return dispatch({type: GET_ALL_USER, payload: data.data})
+  }
+
+}
 

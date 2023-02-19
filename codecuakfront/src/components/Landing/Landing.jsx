@@ -5,7 +5,6 @@ import LoginButton from "../blueprints/buttonsAuth/LoginButton";
 import logo from "../../Media/logo-03.png";
 import Footer from "../blueprints/Footer/Footer";
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../blueprints/buttonsAuth/LogOut"
 const Landing = () => {
   const {isAuthenticated} = useAuth0()
   return (

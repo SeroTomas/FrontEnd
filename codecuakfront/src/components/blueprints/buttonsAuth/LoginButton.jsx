@@ -1,10 +1,18 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Styles/Button.module.css"
 import React from "react";
+import { useState } from "react";
 
 const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-  return <button className={styles.loginBtn} onClick={() => loginWithRedirect()}>Log In</button>;
+  const [text,setText]=useState("Log In")
+  const handleClick=()=>{
+   setText("Proximamente")
+  }
+ 
+  return (
+    <>
+    <button className={styles.loginBtn} onClick={handleClick}>{text}</button>;
+    </>
+  )
 };
 
 export default LoginButton;

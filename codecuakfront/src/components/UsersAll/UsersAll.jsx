@@ -12,7 +12,6 @@ const UsersAll = () => {
   const buttons = [];
   const handleClick=(e)=>{
     let page = e.target.value
-    console.log(page)
     dispatch(getPage(page))
   }
   for (let i = 1; i <= pageCount; i++) {
@@ -22,10 +21,6 @@ const UsersAll = () => {
       </button>
     );
   }
-
-  useEffect(()=>{
-
-  },[data])
 
   useEffect(() => {
     dispatch(getAllUsers());

@@ -133,7 +133,7 @@ export const getAllUsers = () =>{
   }
 }
 
-export const getUsersName = (name) =>{
+export const getUsersByName = (name) =>{
   return async function (dispatch){
     const data = await axios.get(`https://backend-production-c946.up.railway.app/users?name=${name}`)
     return dispatch({type: GET_USERS_NAME, payload: data.data})

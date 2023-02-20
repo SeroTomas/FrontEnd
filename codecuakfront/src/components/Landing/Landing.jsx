@@ -1,14 +1,60 @@
-import React from "react";
-import {Box,Typography,Button, Icon} from "@mui/material"
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+//estilos css
 import styles from "./Landing.module.css";
+// hooks
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+// dependencias MUI
+import { Box, Typography, Button, Icon } from "@mui/material";
+import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
+import WorkspacesIcon from "@mui/icons-material/Workspaces";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import TerminalIcon from "@mui/icons-material/Terminal";
+//componentes
 import LoginButton from "../blueprints/buttonsAuth/LoginButton";
 import logo from "../../Media/logo-03.png";
 import Footer from "../blueprints/Footer/Footer";
-import { useAuth0 } from "@auth0/auth0-react";
+
 const Landing = () => {
-  const {isAuthenticated} = useAuth0()
+  const data = [
+    {
+      id:"social",
+      title: "socialCuak",
+      color: "#dce3e3",
+      secondTitle: "Aquí podrás expresarte",
+      description:
+        "Lo que buscamos con “social-Cuak” es distendernos y conocernos; encontrar un clima agradable para despejar la mente.",
+      icon: 1,
+    },
+    {
+      id:"Q&A",
+      title: "Q&A-Cuak",
+      color: "#D5DBDB",
+      secondTitle: "Para crecer necesitamos ayudarnos entre todos",
+      description:
+        "Por eso en “Q&A-Cuak” los usuarios podrán generar nuevas publicaciones solicitando ayuda o responder las consultas ya existentes.",
+      icon: 2,
+    },
+    {
+      id:"work",
+      title: "workCuak",
+      color: "#dce3e3",
+      secondTitle: "La programación es un trabajo de equipo",
+      description:
+        "“work-Cuack” está diseñado para buscar colaboradores para desarrollar proyectos propios.",
+      icon: 3,
+    },
+    {
+      id:"hiring",
+      title: "hiringCuak",
+      color: "#D5DBDB",
+      secondTitle:
+        "En codeCuak nos preocupamos por el futuro de nuestros miembros",
+      description:
+        "Ideamos una sección en la que podrán cargar su perfil en el caso de que estén en búsqueda activa de empleo.Tambien las empresas podrán registrarse y publicar ofertas laborales para que los desarrolladores apliquen a ellas.",
+      icon: 4,
+    },
+  ];
+  const { isAuthenticated } = useAuth0();
   return (
     <Box className={styles.containter}>
       <Box className={styles.nav}>
@@ -32,106 +78,119 @@ const Landing = () => {
           </ul>
         </Box>
         <Box className={styles.loginbtn}>
-          {isAuthenticated ? <LogoutButton /> : <LoginButton/>}
+          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
         </Box>
       </Box>
+
       {/* ######################################## CODE CUAK #########################################*/}
       <Box id="code" bgcolor="#D5DBDB" height="45rem" padding="3rem">
-        <Typography variant="h1" color="#1E8449" fontFamily={"Sen"}align="center"fontWeight="bold">{">_"}codeCuak</Typography>
-        <Typography variant="h4" fontFamily={"Sen"}align="center" marginTop="1rem">La red social por y para desarrolladores</Typography>
+        <Typography
+          variant="h1"
+          color="#1E8449"
+          fontFamily={"Sen"}
+          align="center"
+          fontWeight="bold"
+        >
+          {">_"}codeCuak
+        </Typography>
+        <Typography
+          variant="h4"
+          fontFamily={"Sen"}
+          align="center"
+          marginTop="1rem"
+        >
+          La red social por y para desarrolladores
+        </Typography>
         <Box className={styles.codetext}>
-        <Typography variant="h5" fontFamily={"Sen"}align="center">
-          Nace con la idea de crear un espacio amigable en el que los
-          desarrolladores puedan distenderse,<br/> compartir ideas y proyectos
-          propios.
-        </Typography>
-        <Typography variant="h5" fontFamily={"Sen"}align="center">
-          Resolver dudas, buscar compañeros para trabajar en equipo y buscar
-          trabajo.<br/> Todo dentro de un mismo espacio
-        </Typography>
-        </Box>
-      </Box>
-      {/* ######################################## SOCIA CUAK #########################################*/}
-
-      <Box id="social" bgcolor="#dce3e3" height="40rem" padding="3rem" display="flex" justifyContent="center" gap="3rem">
-        <Box>
-          <Typography variant="h1"  marginTop="2rem"color="#1E8449" fontFamily={"Sen"}align="center"fontWeight="bold">socialCuak</Typography>
-          <Typography variant="h4" margin="2rem"fontFamily={"Sen"}align="center">Aquí podrás expresarte</Typography>
-          <ConnectWithoutContactIcon />
-          <Typography variant="h5"fontFamily={"Sen"}align="center">
-            Lo que buscamos con “social-Cuak” es distendernos y conocernos;
+          <Typography variant="h5" fontFamily={"Sen"} align="center">
+            Nace con la idea de crear un espacio amigable en el que los
+            desarrolladores puedan distenderse,
+            <br /> compartir ideas y proyectos propios.
           </Typography>
-          <Typography  variant="h5" fontFamily={"Sen"}align="center"> encontrar un clima agradable para despejar la mente.</Typography>
-          
+          <Typography variant="h5" fontFamily={"Sen"} align="center">
+            Resolver dudas, buscar compañeros para trabajar en equipo y buscar
+            trabajo.
+            <br /> Todo dentro de un mismo espacio
+          </Typography>
         </Box>
-        <Box display="flex" alignItems="center">
-          <Link to="/social" style={{"textDecoration":"none"}} >
-            <Button color="success" variant="contained" sx={{fontWeight:"bold"}} >Ir a socialCuak</Button>
-          </Link>
-        </Box>
-        
       </Box>
-      {/* ######################################## Q&A CUAK #########################################*/}
+      {data?.map((element) => {
+        return (
+          <>
+            <Box
+              id={element.id}
+              bgcolor={element.color}
+              height="60rem"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              gap="2rem"
+            >
+              <Box>
+                <Typography
+                  variant="h1"
+                  marginTop="2rem"
+                  color="#1E8449"
+                  fontFamily={"Sen"}
+                  align="center"
+                  fontWeight="bold"
+                >
+                  {element.title}
+                </Typography>
+                <Typography
+                  variant="h4"
+                  margin="2rem"
+                  fontFamily={"Sen"}
+                  align="center"
+                >
+                  {element.secondTitle}
+                </Typography>
+                <Box className={styles.codetext}>
+                  <Typography variant="h5" fontFamily={"Sen"} align="center">
+                    {element.description}
+                  </Typography>
+                </Box>
+              </Box>
+              <Box display="flex" alignItems="center" justifyContent="center" height="10rem">
+                <Link to="/social" style={{ textDecoration: "none" }}>
+                  <Button
+                  style={{ width: 200, height: 70, fontSize:20, marginTop:100, gap:15}}
+                  size="large"
+                 
+                    color="success"
+                    variant="contained"
+                    sx={{ fontWeight: "bold",fontSize:"100" }}
+                  >
+                    {element.icon == 1 ? (
+                      <ConnectWithoutContactIcon fontSize="large" />
+                    ) : (
+                      <></>
+                    )}
+                    {element.icon == 2 ? (
+                      <QuestionAnswerIcon fontSize="large" />
+                    ) : (
+                      <></>
+                    )}
+                    {element.icon == 3 ? (
+                      <WorkspacesIcon fontSize="large" />
+                    ) : (
+                      <></>
+                    )}
+                    {element.icon == 4 ? (
+                      <TerminalIcon fontSize="large" />
+                    ) : (
+                      <></>
+                    )}
+                    Entrar
+                  </Button>
+                </Link>
+              </Box>
+            </Box>
+          </>
+        );
+      })}
 
-      <Box className={styles.sectionQyA} id="Q&A">
-        <Box className={styles.contTexto}>
-          <h2>Q&A-Cuak</h2>
-          <h3>Para crecer necesitamos ayudarnos entre todos</h3>
-          <p className={styles.socialP}>
-            Por eso en “Q&A-Cuak” los usuarios podrán generar nuevas
-            publicaciones
-          </p>
-          <p> solicitando ayuda o responder las consultas ya existentes.</p>
-        </Box>
-        <Box className={styles.BoxLink}>
-          <Link to="/qanda">
-            <button className={styles.socialBtn}>Ir a Q&A-Cuak</button>
-          </Link>
-        </Box>
-      </Box>
-      {/* ######################################## WORK CUAK #########################################*/}
-
-      <Box className={styles.sectionWork} id="work">
-        <Box className={styles.contTexto}>
-          <h2>workCuak</h2>
-          <h3>La programación es un trabajo de equipo</h3>
-          <p className={styles.socialP}>
-            “work-Cuack” está diseñado para buscar colaboradores para
-            desarrollar proyectos propios.
-          </p>
-        </Box>
-        <Box className={styles.BoxLink}>
-          <Link to="/work">
-            <button className={styles.socialBtn}>Ir a workCuak</button>
-          </Link>
-        </Box>
-      </Box>
-      {/* ######################################## HIRING CUAK #########################################*/}
-
-      <Box className={styles.sectionHiring} id="hiring">
-        <Box className={styles.contTexto}>
-          <h2>hiringCuak</h2>
-          <h3>
-            En codeCuak nos preocupamos <br />
-            por el futuro de nuestros miembros
-          </h3>
-          <p className={styles.socialP}>
-            Ideamos una sección en la que podrán cargar su perfil en el caso de
-            que estén en búsqueda activa de empleo.{" "}
-          </p>
-          <p>
-            Tambien las empresas podrán registrarse y publicar ofertas laborales
-            para que los desarrolladores apliquen a ellas.
-          </p>
-        </Box>
-        <Box className={styles.BoxLink}>
-          <Link to="/hiring">
-            <button className={styles.socialBtn}>Ir a hiringCuak</button>
-          </Link>
-        </Box>
-      </Box>
-      <hr></hr>
-      <Footer/>
+      <Footer />
     </Box>
   );
 };

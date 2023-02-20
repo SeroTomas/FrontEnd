@@ -37,12 +37,12 @@ const AboutCards = () => {
     {
       img: "https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png",
       name: "Rivero Julián Martin",
-      linkdin: "https://www.linkedin.com/in/ignacio-peniamaria-591865183/",
-      github: "https://github.com/nachitoxx6262",
+      linkdin: "https://www.linkedin.com/in/julianmrivero/",
+      github: "https://github.com/JulianMRivero",
       descripcion: "Full Stack Web Developer",
     },
     {
-      img: "https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png",
+      img: "https://media.licdn.com/dms/image/D5635AQHqCOOSH8pgcQ/profile-framedphoto-shrink_200_200/0/1672267339215?e=1677535200&v=beta&t=NbJILWBxYh35k1kErFFN8NNCDC7YAcyZaeYaSMqCArY",
       name: "Galvez Eduardo",
       linkdin:
         "https://www.linkedin.com/in/eduardo-jim%C3%A9nez-galvez-aab318257/",
@@ -50,10 +50,10 @@ const AboutCards = () => {
       descripcion: "Full Stack Web Developer",
     },
     {
-      img: "https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png",
+      img: "https://media.licdn.com/dms/image/C4D03AQGXgfRYSml8UQ/profile-displayphoto-shrink_200_200/0/1668033701148?e=1682553600&v=beta&t=U4jDXasINjiwcKqBm8B9eyskXb2-zTi3IaCoeu6ka3I",
       name: "Corbalan Augusto Nicolas",
-      linkdin: "https://www.linkedin.com/in/ignacio-peniamaria-591865183/",
-      github: "https://github.com/nachitoxx6262",
+      linkdin: "https://www.linkedin.com/in/augusto-corbalan-a6b857256/",
+      github: "https://github.com/AugustoCorbalan",
       descripcion: "Full Stack Web Developer",
     },
     {

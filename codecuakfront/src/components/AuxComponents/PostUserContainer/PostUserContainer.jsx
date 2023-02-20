@@ -9,13 +9,18 @@ import { getPostByUserId, cleanPost } from "../../../redux/action";
 import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 
 const PostUserContainer = ({userId}) => {
+  const userDetail = useSelector(state => state.userDetail)
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(getPostByUserId(userId));
+  //   return () => dispatch(cleanPost());
+  // }, [dispatch]);
+
   useEffect(() => {
     dispatch(getPostByUserId(userId));
-    return () => dispatch(cleanPost());
-  }, [dispatch]);
+  }, [dispatch, userDetail]);
 
   return (
     <div className={styles.container}>

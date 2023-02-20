@@ -9,7 +9,6 @@ import { getAllUsers } from "./../../redux/action";
 //componentes
 import logo from "../../Media/logo-03.png";
 import SearchExpandedUser from "../AuxComponents/SeachExpandedUser/SearchExpandedUser";
-import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
     const [search, setSearch] = useState("");
@@ -26,11 +25,10 @@ const NavBar = () => {
     };
 
     const handlerChange = (event) => {
-        event.preventDefault();
         const value = event.target.value;
         dispatch(getUsersByName(value));
         setSearch(value);
-        
+
     };
 
     const handlerNotifications = () => {
@@ -40,6 +38,7 @@ const NavBar = () => {
     useEffect(() => {
         usersByName.results?.length == 0 ? setData(true) : setData(false)
     }, [usersByName])
+    
 
     return (
         <div className={style.container}>
@@ -68,6 +67,8 @@ const NavBar = () => {
                                             key={user.id}
                                             image={user.image}
                                             name={user.name}
+                                            id={user.id}
+                                            onClick={()=> {setSearch('')}}
                                         />
                                     )
                                 }) : null

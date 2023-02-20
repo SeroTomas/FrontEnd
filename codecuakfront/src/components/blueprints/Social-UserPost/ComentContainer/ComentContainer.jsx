@@ -2,11 +2,12 @@
 import styles from "./comentContainer.module.css";
 //hooks
 import { useState } from "react";
+import { useSelector } from "react-redux";
 //componentes
 import CardComent from "../CardComent/CardComent.jsx";
 
 const ComentContainer=({socialcomments})=>{
-    
+    const userData = useSelector((state)=>state.userData)
     const [viewComents, setViewComents] = useState(false);
 
     const selectClass=()=>{
@@ -21,7 +22,7 @@ const ComentContainer=({socialcomments})=>{
 
             <button className={selectClass()} onClick={()=>setViewComents(!viewComents)}>Comentarios</button>
             
-            {viewComents ? socialcomments?.map((comment)=><CardComent comment = {comment}/>) :
+            {viewComents ? socialcomments?.map((comment)=><CardComent comment = {comment} userData={userData}/>) :
             <></>
             }
 

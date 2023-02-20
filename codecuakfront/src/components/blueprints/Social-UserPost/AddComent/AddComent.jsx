@@ -8,7 +8,6 @@ import { sendComment } from "../../../../axiosFunctions";
 const AddComent = (props) => {
     const {userData,image,userdevId,postId} = props
     const [coment, setComent] = useState("")
-
     const handlerChange = (event) => {
         const value = event.target.value;
         setComent(value);

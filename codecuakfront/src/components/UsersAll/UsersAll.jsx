@@ -63,7 +63,7 @@ const UsersAll = () => {
 
       })}
       {buttons}
-      <button name="asc" className={Style.asc} onClick={handleChange}>
+      <button name="asc" className={Style.asc} onClick={handleChange} >
         ASC
       </button>
       <button name="desc" className={Style.asc} onClick={handleChange}>

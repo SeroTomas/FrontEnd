@@ -18,9 +18,11 @@ const NavBar = () => {
     const usersByName = useSelector((state) => state.users);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const submitHandler = (event) => {
         event.preventDefault();
         dispatch(getUsersByName(search));
+        setSearch('')
         navigate("/users")
     };
 
@@ -41,7 +43,7 @@ const NavBar = () => {
     
 
     return (
-        <div className={style.container}>
+        <div className={style.container} onClick={()=> {setSearch('')}}>
             <nav className={style.navContainer}>
                 <div className={style.logoContainer}>
                     <Link to={"/"}>

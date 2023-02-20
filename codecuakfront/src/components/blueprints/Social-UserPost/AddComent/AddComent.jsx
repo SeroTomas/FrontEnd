@@ -6,6 +6,7 @@ import { useState } from "react";
 import { sendComment } from "../../../../axiosFunctions";
 
 const AddComent = (props) => {
+    const {userData,image,userdevId,postId} = props
     const [coment, setComent] = useState("")
 
     const handlerChange = (event) => {
@@ -15,7 +16,7 @@ const AddComent = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        sendComment(coment, props.userdevId, props.postId);
+        sendComment(coment, userdevId, postId);
         setComent("");
     }
 
@@ -27,7 +28,7 @@ const AddComent = (props) => {
 
     return (
         <div className={styles.container}>
-            <img src={props.image} alt="" />
+            <img src={userData.image} alt="" />
             <form action="" className={styles.form} onSubmit={submitHandler}>
                 <textarea type="text" placeholder="Escribe un comentario..." onChange={handlerChange} value={coment} />
                 <button id="submit" type="submit" className={selectClass()}>Enviar</button>

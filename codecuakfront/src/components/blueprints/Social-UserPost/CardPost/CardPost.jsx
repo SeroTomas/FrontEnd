@@ -7,7 +7,7 @@ import AddComent from "../AddComent/AddComent";
 import ComentContainer from "../ComentContainer/ComentContainer";
 
 
-const CardPost = ({ post }) => {
+const CardPost = ({ post,userData }) => {
   // datos del posteo
   const { content, socialcomments, imagePost, likes, userdevId, id } = post;
   //datos del usuario que hizo el posteo
@@ -56,6 +56,7 @@ const CardPost = ({ post }) => {
         </div>
         <div className={styles.addComent}>
           <AddComent
+            userData={userData}
             image={image}
             userdevId={userdevId}
             postId={id}

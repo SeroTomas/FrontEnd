@@ -10,7 +10,7 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 const PostSocialContainer = () => {
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-
+  const userData = useSelector((state)=>state.userData)
   useEffect(() => {
     dispatch(getAllPost());
   }, [dispatch,posts]);
@@ -23,7 +23,7 @@ const PostSocialContainer = () => {
   return (
     <div className={styles.container}>
       {posts.map((post) => {
-        return <CardPost post={post} key={post.id}/>;
+        return <CardPost userData={userData} post={post} key={post.id}/>;
       })}
     </div>
   );

@@ -12,16 +12,15 @@ import PostSocialContainer from "../AuxComponents/PostSocialContainer/PostSocial
 
 const Social = () => {
 
+  const user = useSelector(state => state.userData)
   const dispatch = useDispatch();
   // cuando se monta el componente fetcheamos el usuario de la persona que inicio sesion 
   // para luego utilizarlo en las cards de los posts y pagina de perfil
   useEffect(() => {
     // dispatch(fetchUser) hardcodeado hasta tener inicio de sesion
-    dispatch(getUserById("2e7f46cd-6f32-43df-99b9-060b7edeab7e"))
+    dispatch(getUserById("2e7f46cd-6f32-43df-99b9-060b7edeab7e"));
   }, [dispatch])
-
-  const user = useSelector(state => state.userData)
-
+  console.log(user);
   return (
     <>
       <div className={style.socialContainer}>

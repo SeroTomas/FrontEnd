@@ -28,6 +28,8 @@
   flex-direction: column;
   justify-content: space-around;
   margin: 2rem;
+  width: 100%;
+
 }
 .form label{
   font-size: 20px;
@@ -101,4 +103,9 @@
   background-color: #414448;
   color: #b6f7c1;
   transition: ease-in .2s;
+}
+.textField{
+  margin:2rem
+  
+
 }

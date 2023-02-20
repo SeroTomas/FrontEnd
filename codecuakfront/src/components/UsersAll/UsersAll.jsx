@@ -37,6 +37,7 @@ const UsersAll = () => {
 
   const handleChange = (event) => {
     event.preventDefault();
+    
     event.target.name == "asc" ? dispatch(getUsersAlpha("asc")) : [];
     event.target.name == "desc" ? dispatch(getUsersAlpha("desc")) : [];
   };
@@ -48,7 +49,7 @@ const UsersAll = () => {
         return <Users name={user.name} image={user.image} />;
       })}
       {buttons}
-      <button name="asc" className={Style.asc} onClick={handleChange}>
+      <button name="asc" className={Style.asc} onClick={handleChange} >
         ASC
       </button>
       <button name="desc" className={Style.asc} onClick={handleChange}>

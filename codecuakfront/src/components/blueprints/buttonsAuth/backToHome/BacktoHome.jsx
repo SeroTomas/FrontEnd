@@ -1,11 +1,12 @@
 import React from 'react'
-import Style from "./BacktoHome.module.css"
 import { Link } from 'react-router-dom'
+import Button from '@mui/material-next/Button';
+
 const BacktoHome = () => {
   return (
     <div >
-        <Link to="/">
-      <button className={Style.button}>Volver al Home</button>
+        <Link to="/" style={{"textDecoration":"none"}}>
+      <Button  color="#1E8449" size="large"  variant="text">Volver al Home</Button>
         </Link>
       </div>
   )

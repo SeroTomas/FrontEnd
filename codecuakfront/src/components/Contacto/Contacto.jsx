@@ -2,7 +2,9 @@ import React, { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import styles from "./Contacto.module.css";
-
+import { Box } from "@mui/system";
+import { Button, Paper, Typography, TextField } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 const Contacto = () => {
   const SERVICE_ID = "service_oaksvac";
   const TEMPLATE_ID = "template_trfjcil";
@@ -13,7 +15,7 @@ const Contacto = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(SERVICE_ID,TEMPLATE_ID, form.current,PUBLIC_KEY).then(
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
       (result) => {
         console.log(result.text);
       },
@@ -28,40 +30,82 @@ const Contacto = () => {
   };
 
   return (
-    <div className={styles.divCont}>
-      <div className={styles.divBtn}>
+    <Box
+      bgcolor="#D5DBDB"
+      padding="5rem"
+      height="100%"
+      minHeight="100vh"
+      fontFamily={"Sen"}
+      sx={{ backgroundAttachment: "fixed", backgroundSize: "cover" }}
+    >
+      <Box>
         <Link to="/">
-          <button className={styles.homeBtn}>Volver al Home</button>
+          <Button>Volver al Home</Button>
         </Link>
-      </div>
-      <h1>Contacto</h1>
-      <div className={styles.divForm}>
-        <form ref={form} onSubmit={sendEmail} className={styles.form}>
-          <label>Name</label>
-          <input
-            type="text"
-            name="user_name"
-            className={styles.input}
-            required
-          />
-          <label>Email</label>
-          <input
-            type="email"
-            name="user_email"
-            className={styles.input}
-            required
-          />
-          <label>Message</label>
-          <textarea name="message" className={styles.message} required />
-          <button type="submit" className={styles.btn}>
-            Enviar
-          </button>
-          <div>
-            {result ? <p>el mensaje ha sido enviado con exito</p> : null}
-          </div>
-        </form>
-      </div>
-    </div>
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Typography
+          variant="h1"
+          color="#1E8449"
+          fontFamily={"Sen"}
+          align="center"
+          fontWeight="bold"
+          fontSize="5rem"
+        >
+          Contacto
+        </Typography>
+        <Box
+          display="flex"
+          justifyContent="center"
+          bgcolor="white"
+          width="40rem"
+          maxWidth="100%"
+          height="30rem"
+          borderRadius="2rem"
+        >
+       
+            <form ref={form} onSubmit={sendEmail} className={styles.form}>
+              <Box display="flex" justifyContent="center" width="20rem" margin="0 auto">
+              <TextField
+              fullWidth
+                name="name"
+                label="Nombre"
+                margin="normal"
+              ></TextField>
+              </Box>
+              <Box display="flex" justifyContent="center" width="20rem" margin="0 auto">
+              <TextField
+              fullWidth 
+                name="user_email"
+                label="Email"
+                margin="normal"
+              ></TextField>
+              </Box>
+              <TextField
+          id="outlined-multiline-static"
+          label="Mensaje"
+          multiline
+          rows={4}
+          margin="normal"
+        />
+              <Box width="100%" height="100%">
+              <Button variant="contained" endIcon={<SendIcon />}>
+              </Button>
+              </Box>
+                Enviar
+              <Box>
+                {result ? <p>el mensaje ha sido enviado con exito</p> : null}
+              </Box>
+            </form>
+         
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

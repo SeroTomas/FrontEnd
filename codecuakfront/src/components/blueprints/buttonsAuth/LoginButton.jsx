@@ -1,4 +1,4 @@
-import styles from "./Styles/Button.module.css"
+
 import React from "react";
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ const LoginButton = () => {
  
   return (
     <>
-    <button className={styles.loginBtn} onClick={handleClick}>{text}</button>;
+    <button onClick={handleClick}>{text}</button>;
     </>
   )
 };

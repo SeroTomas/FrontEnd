@@ -13,7 +13,7 @@ const PostSocialContainer = () => {
 
   useEffect(() => {
     dispatch(getAllPost());
-  }, [dispatch]);
+  }, [dispatch,posts]);
   
   useEffect(()=>{
     dispatch(getAllPost());

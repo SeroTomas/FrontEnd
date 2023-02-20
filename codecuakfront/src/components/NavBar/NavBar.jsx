@@ -2,7 +2,7 @@
 import style from "./NavBar.module.css";
 //hooks
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUsersByName } from "../../redux/action";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "./../../redux/action";
@@ -14,17 +14,15 @@ const NavBar = () => {
     const [search, setSearch] = useState("");
     const [data, setData] = useState(false);
     const [notiExpanded, setNotiExpanded] = useState(false);
+
     const usersByName = useSelector((state) => state.users);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const submitHandler = (event) => {
         event.preventDefault();
         dispatch(getUsersByName(search));
-        setSearch("");
-        const filtered = usersByName.results.filter(
-            (ele) => ele.name.toLowerCase() == search.toLowerCase()
-        );
-        filtered.length > 0 ? filtered : null;
+        navigate("/users")
     };
 
     const handlerChange = (event) => {
@@ -62,8 +60,8 @@ const NavBar = () => {
                     </form>
                     <div className={search ? style.searchExpanded : style.searchNotExpanded}>
                         {
-                            usersByName.length ?
-                                usersByName.map(user => {
+                            usersByName.results ?
+                                usersByName.results.map(user => {
                                     return (
                                         <SearchExpandedUser
                                             key={user.id}
@@ -73,9 +71,9 @@ const NavBar = () => {
                                     )
                                 }) : null
                         }
+                        {data ? <p style={{ "color": "white", "font-size": "15px" }}>No se encontro el usuario</p> : <></>}
                     </div>
                 </div>
-                {data ? <p style={{ "color": "white", "font-size": "15px" }}>No se encontro el usuario</p> : <></>}
                 <div className={style.ulContainer}>
                     <ul>
                         <li>

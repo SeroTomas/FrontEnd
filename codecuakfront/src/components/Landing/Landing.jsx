@@ -36,6 +36,7 @@ const Landing = () => {
       <section className={styles.sectionCode} id="code">
         <h1>codeCuak</h1>
         <h2>La red social por y para desarrolladores</h2>
+        
         <p className={styles.codeP}>
           Nace con la idea de crear un espacio amigable en el que los
           desarrolladores puedan distenderse,<br/> compartir ideas y proyectos

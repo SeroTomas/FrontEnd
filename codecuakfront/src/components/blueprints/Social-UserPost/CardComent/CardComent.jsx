@@ -4,6 +4,7 @@ import styles from "./CardComent.module.css"
 import { useState } from "react";
 
 const CardComent=({comment})=>{
+    
     const [like, setStatuslike] = useState(false);
     return(
         <div className={styles.container}>

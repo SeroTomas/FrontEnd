@@ -18,6 +18,7 @@ const Landing = () => {
   const data = [
     {
       id:"social",
+      link:"/social",
       title: "socialCuak",
       color: "#dce3e3",
       secondTitle: "Aquí podrás expresarte",
@@ -27,6 +28,7 @@ const Landing = () => {
     },
     {
       id:"Q&A",
+      link:"/qanda",
       title: "Q&A-Cuak",
       color: "#D5DBDB",
       secondTitle: "Para crecer necesitamos ayudarnos entre todos",
@@ -36,6 +38,7 @@ const Landing = () => {
     },
     {
       id:"work",
+      link:"/work",
       title: "workCuak",
       color: "#dce3e3",
       secondTitle: "La programación es un trabajo de equipo",
@@ -45,6 +48,8 @@ const Landing = () => {
     },
     {
       id:"hiring",
+      link:"/hiring",
+
       title: "hiringCuak",
       color: "#D5DBDB",
       secondTitle:
@@ -152,7 +157,7 @@ const Landing = () => {
                 </Box>
               </Box>
               <Box display="flex" alignItems="center" justifyContent="center" height="10rem">
-                <Link to="/social" style={{ textDecoration: "none" }}>
+                <Link to={element.link} style={{ textDecoration: "none" }}>
                   <Button
                   style={{ width: 200, height: 70, fontSize:20, marginTop:100, gap:15}}
                   size="large"

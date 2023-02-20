@@ -3,29 +3,35 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import style from "./NavBar.module.css";
 import logo from "../../Media/logo-03.png";
-import {getUsersName } from "../../redux/action";
+import { getUsersName } from "../../redux/action";
 import { useSelector, useDispatch } from "react-redux";
+import { getAllUsers } from "./../../redux/action";
 
 const NavBar = () => {
   const [search, setSearch] = useState("");
-
+  const [data, setData] = useState(false);
   const [notiExpanded, setNotiExpanded] = useState(false);
-  const usersName = useSelector((state)=> state.users)
-  const dispatch = useDispatch()
-  const submitHandler = (event) =>{
+  const usersName = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+
+  const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(getUsersName(search))
-    setSearch("")
-    const filtered = usersName.filter((ele)=>ele.name.toLowerCase() == search.toLowerCase())
-    if(filtered.length > 0){
-        return filtered
-    }
-    else{
-        alert("nada por aqui")
-    }
-  }
+    dispatch(getUsersName(search));
+    setSearch("");
+    const filtered = usersName.results.filter(
+      (ele) => ele.name.toLowerCase() == search.toLowerCase()
+    );
+    filtered.length > 0 ? filtered : null;
+  };
+  useEffect(()=>{
+    usersName.results?.length==0?setData(true):setData(false)
+  },[usersName])
+
+  
   const handlerChange = (event) => {
+    event.preventDefault();
     const value = event.target.value;
+    dispatch(getUsersName(value));
     setSearch(value);
   };
 
@@ -44,14 +50,15 @@ const NavBar = () => {
         <div className={style.searchContainer}>
           <i className="fa-sharp fa-solid fa-magnifying-glass fa-lm" />
           <form onSubmit={submitHandler}>
-          <input
-            type="text"
-            value={search}
-            onChange={handlerChange}
-            placeholder="Buscar en codeCuak"
-          />
+            <input
+              type="text"
+              value={search}
+              onChange={handlerChange}
+              placeholder="Buscar en codeCuak"
+            />
           </form>
         </div>
+        {data? <p style={{"color":"white","font-size":"15px"}}>No se encontro el usuario</p> : <></>}
         <div className={style.ulContainer}>
           <ul>
             <li>

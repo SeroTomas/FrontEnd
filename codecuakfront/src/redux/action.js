@@ -19,6 +19,7 @@ export const GET_ALL_USER = "GET_ALL_USER";
 export const GET_BYID_USER = "GET_BYID_USER";
 export const GET_USERS_NAME = "GET_USERS_NAME";
 export const GET_USERS_ALPHA = "GET_USERS_ALPHA";
+export const GET_BYID_USER_DETAIL = "GET_BYID_USER_DETAIL";
 
 const URL = {
   URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
@@ -153,4 +154,11 @@ export const getPage = (page) => {
   }
 
 }
+
+export const getUserDetailById = (userId) => {
+  return async function (dispatch) {
+    const data = await axios.get(`${URL.URL_USERS}/${userId}`);
+    return dispatch({ type: GET_BYID_USER_DETAIL, payload: data.data});
+  };
+};
 

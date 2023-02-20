@@ -1,12 +1,19 @@
-import React from 'react'
+import style from "./searchExpandedUser.module.css"
 
-const SearchExpandedUser = ({image, name, id}) => {
+import { Link } from "react-router-dom"
+
+const SearchExpandedUser = ({ image, name, id }) => {
   return (
-    <>
-      <Link>
-
-      </Link>
-    </>
+    <Link to={`/users/${id}`} className={style.link}>
+      <div className={style.container}>
+        <div className={style.imgContainer}>
+          <img src={image} alt={`Imagen de usuario ${id}`} />
+        </div>
+        <div className={style.nameContainer}>
+          <p>{name}</p>
+        </div>
+      </div>
+    </Link>
   )
 }
 

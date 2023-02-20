@@ -9,6 +9,7 @@ import { getAllUsers } from "./../../redux/action";
 //componentes
 import logo from "../../Media/logo-03.png";
 import SearchExpandedUser from "../AuxComponents/SeachExpandedUser/SearchExpandedUser";
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
     const [search, setSearch] = useState("");
@@ -16,7 +17,6 @@ const NavBar = () => {
     const [notiExpanded, setNotiExpanded] = useState(false);
     const usersByName = useSelector((state) => state.users);
     const dispatch = useDispatch();
-
     const submitHandler = (event) => {
         event.preventDefault();
         dispatch(getUsersByName(search));
@@ -32,6 +32,7 @@ const NavBar = () => {
         const value = event.target.value;
         dispatch(getUsersByName(value));
         setSearch(value);
+        
     };
 
     const handlerNotifications = () => {

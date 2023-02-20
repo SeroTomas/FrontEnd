@@ -27,7 +27,7 @@ const AddComent = (props) => {
 
     return (
         <div className={styles.container}>
-            <img src={userData.image} alt="" />
+            <img src={userData} alt="" />
             <form action="" className={styles.form} onSubmit={submitHandler}>
                 <textarea type="text" placeholder="Escribe un comentario..." onChange={handlerChange} value={coment} />
                 <button id="submit" type="submit" className={selectClass()}>Enviar</button>

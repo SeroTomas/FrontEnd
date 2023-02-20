@@ -10,6 +10,9 @@ import User from "./components/User/User";
 import About from "./components/About/About";
 import Terminos from "./components/Terminos/Terminos";
 import Contacto from "./components/Contacto/Contacto";
+import UsersAll from "./components/UsersAll/UsersAll";
+import UserDetail from "./components/UserDetail/UserDetail";
+
 function App() {
   return (
     <div className="App">
@@ -24,6 +27,8 @@ function App() {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/terminos" element={<Terminos />} />
         <Route exact path="/contacto" element={<Contacto />} />
+        <Route exact path="/users" element={<UsersAll />} />
+        <Route exact path="/users/:id" element = {<UserDetail/>}/>
       </Routes>
     </div>
   );

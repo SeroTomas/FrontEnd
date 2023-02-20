@@ -33,6 +33,7 @@
     font-weight: 400;
     overflow: hidden;
     overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .likes{

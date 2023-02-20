@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"; 
 // PARA CREAR UNA CONSTANTE DEL ACTION PRIMERO PONER
 //ejemplo GET_ALL_POST
 // primero tipo de peticion despues algo descriptivo de ser nesesario y depues la cosa con la que se trabaja xd
@@ -17,10 +17,12 @@ export const DELETE_LOGIC_COMMENT = "DELETE_LOGIC_COMMENT";
 // 💥USUARIOS💥
 export const GET_ALL_USER = "GET_ALL_USER";
 export const GET_BYID_USER = "GET_BYID_USER";
+export const GET_USERS_NAME = "GET_USERS_NAME";
+export const GET_USERS_ALPHA = "GET_USERS_ALPHA";
 
 const URL = {
   URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
-  URL_USERS: "https://backend-production-c946.up.railway.app/users"
+  URL_USERS: "http://backend-production-c946.up.railway.app/users"
 };
 
 // ##################### SOCIAL CUAK ########################
@@ -30,8 +32,8 @@ const URL = {
 export const getAllPost = () => {
   return function (dispatch) {
     axios.get(URL.URL_SOCIAL).then((response) => {
-      dispatch({ type: GET_ALL_POST, payload: response.data });
-    });
+      dispatch({ type: GET_ALL_POST, payload:response.data});
+   });
   };
 };
 //GET POST BY USERID
@@ -123,3 +125,33 @@ export const getUserById = (userId)=>{
     });
   };
 };
+
+export const getAllUsers = () =>{
+  return async function (dispatch){
+   const data = await axios.get(URL.URL_USERS)
+   return dispatch({type: GET_ALL_USER, payload: data.data})
+  }
+}
+
+export const getUsersByName = (name) =>{
+  return async function (dispatch){
+    const data = await axios.get(`https://backend-production-c946.up.railway.app/users?name=${name}`)
+    return dispatch({type: GET_USERS_NAME, payload: data.data})
+  }
+}
+export const getUsersAlpha = (alpha) =>{
+  return async function (dispatch){
+    const data = await axios.get(`https://backend-production-c946.up.railway.app/users?alpha=${alpha}`)
+    return dispatch({type: GET_USERS_ALPHA, payload: data.data})
+  }
+}
+
+
+export const getPage = (page)=>{
+  return async function (dispatch){
+    const data = await axios.get(`https://backend-production-c946.up.railway.app/users?page=${page}`)
+    return dispatch({type: GET_ALL_USER, payload: data.data})
+  }
+
+}
+

@@ -20,11 +20,13 @@ const Social = () => {
     dispatch(getUserById("2e7f46cd-6f32-43df-99b9-060b7edeab7e"))
   }, [dispatch])
 
+  const user = useSelector(state => state.userData)
+
   return (
     <>
       <div className={style.socialContainer}>
         <NavBar />
-        <FormSocialPost />
+        <FormSocialPost user = {user}/>
         <PostSocialContainer />
       </div>
     </>

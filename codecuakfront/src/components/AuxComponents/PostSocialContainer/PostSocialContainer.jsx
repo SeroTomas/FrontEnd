@@ -13,7 +13,7 @@ const PostSocialContainer = () => {
 
   useEffect(() => {
     dispatch(getAllPost());
-  }, [dispatch]);
+  }, [dispatch,posts]);
   
   useEffect(()=>{
     dispatch(getAllPost());
@@ -22,7 +22,7 @@ const PostSocialContainer = () => {
 
   return (
     <div className={styles.container}>
-      {posts?.map((post) => {
+      {posts.map((post) => {
         return <CardPost post={post} key={post.id}/>;
       })}
     </div>

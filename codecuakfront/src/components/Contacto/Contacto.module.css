@@ -29,20 +29,14 @@
   justify-content: space-around;
   margin: 2rem;
   width: 100%;
+  font-family: "Sen", sans-serif;
 
 }
 .form label{
   font-size: 20px;
 }
 .input {
-  width: 16rem;
-  height: 2rem;
-  margin: 0.5rem auto;
-  padding: 0.4rem;
-  border-radius: 1rem;
   font-family: "Sen", sans-serif;
-  font-size: 20px;
-  transition: ease-out 0.3s;
 }
 
 .input:focus {
@@ -108,4 +102,7 @@
   margin:2rem
   
 
+}
+.button{
+  background-color: #1E8449;
 }

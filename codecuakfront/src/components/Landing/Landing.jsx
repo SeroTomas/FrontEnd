@@ -1,4 +1,6 @@
 import React from "react";
+import {Box,Typography,Button, Icon} from "@mui/material"
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import styles from "./Landing.module.css";
 import { Link } from "react-router-dom";
 import LoginButton from "../blueprints/buttonsAuth/LoginButton";
@@ -8,12 +10,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Landing = () => {
   const {isAuthenticated} = useAuth0()
   return (
-    <div className={styles.containter}>
-      <nav className={styles.nav}>
+    <Box className={styles.containter}>
+      <Box className={styles.nav}>
         <a href="#code">
           <img src={logo} alt="logofooter" className={styles.logoFooter} />
         </a>
-        <div className={styles.ul}>
+        <Box className={styles.ul}>
           <ul>
             <li>
               <a href="#social">socialCuak</a>
@@ -28,45 +30,51 @@ const Landing = () => {
               <a href="#hiring">hiringCuak</a>
             </li>
           </ul>
-        </div>
-        <div className={styles.loginbtn}>
+        </Box>
+        <Box className={styles.loginbtn}>
           {isAuthenticated ? <LogoutButton /> : <LoginButton/>}
-        </div>
-      </nav>
-      <section className={styles.sectionCode} id="code">
-        <h1>codeCuak</h1>
-        <h2>La red social por y para desarrolladores</h2>
-        
-        <p className={styles.codeP}>
+        </Box>
+      </Box>
+      {/* ######################################## CODE CUAK #########################################*/}
+      <Box id="code" bgcolor="#D5DBDB" height="45rem" padding="3rem">
+        <Typography variant="h1" color="#1E8449" fontFamily={"Sen"}align="center"fontWeight="bold">{">_"}codeCuak</Typography>
+        <Typography variant="h4" fontFamily={"Sen"}align="center" marginTop="1rem">La red social por y para desarrolladores</Typography>
+        <Box className={styles.codetext}>
+        <Typography variant="h5" fontFamily={"Sen"}align="center">
           Nace con la idea de crear un espacio amigable en el que los
           desarrolladores puedan distenderse,<br/> compartir ideas y proyectos
           propios.
-        </p>
-        <p>
+        </Typography>
+        <Typography variant="h5" fontFamily={"Sen"}align="center">
           Resolver dudas, buscar compañeros para trabajar en equipo y buscar
           trabajo.<br/> Todo dentro de un mismo espacio
-        </p>
-      </section>
-      <section className={styles.sectionSocial} id="social">
-        <div className={styles.contTexto}>
-          <h2>socialCuak</h2>
-          <h3>Aquí podrás expresarte</h3>
-          <p className={styles.socialP}>
+        </Typography>
+        </Box>
+      </Box>
+      {/* ######################################## SOCIA CUAK #########################################*/}
+
+      <Box id="social" bgcolor="#dce3e3" height="40rem" padding="3rem" display="flex" justifyContent="center" gap="3rem">
+        <Box>
+          <Typography variant="h1"  marginTop="2rem"color="#1E8449" fontFamily={"Sen"}align="center"fontWeight="bold">socialCuak</Typography>
+          <Typography variant="h4" margin="2rem"fontFamily={"Sen"}align="center">Aquí podrás expresarte</Typography>
+          <ConnectWithoutContactIcon />
+          <Typography variant="h5"fontFamily={"Sen"}align="center">
             Lo que buscamos con “social-Cuak” es distendernos y conocernos;
-          </p>
-          <p> encontrar un clima agradable para despejar la mente.</p>
-        </div>
-        <div className={styles.divLink}>
-          <Link to="/social" >
-            <button className={styles.socialBtn}>Ir a socialCuak</button>
+          </Typography>
+          <Typography  variant="h5" fontFamily={"Sen"}align="center"> encontrar un clima agradable para despejar la mente.</Typography>
+          
+        </Box>
+        <Box display="flex" alignItems="center">
+          <Link to="/social" style={{"textDecoration":"none"}} >
+            <Button color="success" variant="contained" sx={{fontWeight:"bold"}} >Ir a socialCuak</Button>
           </Link>
-        </div>
-        {/* <div className={styles.divImg}>
-          <img src={social} alt="imgsocial" />
-        </div> */}
-      </section>
-      <section className={styles.sectionQyA} id="Q&A">
-        <div className={styles.contTexto}>
+        </Box>
+        
+      </Box>
+      {/* ######################################## Q&A CUAK #########################################*/}
+
+      <Box className={styles.sectionQyA} id="Q&A">
+        <Box className={styles.contTexto}>
           <h2>Q&A-Cuak</h2>
           <h3>Para crecer necesitamos ayudarnos entre todos</h3>
           <p className={styles.socialP}>
@@ -74,30 +82,34 @@ const Landing = () => {
             publicaciones
           </p>
           <p> solicitando ayuda o responder las consultas ya existentes.</p>
-        </div>
-        <div className={styles.divLink}>
+        </Box>
+        <Box className={styles.BoxLink}>
           <Link to="/qanda">
             <button className={styles.socialBtn}>Ir a Q&A-Cuak</button>
           </Link>
-        </div>
-      </section>
-      <section className={styles.sectionWork} id="work">
-        <div className={styles.contTexto}>
+        </Box>
+      </Box>
+      {/* ######################################## WORK CUAK #########################################*/}
+
+      <Box className={styles.sectionWork} id="work">
+        <Box className={styles.contTexto}>
           <h2>workCuak</h2>
           <h3>La programación es un trabajo de equipo</h3>
           <p className={styles.socialP}>
             “work-Cuack” está diseñado para buscar colaboradores para
             desarrollar proyectos propios.
           </p>
-        </div>
-        <div className={styles.divLink}>
+        </Box>
+        <Box className={styles.BoxLink}>
           <Link to="/work">
             <button className={styles.socialBtn}>Ir a workCuak</button>
           </Link>
-        </div>
-      </section>
-      <section className={styles.sectionHiring} id="hiring">
-        <div className={styles.contTexto}>
+        </Box>
+      </Box>
+      {/* ######################################## HIRING CUAK #########################################*/}
+
+      <Box className={styles.sectionHiring} id="hiring">
+        <Box className={styles.contTexto}>
           <h2>hiringCuak</h2>
           <h3>
             En codeCuak nos preocupamos <br />
@@ -111,16 +123,16 @@ const Landing = () => {
             Tambien las empresas podrán registrarse y publicar ofertas laborales
             para que los desarrolladores apliquen a ellas.
           </p>
-        </div>
-        <div className={styles.divLink}>
+        </Box>
+        <Box className={styles.BoxLink}>
           <Link to="/hiring">
             <button className={styles.socialBtn}>Ir a hiringCuak</button>
           </Link>
-        </div>
-      </section>
+        </Box>
+      </Box>
       <hr></hr>
       <Footer/>
-    </div>
+    </Box>
   );
 };
 

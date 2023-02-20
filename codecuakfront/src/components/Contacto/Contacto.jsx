@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
+import BacktoHome from "../blueprints/buttonsAuth/backToHome/BacktoHome";
 import { useNavigate, Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import styles from "./Contacto.module.css";
 import { Box } from "@mui/system";
 import { Button, Paper, Typography, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import Alert from "@mui/material/Alert";
 const Contacto = () => {
+  const [submit, setSubmit] = useState(false);
   const SERVICE_ID = "service_oaksvac";
   const TEMPLATE_ID = "template_trfjcil";
   const PUBLIC_KEY = "O7jgSb2G6PiunQMKB";
@@ -14,7 +17,6 @@ const Contacto = () => {
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
       (result) => {
         console.log(result.text);
@@ -23,10 +25,9 @@ const Contacto = () => {
         console.log(error.text);
       }
     );
-    alert("mensaje enviado");
+    setSubmit(true);
+    setTimeout(() => setSubmit(false), 3000);
     e.target.reset();
-
-    navigateTo("/social");
   };
 
   return (
@@ -38,10 +39,11 @@ const Contacto = () => {
       fontFamily={"Sen"}
       sx={{ backgroundAttachment: "fixed", backgroundSize: "cover" }}
     >
+      {submit ? <Alert severity="success">Se envió con exito!</Alert> : <></>}
       <Box>
-        <Link to="/">
-          <Button>Volver al Home</Button>
-        </Link>
+  
+         <BacktoHome />
+  
       </Box>
       <Box
         display="flex"
@@ -68,41 +70,65 @@ const Contacto = () => {
           height="30rem"
           borderRadius="2rem"
         >
-       
-            <form ref={form} onSubmit={sendEmail} className={styles.form}>
-              <Box display="flex" justifyContent="center" width="20rem" margin="0 auto">
+          <form ref={form} onSubmit={sendEmail} className={styles.form}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              width="20rem"
+              margin="0 auto"
+            >
               <TextField
-              fullWidth
+                required
+                fullWidth
                 name="name"
                 label="Nombre"
                 margin="normal"
               ></TextField>
-              </Box>
-              <Box display="flex" justifyContent="center" width="20rem" margin="0 auto">
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="center"
+              width="20rem"
+              margin="0 auto"
+            >
               <TextField
-              fullWidth 
+                fullWidth
                 name="user_email"
                 label="Email"
                 margin="normal"
+                required
               ></TextField>
-              </Box>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="center"
+              width="20rem"
+              margin="0 auto"
+            >
               <TextField
-          id="outlined-multiline-static"
-          label="Mensaje"
-          multiline
-          rows={4}
-          margin="normal"
-        />
-              <Box  height="3rem" display="flex" justifyContent="center">
-              <Button size="large" variant="contained" endIcon={<SendIcon />}>
+                fullWidth
+                id="outlined-multiline-static"
+                label="Mensaje"
+                multiline
+                rows={4}
+                margin="normal"
+                required
+              />
+            </Box>
+            <Box height="3rem" display="flex" justifyContent="center">
+              <Button
+                
+                type="submit"
+                size="large"
+                variant="contained"
+                color="success"
+                endIcon={<SendIcon />}
+              >
                 Enviar
               </Button>
-              </Box>
-              <Box>
-                {result ? <p>el mensaje ha sido enviado con exito</p> : null}
-              </Box>
-            </form>
-         
+            </Box>
+            <Box></Box>
+          </form>
         </Box>
       </Box>
     </Box>

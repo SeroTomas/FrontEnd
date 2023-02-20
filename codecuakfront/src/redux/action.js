@@ -1,4 +1,4 @@
-import axios from "axios"; 
+import axios from "axios";
 // PARA CREAR UNA CONSTANTE DEL ACTION PRIMERO PONER
 //ejemplo GET_ALL_POST
 // primero tipo de peticion despues algo descriptivo de ser nesesario y depues la cosa con la que se trabaja xd
@@ -32,8 +32,8 @@ const URL = {
 export const getAllPost = () => {
   return function (dispatch) {
     axios.get(URL.URL_SOCIAL).then((response) => {
-      dispatch({ type: GET_ALL_POST, payload:response.data});
-   });
+      dispatch({ type: GET_ALL_POST, payload: response.data });
+    });
   };
 };
 //GET POST BY USERID
@@ -41,7 +41,7 @@ export const getAllPost = () => {
 export const getPostByUserId = (userId) => {
   return function (dispatch) {
     axios.get(URL.URL_SOCIAL).then((response) => {
-      const data = response.data.filter((post)=> post.userdevId == userId );
+      const data = response.data.filter((post) => post.userdevId == userId);
       dispatch({ type: GET_ALL_POST, payload: data });
     });
   };
@@ -118,39 +118,38 @@ export const destroyDeleteComment = ({ commentId }) => {
 
 // USERS  🛑
 // GET USERS BY ID
-export const getUserById = (userId)=>{
-  return function (dispatch){
-    axios.get(`${URL.URL_USERS}/${userId}`).then((response)=>{
-      dispatch({type: GET_BYID_USER, payload: response.data})  
-    });
+export const getUserById = (userId) => {
+  return async function (dispatch) {
+    const data = await axios.get(`${URL.URL_USERS}/${userId}`);
+    return dispatch({ type: GET_BYID_USER, payload: data.data});
   };
 };
 
-export const getAllUsers = () =>{
-  return async function (dispatch){
-   const data = await axios.get(URL.URL_USERS)
-   return dispatch({type: GET_ALL_USER, payload: data.data})
+export const getAllUsers = () => {
+  return async function (dispatch) {
+    const data = await axios.get(URL.URL_USERS)
+    return dispatch({ type: GET_ALL_USER, payload: data.data })
   }
 }
 
-export const getUsersByName = (name) =>{
-  return async function (dispatch){
+export const getUsersByName = (name) => {
+  return async function (dispatch) {
     const data = await axios.get(`https://backend-production-c946.up.railway.app/users?name=${name}`)
-    return dispatch({type: GET_USERS_NAME, payload: data.data})
+    return dispatch({ type: GET_USERS_NAME, payload: data.data })
   }
 }
-export const getUsersAlpha = (alpha) =>{
-  return async function (dispatch){
+export const getUsersAlpha = (alpha) => {
+  return async function (dispatch) {
     const data = await axios.get(`https://backend-production-c946.up.railway.app/users?alpha=${alpha}`)
-    return dispatch({type: GET_USERS_ALPHA, payload: data.data})
+    return dispatch({ type: GET_USERS_ALPHA, payload: data.data })
   }
 }
 
 
-export const getPage = (page)=>{
-  return async function (dispatch){
+export const getPage = (page) => {
+  return async function (dispatch) {
     const data = await axios.get(`https://backend-production-c946.up.railway.app/users?page=${page}`)
-    return dispatch({type: GET_ALL_USER, payload: data.data})
+    return dispatch({ type: GET_ALL_USER, payload: data.data })
   }
 
 }

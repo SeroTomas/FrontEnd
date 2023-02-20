@@ -12,7 +12,6 @@ import styles from "./User.module.css";
 const User = () => {
 
   const userData = useSelector((state)=> state.userData);
-    
   return (
     <div>
       <NavBar />

@@ -1,7 +1,7 @@
 //estilos
 import styles from "./postUserContainer.module.css";
 //hooks
-import { useEffect } from "react";
+import { useEffect } from "react";``
 import { useDispatch, useSelector } from "react-redux";
 //actions
 import { getPostByUserId, cleanPost } from "../../../redux/action";

@@ -8,8 +8,7 @@ import { getPostByUserId, cleanPost } from "../../../redux/action";
 //componentes
 import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 
-const PostUserContainer = () => {
-  const userId = useSelector((state) => state.userData.id)
+const PostUserContainer = ({userId}) => {
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 

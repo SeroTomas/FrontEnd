@@ -2,7 +2,7 @@
 import style from "./formSocialPost.module.css";
 //importamos hooks
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sendPost } from "../../../axiosFunctions";
 import { getAllPost } from "../../../redux/action";
 // componentes
@@ -10,7 +10,6 @@ import { getAllPost } from "../../../redux/action";
 const FormSocialPost = ({user}) => {
   const dispatch = useDispatch();
   //usuario de prueba, los verdaderos vienen por props ya que el contenedor social hace el fetch de datos
-
   const [form, setForm] = useState("");
   const text = form.length;
   //const [users, setUsers] = useState("a2e13a38-ae82-40e2-9a43-ac5a66310f1d");

@@ -93,11 +93,11 @@ const Contacto = () => {
           rows={4}
           margin="normal"
         />
-              <Box width="100%" height="100%">
-              <Button variant="contained" endIcon={<SendIcon />}>
+              <Box  height="3rem" display="flex" justifyContent="center">
+              <Button size="large" variant="contained" endIcon={<SendIcon />}>
+                Enviar
               </Button>
               </Box>
-                Enviar
               <Box>
                 {result ? <p>el mensaje ha sido enviado con exito</p> : null}
               </Box>

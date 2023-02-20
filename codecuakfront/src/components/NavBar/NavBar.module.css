@@ -29,6 +29,7 @@
     border-radius: 10px;
     gap: 10px;
     background-color: #63686E;
+    position: relative;
 }
 
 .searchContainer input {
@@ -128,4 +129,20 @@
     flex-direction: column;
     align-self: center;
     gap: 5px;
+}
+
+.searchExpanded{
+    background-color:#373640 ;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    width: 400px;
+    top: 90%;
+    left: 0;
+    z-index: 9000;
+}
+
+.searchNotExpanded{
+    display: none;
 }

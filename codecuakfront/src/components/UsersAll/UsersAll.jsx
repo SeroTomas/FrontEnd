@@ -43,10 +43,7 @@ const UsersAll = () => {
     value == "asc" ? dispatch(getUsersAlpha("asc")) : [];
     value == "desc" ? dispatch(getUsersAlpha("desc")) : [];
   };
-  
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
+
   
   return (
     <div>

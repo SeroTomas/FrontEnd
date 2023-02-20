@@ -17,8 +17,9 @@ import {
 
 const initialState = {
   userData: {},
-  posts: [],
+  userDetail: {},
   users: [],
+  posts: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -42,7 +43,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_BYID_USER:
       return {
         ...state,
-        userData: action.payload,
+        userDetail: action.payload,
       };
     case GET_USERS_NAME:
       return{

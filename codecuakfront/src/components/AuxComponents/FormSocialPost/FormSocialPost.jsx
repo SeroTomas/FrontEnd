@@ -5,10 +5,13 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendPost } from "../../../axiosFunctions";
 import { getAllPost } from "../../../redux/action";
+import { useAuth0 } from "@auth0/auth0-react";
 // componentes
 // IMPORT MATERIAL UI
+import Alert from '@mui/material/Alert';
 import { Avatar, Box, Typography, TextField, Button } from "@mui/material";
 const FormSocialPost = ({ user }) => {
+  const {isAuthenticated} = useAuth0()
   const dispatch = useDispatch();
   //usuario de prueba, los verdaderos vienen por props ya que el contenedor social hace el fetch de datos
   const [form, setForm] = useState("");
@@ -27,7 +30,7 @@ const FormSocialPost = ({ user }) => {
   };
 
   return (
-    <Box className={style.codetext} fontFamily={"Sen"}>
+    <Box className={style.codetext} fontFamily={"Sen"} margin="15px">
       <Box  width="80%" display="flex" flexDirection="column" justifyContent="center" >
         <Box display="flex" gap="1rem">
           <Box>
@@ -44,6 +47,7 @@ const FormSocialPost = ({ user }) => {
               id="outlined-multiline-static"
               label="Mensaje"
               multiline
+            
               rows={4}
               margin="normal"
               required

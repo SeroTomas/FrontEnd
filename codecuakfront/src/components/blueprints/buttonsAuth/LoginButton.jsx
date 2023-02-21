@@ -1,16 +1,17 @@
-import styles from "./Styles/Button.module.css"
 import React from "react";
 import { useState } from "react";
-
+import { Button,Box} from "@mui/material";
 const LoginButton = () => {
   const [text,setText]=useState("Log In")
   const handleClick=()=>{
-   setText("Proximamente")
+   text== "Log In" ? setText("Proximamente") : setText("Log In")
   }
- 
+
   return (
     <>
-    <button className={styles.loginBtn} onClick={handleClick}>{text}</button>;
+    <Box width="10rem">
+      <Button  color="success" variant="contained" sx={{fontWeight:"bold"}} onClick={handleClick}>{text}</Button>
+    </Box>
     </>
   )
 };

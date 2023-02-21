@@ -1,9 +1,14 @@
 import React, { useRef, useState } from "react";
+import BacktoHome from "../blueprints/buttonsAuth/backToHome/BacktoHome";
 import { useNavigate, Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import styles from "./Contacto.module.css";
-
+import { Box } from "@mui/system";
+import { Button, Paper, Typography, TextField } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import Alert from "@mui/material/Alert";
 const Contacto = () => {
+  const [submit, setSubmit] = useState(false);
   const SERVICE_ID = "service_oaksvac";
   const TEMPLATE_ID = "template_trfjcil";
   const PUBLIC_KEY = "O7jgSb2G6PiunQMKB";
@@ -12,8 +17,7 @@ const Contacto = () => {
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs.sendForm(SERVICE_ID,TEMPLATE_ID, form.current,PUBLIC_KEY).then(
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
       (result) => {
         console.log(result.text);
       },
@@ -21,47 +25,113 @@ const Contacto = () => {
         console.log(error.text);
       }
     );
-    alert("mensaje enviado");
+    setSubmit(true);
+    setTimeout(() => setSubmit(false), 3000);
     e.target.reset();
   };
 
   return (
-    <div className={styles.divCont}>
-      <div className={styles.divBtn}>
-        <Link to="/">
-          <button className={styles.homeBtn}>Volver al Home</button>
-        </Link>
-      </div>
-      <h1>Contacto</h1>
-      <div className={styles.divForm}>
-        <form ref={form} onSubmit={sendEmail} className={styles.form}>
-          <label>Nombre</label>
-          <input
-            type="text"
-            name="user_name"
-            className={styles.input}
-            placeholder="Ingrese su nombre"
-            required
-          />
-          <label>Email</label>
-          <input
-            type="email"
-            name="user_email"
-            className={styles.input}
-            placeholder="Ingrese su email"
-            required
-          />
-          <label>Tu mensaje</label>
-          <textarea name="message" className={styles.message} placeholder="Ingrese su mensaje" required />
-          <button type="submit" className={styles.btn}>
-            Enviar
-          </button>
-          <div>
-            {result ? <p>el mensaje ha sido enviado con exito</p> : null}
-          </div>
-        </form>
-      </div>
-    </div>
+    <Box
+      bgcolor="#D5DBDB"
+      padding="5rem"
+      height="100%"
+      minHeight="100vh"
+      fontFamily={"Sen"}
+      sx={{ backgroundAttachment: "fixed", backgroundSize: "cover" }}
+    >
+      {submit ? <Alert severity="success">Se envió con exito!</Alert> : <></>}
+      <Box>
+  
+         <BacktoHome />
+  
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Typography
+          variant="h1"
+          color="#1E8449"
+          fontFamily={"Sen"}
+          align="center"
+          fontWeight="bold"
+          fontSize="5rem"
+        >
+          Contacto
+        </Typography>
+        <Box
+          display="flex"
+          justifyContent="center"
+          bgcolor="white"
+          width="40rem"
+          maxWidth="100%"
+          height="30rem"
+          borderRadius="2rem"
+        >
+          <form ref={form} onSubmit={sendEmail} className={styles.form}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              width="20rem"
+              margin="0 auto"
+            >
+              <TextField
+                required
+                fullWidth
+                name="name"
+                label="Nombre"
+                margin="normal"
+              ></TextField>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="center"
+              width="20rem"
+              margin="0 auto"
+            >
+              <TextField
+                fullWidth
+                name="user_email"
+                label="Email"
+                margin="normal"
+                required
+              ></TextField>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="center"
+              width="20rem"
+              margin="0 auto"
+            >
+              <TextField
+                fullWidth
+                id="outlined-multiline-static"
+                label="Mensaje"
+                multiline
+                rows={4}
+                margin="normal"
+                required
+              />
+            </Box>
+            <Box height="3rem" display="flex" justifyContent="center">
+              <Button
+                
+                type="submit"
+                size="large"
+                variant="contained"
+                color="success"
+                endIcon={<SendIcon />}
+              >
+                Enviar
+              </Button>
+            </Box>
+            <Box></Box>
+          </form>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

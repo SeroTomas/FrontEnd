@@ -76,8 +76,7 @@ console.log(userData);
                             </div>
                         </div>
                     </div>
-
-                    <PostUserContainer userId ={userData.id} />
+                   <PostUserContainer userId ={userData.id}/>
                 </div>
             </div>
         </div>

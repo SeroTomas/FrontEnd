@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Sen&display=swap");
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.containter {
+  background-color: rgb(232, 232, 232);
+  margin-top: 5rem;
+  width: 100%;
+}
+.nav {
+  font-family: "Ruda", sans-serif;
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #084b14e8;
+  position: fixed;
+  top: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.ul ul {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  list-style: none;
+  margin-left: 3rem;
+}
+
+.ul ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.loginbtn {
+  display: flex;
+  flex-direction: row;
+  margin-right: 3rem;
+}
+.sectionCode {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  height: 40rem;
+  margin: 0 auto;
+  font-family: "Sen", sans-serif;
+  background-color: #c4c2d1;
+  scroll-margin-top: 10ex;
+}
+.sectionCode h1 {
+  color: #8af09b;
+  text-shadow: 0px 0px 5px #373640;
+  text-decoration: #8af09b80 underline;
+  margin-top: -10rem;
+  font-size: 100px;
+}
+.sectionCode h2 {
+  font-size: 40px;
+  margin-top: 3rem;
+}
+
+.sectionCode p {
+  font-size: 25px;
+}
+.codeP {
+  margin-top: 5rem;
+}
+
+.sectionSocial {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 40rem;
+  font-family: "Sen", sans-serif;
+  background-color: #b7b5c3;
+  scroll-margin-top: 10ex;
+}
+.contTexto {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.sectionSocial h2 {
+  color: #8af09b;
+  text-shadow: 0px 0px 5px #373640;
+  margin-top: -8rem;
+  font-size: 90px;
+}
+.sectionSocial h3 {
+  margin-top: 1rem;
+  font-size: 50px;
+}
+.sectionSocial p {
+  font-size: 24px;
+}
+.socialP {
+  margin-top: 4rem;
+}
+.divLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8rem;
+}
+.socialBtn {
+  width: 14rem;
+  height: 6rem;
+  border-radius: 1rem;
+  font-family: "Ruda", sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+  color: #b6f7c1;
+  background-color: #373640;
+  border-color: #b6f7c1;
+}
+.socialBtn:hover {
+  background-color: #414448;
+  color: #b6f7c1;
+  transition: ease-in 0.2s;
+}
+.sectionQyA {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  height: 40rem;
+  font-family: "Sen", sans-serif;
+  background-color: #918f9a;
+  scroll-margin-top: 10ex;
+}
+.sectionQyA h2 {
+  color: #8af09b;
+  text-shadow: 0px 0px 5px #373640;
+  margin-top: -8rem;
+  font-size: 90px;
+}
+.sectionQyA h3 {
+  margin-top: 1rem;
+  font-size: 45px;
+}
+.sectionQyA p {
+  font-size: 28px;
+}
+.sectionWork {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 40rem;
+  font-family: "Sen", sans-serif;
+  background-color: #b7b5c3;
+  scroll-margin-top: 10ex;
+}
+.sectionWork h2 {
+  color: #8af09b;
+  text-shadow: 0px 0px 5px #373640;
+  margin-top: -8rem;
+  font-size: 90px;
+}
+.sectionWork h3 {
+  margin-top: 1rem;
+  font-size: 50px;
+}
+.sectionWork p {
+  font-size: 24px;
+}
+.sectionHiring {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  height: 40rem;
+  font-family: "Sen", sans-serif;
+  background-color: #c4c2d1;
+  scroll-margin-top: 10ex;
+}
+.sectionHiring h2 {
+  color: #8af09b;
+  text-shadow: 0px 0px 5px #373640;
+  margin-top: -8rem;
+  font-size: 70px;
+}
+.sectionHiring h3 {
+  margin-top: 1rem;
+  font-size: 40px;
+}
+.sectionHiring p {
+  font-size: 25px;
+}
+
+.logoFooter {
+  width: 5rem;
+  height: 5rem;
+}

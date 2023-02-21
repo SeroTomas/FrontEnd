@@ -64,7 +64,6 @@ const CardPost = ({ post,userData }) => {
           />
         </div>
         <div className={styles.comentarios}>
-          
           <ComentContainer socialcomments={socialcomments}/>
         </div>
       </div>

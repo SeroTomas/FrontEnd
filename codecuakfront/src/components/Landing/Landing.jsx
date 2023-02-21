@@ -9,6 +9,7 @@ import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact
 import WorkspacesIcon from "@mui/icons-material/Workspaces";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import TerminalIcon from "@mui/icons-material/Terminal";
+import {List,ListItem } from "@mui/material";
 //componentes
 import LoginButton from "../blueprints/buttonsAuth/LoginButton";
 import logo from "../../Media/logo-03.png";
@@ -66,21 +67,13 @@ const Landing = () => {
         <a href="#code">
           <img src={logo} alt="logofooter" className={styles.logoFooter} />
         </a>
-        <Box className={styles.ul}>
-          <ul>
-            <li>
-              <a href="#social">socialCuak</a>
-            </li>
-            <li>
-              <a href="#Q&A">Q&A-Cuak</a>
-            </li>
-            <li>
-              <a href="#work">workCuak</a>
-            </li>
-            <li>
-              <a href="#hiring">hiringCuak</a>
-            </li>
-          </ul>
+        <Box>
+        <List component="ul" className={styles.navul}>
+        <ListItem ><a href="#social"className={styles.a} >{">_"}socialCuak</a></ListItem>
+        <ListItem><a href="#Q&A" className={styles.a} >{">_"}Q&A-Cuak</a></ListItem>
+        <ListItem ><a href="#work" className={styles.a} >{">_"}hiringCuak</a></ListItem>
+        <ListItem><a href="#hiring" className={styles.a}>{">_"}workCuak</a></ListItem>
+        </List>
         </Box>
         <Box className={styles.loginbtn}>
           {isAuthenticated ? <LogoutButton /> : <LoginButton />}

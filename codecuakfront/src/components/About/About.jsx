@@ -5,7 +5,7 @@ import BacktoHome from "../blueprints/buttonsAuth/BacktoHome/BacktoHome";
 
 const About = () => {
   return (
-    <Box bgcolor="#D5DBDB" padding="5rem" height="100%" minHeight="100vh" sx={{backgroundAttachment: 'fixed', backgroundSize: 'cover'}}>
+    <Box bgcolor="#D5DBDB" padding="2rem" height="100%" minHeight="100vh" sx={{backgroundAttachment: 'fixed', backgroundSize: 'cover'}}>
       <BacktoHome />
       <Box>
         <Typography

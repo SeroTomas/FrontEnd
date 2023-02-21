@@ -23,8 +23,6 @@ const Contacto = () => {
     );
     alert("mensaje enviado");
     e.target.reset();
-
-    navigateTo("/social");
   };
 
   return (
@@ -37,11 +35,12 @@ const Contacto = () => {
       <h1>Contacto</h1>
       <div className={styles.divForm}>
         <form ref={form} onSubmit={sendEmail} className={styles.form}>
-          <label>Name</label>
+          <label>Nombre</label>
           <input
             type="text"
             name="user_name"
             className={styles.input}
+            placeholder="Ingrese su nombre"
             required
           />
           <label>Email</label>
@@ -49,10 +48,11 @@ const Contacto = () => {
             type="email"
             name="user_email"
             className={styles.input}
+            placeholder="Ingrese su email"
             required
           />
-          <label>Message</label>
-          <textarea name="message" className={styles.message} required />
+          <label>Tu mensaje</label>
+          <textarea name="message" className={styles.message} placeholder="Ingrese su mensaje" required />
           <button type="submit" className={styles.btn}>
             Enviar
           </button>

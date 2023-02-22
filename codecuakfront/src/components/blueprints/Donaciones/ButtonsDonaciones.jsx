@@ -9,7 +9,7 @@ const ButtonsDonaciones = ({ donacion }) => {
         color="success"
         style={{ width: 150, height: 60, fontSize: 20, margin: 10 }}
       >
-        ${donacion.price}
+        ARS ${donacion.price}
       </Button>
     </Box>
   );

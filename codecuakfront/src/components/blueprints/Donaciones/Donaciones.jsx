@@ -25,9 +25,9 @@ const Donaciones = () => {
       flexDirection="column"
       bgcolor="#D5DBDB"
       minHeight="100vh"
-      padding="1rem"
+      padding="5rem"
     >
-      <Box >
+      <Box marginTop="0">
       <BacktoHome/>
       </Box>
       

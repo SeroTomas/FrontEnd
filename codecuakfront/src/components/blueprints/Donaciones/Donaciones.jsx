@@ -24,20 +24,21 @@ const Donaciones = () => {
       display="flex"
       flexDirection="column"
       bgcolor="#D5DBDB"
+      minWidth="100%"
+      height="100%"
       minHeight="100vh"
       padding="5rem"
     >
       <Box marginTop="0">
-      <BacktoHome/>
+        <BacktoHome />
       </Box>
-      
+
       <Box
         display="flex"
         justifyContent="center"
         alignContent="center"
         marginTop="1.5rem"
       >
-        
         <Typography
           variant="h1"
           fontFamily={"Sen"}
@@ -51,12 +52,11 @@ const Donaciones = () => {
       <Box className={styles.codetext}>
         <Typography variant="h5" fontFamily={"Sen"}>
           Somos un grupo de ocho programadores independientes, apasionados por
-          nuestro trabajo y comprometidos con ofrecer una plataforma de redes
-          sociales para programadores. Sabemos que hay muchas redes sociales
-          disponibles, pero ninguna de ellas se enfoca en la comunidad de
-          programadores y nos gustaría llenar ese vacío. Estamos trabajando
-          arduamente en nuestro proyecto y queremos solicitar su ayuda para
-          hacerlo realidad.
+          nuestro trabajo y comprometidos con ofrecer una plataforma para
+          programadores. Sabemos que hay muchas redes sociales disponibles, pero
+          ninguna de ellas se enfoca en la comunidad de programadores y nos
+          gustaría llenar ese vacío. Estamos trabajando arduamente en nuestro
+          proyecto y queremos solicitar su ayuda para hacerlo realidad.
         </Typography>
         <br />
         <Typography variant="h5" fontFamily={"Sen"}>

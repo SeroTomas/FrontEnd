@@ -47,7 +47,7 @@ const CardPost = ({ post, userData }) => {
         boxShadow="3"
         gap="15px"
       >
-        <Box display="flex" flexDirection="row" gap="15px" alignSelf="start" >
+        <Box display="flex" flexDirection="row" gap="15px" alignSelf="start" sx={{width:1300}}>
           <Avatar src={image} alt="Foto de perfil" />
           <Typography fontFamily="sen" variant="h6" color="black">{name}</Typography>
         </Box>

@@ -25,7 +25,7 @@ const PostSocialContainer = () => {
   },[dispatch])
 
   return (
-    <Box display="flex" flexDirection="column" gap="15px" alignItems="center">
+    <Box display="flex" flexDirection="column" gap="15px" alignItems="center" minHeight="41vh">
       {posts.length? 
       posts.map((post) => {
         return <CardPost post={post} key={post.id}/>;

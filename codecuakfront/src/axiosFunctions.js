@@ -11,3 +11,25 @@ export const sendComment = async (content, userId, postId) => {
   let data = await axios.post(`${URL.URL_SOCIAL}/${postId}/comment`, { content, userId });
   return data
 };
+
+export const editPost = async (content, id) => {
+  try {
+    const data = await axios.put(`${URL.URL_SOCIAL}/${id}`, {content});
+    return "Publicacion modificada con exito"
+  } catch (error) {
+    console.log(error.mesage)
+    return "Algo ha salido mal"
+  }
+} 
+
+export const deletePost = async (id) => {
+  try {
+    const data = await axios.delete(`${URL.URL_SOCIAL}/${id}`)
+    return "Se ha eliminado la publicacion"
+  } catch (error) {
+    console.log(error.message)
+    return "Algo ha salido mal"
+  }
+}
+
+

@@ -39,7 +39,7 @@ const CardPost = ({ post, userData }) => {
       <Box
         display="flex"
         flexDirection="column"
-        width="640px"
+        width="65%"
         alignItems="center"
         bgcolor="#f2f2f2"
         borderRadius="10px"

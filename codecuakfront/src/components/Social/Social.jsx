@@ -27,7 +27,13 @@ const Social = () => {
   console.log(isAuthenticated)
   return (
     <>
-    {isAuthenticated? <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center"><NavBar /><FormSocialPost user={user}/><PostSocialContainer /></Box>: loginWithRedirect()}
+    {isAuthenticated? <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center">
+                        <NavBar />
+                        <Box width="1100px" display="flex" flexDirection="column" alignItems="center">
+                          <FormSocialPost user={user}/>
+                          <PostSocialContainer/>
+                        </Box>
+                      </Box>: loginWithRedirect()}
     </>
   )
 }

@@ -30,8 +30,8 @@ const FormSocialPost = ({ user }) => {
   };
 
   return (
-    <Box className={style.codetext} fontFamily={"Sen"} margin="15px">
-      <Box  width="80%" display="flex" flexDirection="column" justifyContent="center" >
+    <Box className={style.codetext} fontFamily={"Sen"} margin="15px" width="65%">
+      <Box  width="90%" display="flex" flexDirection="column" justifyContent="center" >
         <Box display="flex" gap="1rem">
           <Box>
             <Avatar src={user.image} alt="foto del usuario" />

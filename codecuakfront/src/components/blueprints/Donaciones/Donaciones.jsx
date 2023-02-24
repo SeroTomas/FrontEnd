@@ -132,6 +132,7 @@ const Donaciones = () => {
           color="success"
           inputProps={{ inputMode: "numeric", pattern: "[1-9]*" }}
           onChange={handleValor}
+          autoComplete="off"
         />
         {input.unit_price < 1 ? (
           <Button

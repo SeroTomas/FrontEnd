@@ -12,12 +12,36 @@ export const sendPost = async (content, userId) => {
 // RUTA POST COMENTARIOS
 
 export const sendComment = async (content, userId, postId) => {
-  let response = await axios.post(`${URL.URL_BASE}/${postId}/comment`, { content, userId });
-  return response
+  let data = await axios.post(`${URL.URL_SOCIAL}/${postId}/comment`, { content, userId });
+  return data
 };
 // RUTA POST DEL USUARIO REGISTRADO
 
 export const userRegister = async (user)=>{
   let response = await axios.post(`${URL.URL_BASE}/signup`,{user})
-  return response
+  return response}
+
+// RUTA PARA EDITAR UN POST
+
+export const editPost = async (content, id) => {
+  try {
+    const data = await axios.put(`${URL.URL_SOCIAL}/${id}`, {content});
+    return "Publicacion modificada con exito"
+  } catch (error) {
+    console.log(error.mesage)
+    return "Algo ha salido mal"
+  }
+} 
+// RUTA PARA BORRAR UN POST
+
+export const deletePost = async (id) => {
+  try {
+    const data = await axios.delete(`${URL.URL_SOCIAL}/${id}`)
+    return "Se ha eliminado la publicacion"
+  } catch (error) {
+    console.log(error.message)
+    return "Algo ha salido mal"
+  }
 }
+
+

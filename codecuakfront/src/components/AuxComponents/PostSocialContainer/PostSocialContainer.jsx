@@ -10,7 +10,8 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 import {Box, Card, Skeleton} from "@mui/material";
 
 const PostSocialContainer = () => {
-
+  const token = localStorage.getItem("token");
+  console.log(token)
   const posts = useSelector((state) => state.posts);
   const userData = useSelector((state)=>state.userData)
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const PostSocialContainer = () => {
   // }, [dispatch,posts]);
   
   useEffect(()=>{
-    dispatch(getAllPost());
+    dispatch(getAllPost(token));
     return () => dispatch(cleanPost());
   },[dispatch])
 

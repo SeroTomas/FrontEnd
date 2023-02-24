@@ -14,9 +14,10 @@ const PostUserContainer = ({userId}) => {
   const userDetail = useSelector(state => state.userDetail)
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-
+  const token = localStorage.getItem("token");
+  console.log(token)
   useEffect(() => {
-    dispatch(getPostByUserId(userId));
+    dispatch(getPostByUserId(userId,token));
     return () => dispatch(cleanPost());
   }, [dispatch, userDetail]);
 

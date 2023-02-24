@@ -13,6 +13,8 @@ import UsersAll from "./components/UsersAll/UsersAll";
 import UserDetail from "./components/UserDetail/UserDetail";
 import Donaciones from "./components/blueprints/Donaciones/Donaciones";
 import Feedback from "./components/blueprints/Donaciones/Gracias";
+import LogIn from "./Auth/LogIn"
+import Register from "./Auth/Register"
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route exact path="/users/:id" element = {<UserDetail/>}/>
         <Route exact path="/donaciones" element={<Donaciones/>}/>
         <Route exact path="/gracias" element={<Feedback/>}/>
+        <Route exact path="/login" element={<LogIn/>}/>
+        <Route exact path="/register" element={<Register/>}/>
       </Routes>
     </div>
   );

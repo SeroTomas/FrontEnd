@@ -17,31 +17,19 @@ const Social = () => {
   const user = useSelector(state => state.userData)
   const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0();
+  const token = localStorage.getItem("token");
 
   // cuando se monta el componente fetcheamos el usuario de la persona que inicio sesion 
   // para luego utilizarlo en las cards de los posts y pagina de perfil
   useEffect(() => {
     // dispatch(fetchUser) hardcodeado hasta tener inicio de sesion
-    dispatch(getUserById("f3e9fb53-d49a-45ad-8276-8ad97ba76c59"));
+    dispatch(getUserById(token));
   }, [dispatch])
   return (
     <>
-      {
-        isAuthenticated ?
-          <Box
-            bgcolor="#D5DBDB"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-          >
-
-            <NavBar />
-            <FormSocialPost user={user} />
-            <PostSocialContainer />
-
-          </Box>
-          : loginWithRedirect()
-      }
+   <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center">
+    <NavBar /><FormSocialPost user={user}/>
+    <PostSocialContainer /></Box>
     </>
   )
 }

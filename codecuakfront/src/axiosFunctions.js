@@ -1,6 +1,7 @@
 import axios from "axios";
 const URL = {
   URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
+  URL_PAYMENT: "https://backend-production-c946.up.railway.app/payment"
 };
 export const sendPost = async (content, userId) => {
   let response = await axios.post(URL.URL_SOCIAL, { content, userId });
@@ -33,3 +34,10 @@ export const deletePost = async (id) => {
 }
 
 
+
+
+export const sendMP = async (donacion,input) =>{
+  let data = await axios.post(URL.URL_PAYMENT,{...donacion,...input})
+  console.log(data.data);
+  return window.location.href=data.data
+}

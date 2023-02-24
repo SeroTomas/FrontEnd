@@ -12,6 +12,7 @@ import Contacto from "./components/Contacto/Contacto";
 import UsersAll from "./components/UsersAll/UsersAll";
 import UserDetail from "./components/UserDetail/UserDetail";
 import Donaciones from "./components/blueprints/Donaciones/Donaciones";
+import Feedback from "./components/blueprints/Donaciones/Gracias";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/users" element={<UsersAll />} />
         <Route exact path="/users/:id" element = {<UserDetail/>}/>
         <Route exact path="/donaciones" element={<Donaciones/>}/>
+        <Route exact path="/gracias" element={<Feedback/>}/>
       </Routes>
     </div>
   );

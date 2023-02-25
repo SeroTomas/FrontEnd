@@ -1,15 +1,14 @@
 import React from 'react'
-import Style from "./BacktoHome.module.css"
 import { Link } from 'react-router-dom'
+import { Button } from '@mui/material'
 const BacktoHome = () => {
   return (
-    <div >
-        <Link to="/">
-      <button className={Style.button}>Volver al Home</button>
+    <div>
+        <Link to="/" style={{"textDecoration":"none"}}>
+        <Button color="success" variant="outlined" sx={{fontWeight:"bold"}}>Volver al Home</Button>
         </Link>
-      </div>
+    </div>
   )
 }
 
 export default BacktoHome
-

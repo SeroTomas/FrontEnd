@@ -53,16 +53,16 @@ export const getAllPost = () => {
 
 //GET POST BY USERID
 //Los filtramos en el FRONT hasta que los del back hagan el filtro
-export const getPostByUserId = (userId, token) => {
-  return async function (dispatch) {
+export const getPostByUserId = (userId, token) =>{
+  return async (dispatch) => {
     try {
-      const data = await axios.get(`${URL.URL_USERS}/${userId}`, { headers: { 'x-auth-token': token } })
-      dispatch({ type: GET_BYUSERID_POST, payload: data.data })
+      const data = await axios.get(`${URL.URL_USERS}/${userId}`, { headers: { "x-auth-token": token } });
+      dispatch({type:GET_BYUSERID_POST, payload: data.data.socialposts})
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
-  };
-};
+  }
+}
 // POST DEL POST XD
 // mandar post requiere contenido y el id de usuarion todo por body
 

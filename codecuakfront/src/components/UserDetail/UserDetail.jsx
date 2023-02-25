@@ -17,9 +17,9 @@ const UserDetail = () => {
     dispatch(getUserDetailById(id,token))
   }, [dispatch])
 
-  useEffect(() => {
-    dispatch(getUserDetailById(id,token))
-  }, [dispatch, userDetail])
+  // useEffect(() => {
+  //   dispatch(getUserDetailById(id,token))
+  // }, [dispatch, userDetail])
 
 
   return (

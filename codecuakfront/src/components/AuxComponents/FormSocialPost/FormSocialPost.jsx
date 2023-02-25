@@ -4,10 +4,13 @@ import style from "./formSocialPost.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendPost } from "../../../axiosFunctions";
-import { getAllPost } from "../../../redux/action";
+import { useAuth0 } from "@auth0/auth0-react";
 // componentes
-
-const FormSocialPost = ({user}) => {
+// IMPORT MATERIAL UI
+import Alert from '@mui/material/Alert';
+import { Avatar, Box, Typography, TextField, Button } from "@mui/material";
+const FormSocialPost = ({ user }) => {
+  const {isAuthenticated} = useAuth0()
   const dispatch = useDispatch();
   //usuario de prueba, los verdaderos vienen por props ya que el contenedor social hace el fetch de datos
   const [form, setForm] = useState("");
@@ -26,33 +29,53 @@ const FormSocialPost = ({user}) => {
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.wrapper}>
-        <div className={style.infoContainer}>
-          <div className={style.imgContainer}>
-            <img src={user.image} alt="foto del usuario" />
-          </div>
-          <p>{user.name}</p>
-        </div>
-        <div className={style.formContainer}>
-          <form onSubmit={handlerSubmit}>
-            <textarea
-              value={form}
+    <Box className={style.codetext} fontFamily={"Sen"} margin="15px">
+      <Box  width="80%" display="flex" flexDirection="column" justifyContent="center" >
+        <Box display="flex" gap="1rem">
+          <Box>
+            <Avatar src={user.image} alt="foto del usuario" />
+          </Box>
+          <Typography variant="h6" fontFamily={"Sen"} color="black">
+            {user.name}
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="center" color="white" flexGrow="1" >
+          <form onSubmit={handlerSubmit} style={{"display":"flex","flexDirection":"column","width":"100%"}}>
+            <TextField
+              fullWidth
+              id="outlined-multiline-static"
+              label="Que te gustaria postear?"
+              multiline
+              rows={4}
+              margin="normal"
+              required
               onChange={handlerChange}
-              placeholder={"Que es lo que quieres compartir?"}
+              color="success"
             />
-            <div>
+            <Box display="flex" flexDirection="column" alignItems="center">
               {text > 1400 ? (
-                <p className={style.limitText}>{`${text}/1500 `}</p>
+                <Typography color="red" fontWeight="bold">{`${text}/1500 `}</Typography>
               ) : null}
-              <button type="submit" disabled={text > 1500}>
+              <Button
+                style={{
+                  width: 150,
+                  height: 40,
+                  fontSize: 20,
+                }}
+                size="large"
+                color="success"
+                variant="contained"
+                sx={{ fontWeight: "bold", fontSize: "100" }}
+                type="submit"
+                disabled={text > 1500}
+              >
                 Publicar
-              </button>
-            </div>
+              </Button>
+            </Box>
           </form>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 export default FormSocialPost;

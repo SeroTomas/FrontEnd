@@ -49,7 +49,7 @@ export const getPostByUserId =  (userId, token) => {
   return function (dispatch) {
     axios({
       method: "get",
-      url: `http://localhost:3001/users/${userId}`,
+      url: `${URL_BASE}/users/${userId}`,
       headers: {
         "x-auth-token": `${token}`, // Asegúrate de reemplazar "token" con el valor correcto del token de autenticación que deseas enviar en el encabezado.
       },
@@ -64,7 +64,7 @@ export const getPostByUserId =  (userId, token) => {
 // dentro del response vamos a tener el post con los comentarios y la info de usuarios
 export const getAllPostById = ({ postId }) => {
   return function (dispatch) {
-    axios.get(`${URL.URL_SOCIAL}/${postId}`).then((response) => {
+    axios.get(`${URL_BASE}/${postId}`).then((response) => {
       dispatch({ type: GET_POSTBYID, payload: response.data });
     });
   };
@@ -75,14 +75,14 @@ export const getAllPostById = ({ postId }) => {
 // PUT DEL POST
 export const modifyPost = ({ postId, content }) => {
   return async function (dispatch) {
-    let data = await axios.put(`${URL.URL_SOCIAL}/${postId}`, { content });
+    let data = await axios.put(`${URL_BASE}/${postId}`, { content });
     return dispatch({ type: PUT_POST, data });
   };
 };
 // DELETE DEL POST
 export const deletePost = ({ postId }) => {
   return async function (dispatch) {
-    let data = await axios.put(`${URL.URL_SOCIAL}/${postId}`);
+    let data = await axios.put(`${URL_BASE}/${postId}`);
     return dispatch({ type: DELETE_POST, data });
   };
 };
@@ -98,7 +98,7 @@ export const cleanPost = () => {
 // POST DEL COMENTARIO
 export const sendComment = ({ content, userId, postId }) => {
   return async function (dispatch) {
-    let data = await axios.post(`${URL.URL_SOCIAL}/${postId}/comment`, {
+    let data = await axios.post(`${URL_BASE}/${postId}/comment`, {
       content,
       userId,
     });
@@ -108,7 +108,7 @@ export const sendComment = ({ content, userId, postId }) => {
 // PUT DE COMENTARIO
 export const modifyComment = ({ commentId, content }) => {
   return async function (dispatch) {
-    let data = await axios.put(`${URL.URL_SOCIAL}/${commentId}/comment`, {
+    let data = await axios.put(`${URL_BASE}/${commentId}/comment`, {
       content,
     });
     return dispatch({ type: ADD_COMMENT_URL, data });
@@ -117,7 +117,7 @@ export const modifyComment = ({ commentId, content }) => {
 // DELETE COMPLETO DEL COMENTARIO NO HAY VUELTA ATRAS
 export const destroyDeleteComment = ({ commentId }) => {
   return async function (dispatch) {
-    let data = await axios.delete(`${URL.URL_SOCIAL}/${commentId}/comment`);
+    let data = await axios.delete(`${URL_BASE}/${commentId}/comment`);
     return dispatch({ type: ADD_COMMENT_URL, data });
   };
 };

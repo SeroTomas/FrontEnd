@@ -2,21 +2,24 @@
 import styles from "./CardPost.module.css";
 //hooks
 import { useState } from "react";
-//componentes
+
+//auxiliares
 import AddComent from "../AddComent/AddComent";
-import ComentContainer from "../ComentContainer/ComentContainer";
 import { Avatar, Box, Button, Typography, } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
+//componentes
+import ComentContainer from "../ComentContainer/ComentContainer";
 import LongMenu from "../../LongMenu/LongMenu";
 
 
-const CardPost = ({ post, userData }) => {
+const CardPost = ({ post, userId }) => {
   // datos del posteo
   const { content, socialcomments, likes, userdevId, id } = post;
   //datos del usuario que hizo el posteo
   const { name, image } = post.userdev
-  console.log(userData)
+
   const [likeState, setStateLike] = useState(false);
   const [like, setLike] = useState(likes);
   const [viewComents, setViewComents] = useState(false);
@@ -53,7 +56,7 @@ const CardPost = ({ post, userData }) => {
             <Avatar src={image} alt="Foto de perfil" />
             <Typography fontFamily="sen" variant="h6" color="black">{name}</Typography>
           </Box>
-          {/* {userdevId === userData.id ? <LongMenu post={post}/> : null} */}
+          {/* {userdevId === userId ? <LongMenu post={post}/> : null} */}
           <LongMenu post={post}/>
         </Box>
         <Box width="90%" >
@@ -65,7 +68,7 @@ const CardPost = ({ post, userData }) => {
         </Box>
         {
           viewComents ?
-            <ComentContainer socialcomments={socialcomments} image={image} userdevId={userdevId} postId={id} /> : null
+            <ComentContainer socialcomments={socialcomments} image={image} userdevId={userdevId} postId={id} userId={userId}/> : null
         }
       </Box>
     </>

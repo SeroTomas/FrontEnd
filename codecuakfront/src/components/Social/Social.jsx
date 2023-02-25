@@ -11,25 +11,26 @@ import FormSocialPost from "../AuxComponents/FormSocialPost/FormSocialPost";
 import PostSocialContainer from "../AuxComponents/PostSocialContainer/PostSocialContainer";
 // import MATERIAL UI
 import { Box } from "@mui/material"
-import { useAuth0 } from "@auth0/auth0-react";
-const Social = () => {
-  const { isAuthenticated } = useAuth0()
-  const user = useSelector(state => state.userData)
-  const dispatch = useDispatch();
-  const { loginWithRedirect } = useAuth0();
-  const token = localStorage.getItem("token");
 
-  // cuando se monta el componente fetcheamos el usuario de la persona que inicio sesion 
-  // para luego utilizarlo en las cards de los posts y pagina de perfil
-  useEffect(() => {
-    // dispatch(fetchUser) hardcodeado hasta tener inicio de sesion
-    dispatch(getUserById(token));
-  }, [dispatch])
+const Social = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.userData);
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id")
+
+  console.log(user);
+
+  useEffect(()=>{
+    dispatch(getUserById(token, id))
+  },[dispatch])
+
   return (
     <>
-   <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center">
-    <NavBar /><FormSocialPost user={user}/>
-    <PostSocialContainer /></Box>
+      <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center">
+        <NavBar />
+        <FormSocialPost user={user} />
+        <PostSocialContainer />
+        </Box>
     </>
   )
 }

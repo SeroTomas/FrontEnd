@@ -4,7 +4,7 @@ import style from "./social.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 //importamos actions
-import { getUserById } from "../../redux/action";
+import { cleanPost, getUserById } from "../../redux/action";
 //importamos componentes
 import NavBar from '../NavBar/NavBar';
 import FormSocialPost from "../AuxComponents/FormSocialPost/FormSocialPost";
@@ -18,10 +18,9 @@ const Social = () => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id")
 
-  console.log(user);
-
   useEffect(()=>{
     dispatch(getUserById(token, id))
+    return () => {dispatch(cleanPost())}
   },[dispatch])
 
   return (

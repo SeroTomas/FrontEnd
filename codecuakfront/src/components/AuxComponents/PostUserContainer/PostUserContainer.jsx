@@ -11,7 +11,7 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 import { Box, Card, Skeleton } from "@mui/material";
 
 const PostUserContainer = ({ userId }) => {
-
+  
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = localStorage.getItem("token");
@@ -24,15 +24,14 @@ const PostUserContainer = ({ userId }) => {
   return (
     <Box className={styles.container}>
       {
-        posts.length ?
+        posts?.length ?
           <>
             {posts?.map((post) => {
-              return <CardPost post={post} userId={userId} />;
+              return <CardPost post={post} />;
             })}
           </> :
-
+          
           //---skeletons---
-
           <>
             {
               Array(5).fill().map((_, i) => {

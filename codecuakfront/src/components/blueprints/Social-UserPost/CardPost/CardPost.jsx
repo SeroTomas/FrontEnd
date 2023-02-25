@@ -14,7 +14,7 @@ import ComentContainer from "../ComentContainer/ComentContainer";
 import LongMenu from "../../LongMenu/LongMenu";
 
 
-const CardPost = ({ post, userId }) => {
+const CardPost = ({post}) => {
   // datos del posteo
   const { content, socialcomments, likes, userdevId, id } = post;
   //datos del usuario que hizo el posteo

@@ -4,7 +4,7 @@ import axios from "axios";
 // primero tipo de peticion despues algo descriptivo de ser nesesario y depues la cosa con la que se trabaja xd
 //💥 POSTEOS 💥
 export const GET_ALL_POST = "GET_ALL_POST";
-export const GET_BYID_POST = "GET_BYID_POST";
+//export const GET_BYID_POST = "GET_BYID_POST";
 export const GET_BYUSERID_POST = "GET_BYUSERID_POST";
 export const PUT_POST = "PUT_POST";
 export const DELETE_POST = "DELETE_POST";
@@ -53,24 +53,14 @@ export const getAllPost = () => {
 
 //GET POST BY USERID
 //Los filtramos en el FRONT hasta que los del back hagan el filtro
-export const getPostByUserId = async (userId, token) => {
+export const getPostByUserId = (userId, token) => {
   return async function (dispatch) {
     try {
       const data = await axios.get(`${URL.URL_USERS}/${userId}`, { headers: { 'x-auth-token': token } })
-      console.log(data)
-      dispatch({ type: GET_ALL_POST, payload: data.data.socialposts })
+      dispatch({ type: GET_BYUSERID_POST, payload: data.data })
     } catch (error) {
       console.log(error.message);
     }
-  };
-};
-// GET POST BY ID
-// dentro del response vamos a tener el post con los comentarios y la info de usuarios
-export const getAllPostById = ({ postId }) => {
-  return function (dispatch) {
-    axios.get(`${URL.URL_SOCIAL}/${postId}`).then((response) => {
-      dispatch({ type: GET_POSTBYID, payload: response.data });
-    });
   };
 };
 // POST DEL POST XD
@@ -188,17 +178,15 @@ export const getPage = (page) => {
 
 
 export const getUserDetailById = (userId, token) => {
-  return (dispatch) => {
-    axios.get(`${URL_BASE}/users/${userId}`, { headers: { 'x-auth-token': token } })
-      .then((response) => {
-        dispatch({ type: GET_BYID_USER_DETAIL, payload: response.data });
-      })
-      .catch((error) => {
-        console.log(error, 'error en getuserdatilbyid');
-      });
+  return async (dispatch) => {
+    try {
+      const data = await axios.get(`${URL_BASE}/users/${userId}`, { headers: { 'x-auth-token': token } })
+      dispatch({ type: GET_BYID_USER_DETAIL, payload: data.data });
+    } catch (error) {
+      console.log(error, 'error en getuserdatilbyid');
+    };
   };
-};
-
+}
 
 
 

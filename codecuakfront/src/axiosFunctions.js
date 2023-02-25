@@ -3,8 +3,8 @@ const URL_BASE = "https://backend-production-c946.up.railway.app"
 
 // RUTA PARA PUBLICAR POST
 // falta fixear las rutas
-export const sendPost = async (content, userId) => {
-  let response = await axios.post(`${URL_BASE}/socialcuak`, { content, userId });
+export const sendPost = async (content, userId, token) => {
+  let response = await axios.post(`${URL_BASE}/socialcuak`, { content, userId }, { headers: { 'x-auth-token': token } });
   return response
 }
 
@@ -12,7 +12,7 @@ export const sendPost = async (content, userId) => {
 // RUTA PUBLICAR COMENTARIOS
 
 export const sendComment = async (content, userId, postId) => {
-  let data = await axios.post(`${URL_BASE}/socialcuak/${postId}/comment`, { content, userId });
+  let data = await axios.post(`${URL_BASE}/socialcuak/${postId}/comment`, { content, userId }, );
   return data
 };
 

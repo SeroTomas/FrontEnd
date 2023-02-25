@@ -1,5 +1,7 @@
 //importo Hooks
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUserById } from "../../redux/action";
 //Importo componentes react
 import NavBar from "../NavBar/NavBar";
 import UserProfile from "../blueprints/UserProfile/UserProfile";

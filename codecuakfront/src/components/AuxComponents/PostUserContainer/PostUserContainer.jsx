@@ -16,13 +16,18 @@ const PostUserContainer = ({ userId }) => {
   const posts = useSelector((state) => state.posts);
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    dispatch(getPostByUserId(userId, token));
-    return () => dispatch(cleanPost());
-  }, [dispatch]);
+  console.log(posts);
+
+  useEffect(()=>{
+    dispatch(cleanPost())
+  },[dispatch])
+
+  // useEffect(() => {
+  //   dispatch(getPostByUserId(userId, token));
+  // }, [dispatch]);
 
   return (
-    <Box className={styles.container}>
+    <Box display="flex" flexDirection="column" alignItems="center" marginTop="15px" gap="10px">
       {
         posts?.length ?
           <>

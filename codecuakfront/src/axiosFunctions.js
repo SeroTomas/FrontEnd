@@ -47,10 +47,12 @@ export const sendMP = async (donacion,input) =>{
   // RUTA POST DEL USUARIO REGISTRADO
   
   export const userRegister = async (user)=>{
-    let response = await axios.post(`${URL_BASE}/signup`,{user})
-    return response}
+    console.log(user)
+    let response = await axios.post(`${URL_BASE}/auth/signup`,{user})
+    return response
+  }
 
 export const userLogin = async ({email,password})=>{
-  let response = await axios.post(`${URL_BASE}/login`,{email,password})
+  let response = await axios.post(`${URL_BASE}/auth/login`,{email,password})
   return response
 }

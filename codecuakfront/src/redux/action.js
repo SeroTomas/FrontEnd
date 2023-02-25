@@ -23,11 +23,13 @@ export const GET_BYID_USER_DETAIL = "GET_BYID_USER_DETAIL";
 const URL_BASE = "https://backend-production-c946.up.railway.app"
 const URL = {
   URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
-  URL_USERS: "http://backend-production-c946.up.railway.app/users"
+  URL_USERS: "http://backend-production-c946.up.railway.app/users",
+  URL_BASE: "https://backend-production-c946.up.railway.app"
 };
 
+// token cuenta codeCuak
 const config = {
-  headers:{
+  headers: {
     "x-auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMWM0MzRjODctMmI5MC00YWRkLWEyZjItZThhMDNjZDE1MjAxIn0sImlhdCI6MTY3NzI3NTAxNywiZXhwIjoxNjc3NDQ3ODE3fQ.aqhJ8pnoIK4i2I3DqXv4d0F2qojHlunw-WYSTboD8p4",
   }
 }
@@ -38,24 +40,28 @@ const config = {
 // solamente vamos a tener los post con la info usuario
 export const getAllPost = () => {
   return function (dispatch) {
-    try{
-      axios.get(`${URL_BASE}/socialcuak`).then((response) => {
-          dispatch({ type: GET_ALL_POST, payload: response.data });
-        });
-    }catch(error){}
+    try {
+      axios.get(URL.URL_SOCIAL).then((response) => {
+        dispatch({ type: GET_ALL_POST, payload: response.data });
+      });
+    } catch (error) {
+      console.log(error.message)
+    }
   };
 };
 
 
 //GET POST BY USERID
 //Los filtramos en el FRONT hasta que los del back hagan el filtro
-export const getPostByUserId = async(userId,token) => {
-  return function (dispatch) {
-    axios.get(URL.URL_SOCIAL,{
-      headers: {'x-auth-token': token}}).then((response) => {
-      const data = response.data.filter((post) => post.userdevId == userId);
-      dispatch({ type: GET_ALL_POST, payload: data });
-    });
+export const getPostByUserId = async (userId, token) => {
+  return async function (dispatch) {
+    try {
+      const data = await axios.get(`${URL.URL_USERS}/${userId}`, { headers: { 'x-auth-token': token } })
+      console.log(data)
+      dispatch({ type: GET_ALL_POST, payload: data.data.socialposts })
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
 // GET POST BY ID
@@ -130,37 +136,39 @@ export const destroyDeleteComment = ({ commentId }) => {
 
 // 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑  USERS  🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑
 // GET USERS BY ID NECESITA TOKEN
-export const getUserById = (token) => {
+export const getUserById = (token, userId) => {
   return async function (dispatch) {
-    try{
-      const data = await axios.get(`${URL_BASE}/users/${userId}`,{headers:{"x-auth-token": `${token}`}});
-      return dispatch({ type: GET_BYID_USER, payload: data.data});
-    }catch(juliputo){
-      console.log("Error en || getUserById ||");
+    try {
+      const data = await axios.get(`${URL_BASE}/users/${userId}`, { headers: { "x-auth-token": token } });
+      return dispatch({ type: GET_BYID_USER, payload: data.data });
+    } catch (error) {
+      console.log(error.message);
     }
   };
 };
+
 // PEDIR TODOS LOS USUARIOS  NO NECESITA TOKEN
 export const getAllUsers = () => {
   return async function (dispatch) {
-    try{
+    try {
       const data = await axios.get(`${URL_BASE}/users`)
       return dispatch({ type: GET_ALL_USER, payload: data.data })
-    }catch(error){
+    } catch (error) {
       console.log("Error en || getAllUsers ||")
     }
   }
 }
 
-export const getUsersByName = (name,token) => {
+export const getUsersByName = (name, token) => {
   return async function (dispatch) {
-    try{
-      const data = await axios.get(`${URL_BASE}/users/?name=${name}`,{headers:{"x-auth-token": `${token}`}})
+    try {
+      const data = await axios.get(`${URL_BASE}/users/?name=${name}`, { headers: { "x-auth-token": token } })
       return dispatch({ type: GET_USERS_NAME, payload: data.data })
     }
-    catch(error){
-      console.log("Error en || getUsersByName ||",error)
-  }}
+    catch (error) {
+      console.log("Error en || getUsersByName ||", error)
+    }
+  }
 }
 export const getUsersAlpha = (alpha) => {
   return async function (dispatch) {
@@ -181,8 +189,7 @@ export const getPage = (page) => {
 
 export const getUserDetailById = (userId, token) => {
   return (dispatch) => {
-    axios
-      .get(`${URL_BASE}/users/${userId}`, { headers: { 'x-auth-token': token } })
+    axios.get(`${URL_BASE}/users/${userId}`, { headers: { 'x-auth-token': token } })
       .then((response) => {
         dispatch({ type: GET_BYID_USER_DETAIL, payload: response.data });
       })

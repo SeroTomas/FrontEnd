@@ -14,7 +14,6 @@ const PostSocialContainer = () => {
   const posts = useSelector((state) => state.posts);
   const userData = useSelector((state)=>state.userData)
   const dispatch = useDispatch();
-  console.log(posts)
   // useEffect(() => {
   //   dispatch(getAllPost());
   // }, [dispatch,posts]);
@@ -25,7 +24,7 @@ const PostSocialContainer = () => {
   },[dispatch])
 
   return (
-    <Box display="flex" flexDirection="column" gap="15px" alignItems="center">
+    <Box display="flex" flexDirection="column" gap="15px" alignItems="center" width="90%">
       {posts.length? 
       posts.map((post) => {
         return <CardPost post={post} key={post.id}/>;

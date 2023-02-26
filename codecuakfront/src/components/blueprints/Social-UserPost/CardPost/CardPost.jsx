@@ -1,10 +1,10 @@
 //estilos
 import styles from "./CardPost.module.css";
 //hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //auxiliares
-import AddComent from "../AddComent/AddComent";
 import { Avatar, Box, Button, Typography, } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -14,9 +14,9 @@ import ComentContainer from "../ComentContainer/ComentContainer";
 import LongMenu from "../../LongMenu/LongMenu";
 
 
-const CardPost = ({post}) => {
+const CardPost = ({ post }) => {
   // datos del posteo
-  const { content, socialcomments, likes, userdevId, id } = post;
+  const { content, socialcomments, userdevId, likes, id } = post;
   //datos del usuario que hizo el posteo
   const { name, image } = post.userdev
 
@@ -57,7 +57,7 @@ const CardPost = ({post}) => {
             <Typography fontFamily="sen" variant="h6" color="black">{name}</Typography>
           </Box>
           {/* {userdevId === userId ? <LongMenu post={post}/> : null} */}
-          <LongMenu post={post}/>
+          <LongMenu post={post} />
         </Box>
         <Box width="90%" >
           <Typography fontFamily="Sen" variant="body1" color="black" fontSize="1.1em">{content}</Typography>
@@ -68,7 +68,7 @@ const CardPost = ({post}) => {
         </Box>
         {
           viewComents ?
-            <ComentContainer socialcomments={socialcomments} image={image} userdevId={userdevId} postId={id} userId={userId}/> : null
+            <ComentContainer socialcomments={socialcomments} postId={id}/> : null
         }
       </Box>
     </>

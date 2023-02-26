@@ -57,7 +57,8 @@ export const getPostByUserId = (userId, token) =>{
   return async (dispatch) => {
     try {
       const data = await axios.get(`${URL.URL_USERS}/${userId}`, { headers: { "x-auth-token": token } });
-      dispatch({type:GET_BYUSERID_POST, payload: data.data.socialposts})
+      console.log(data.data.socialposts,"POSTUSER");
+      dispatch({type:GET_BYUSERID_POST, payload: data.data})
     } catch (error) {
       console.log(error.message)
     }

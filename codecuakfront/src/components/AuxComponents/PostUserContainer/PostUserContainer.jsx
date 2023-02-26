@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 //actions
 import { getPostByUserId, cleanPost } from "../../../redux/action";
 //componentes
-import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
+// import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
+import CardUser from "./CardUser"
 // dependencias mui
 import { Box, Card, Skeleton } from "@mui/material";
 
@@ -15,24 +16,26 @@ const PostUserContainer = ({ userId }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = localStorage.getItem("token");
-
   console.log(posts);
+  console.log(userId);
+let postfilter = posts.filter((post)=> post.userdevId == userId)
+console.log(postfilter,"filter");
 
   useEffect(()=>{
     dispatch(cleanPost())
   },[dispatch])
 
-  // useEffect(() => {
-  //   dispatch(getPostByUserId(userId, token));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getPostByUserId(userId, token));
+  }, [dispatch]);
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" marginTop="15px" gap="10px">
       {
         posts?.length ?
           <>
-            {posts?.map((post) => {
-              return <CardPost post={post} />;
+            {postfilter?.map((post) => {
+              return <CardUser post={post} />;
             })}
           </> :
           

@@ -28,7 +28,7 @@ const PostSocialContainer = () => {
     <Box display="flex" flexDirection="column" gap="15px" alignItems="center" width="90%">
       {posts.length ?
         posts.map((post) => {
-          return <CardPost post={post} key={post.id} />;
+          return <CardPost post={post} />;
         }) :
         <>
           {

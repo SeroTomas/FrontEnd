@@ -83,7 +83,7 @@ export const google = async () => {
     let response = await axios.get(
       "http://localhost:3001/auth/google"
     );
-    return response;
+    return response;asdasd
   } catch (error) {
     console.log(error);
   }

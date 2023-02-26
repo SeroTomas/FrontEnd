@@ -47,7 +47,6 @@ export const deletePost = async (id) => {
 // RUTA POST DEL MERCADO PAGO
 export const sendMP = async (donacion, input) => {
   let data = await axios.post(`${URL_BASE}/payment`, { ...donacion, ...input });
-  console.log(data.data);
   return (window.location.href = data.data);
 };
 // RUTA POST DEL USUARIO REGISTRADO
@@ -76,5 +75,16 @@ export const userLogin = async (email, password) => {
     return response.data;
   } catch (error) {
     console.log(error.message);
+  }
+};
+
+export const google = async () => {
+  try {
+    let response = await axios.get(
+      "http://localhost:3001/auth/google"
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
   }
 };

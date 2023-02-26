@@ -2,9 +2,10 @@ import { useState } from 'react'
 import GoogleIcon from '@mui/icons-material/Google';
 import { FormControl, Box, TextField, Button, Typography } from '@mui/material'
 import { Link, useNavigate } from "react-router-dom"
-import { userLogin } from "../axiosFunctions"
+import { userLogin,google } from "../axiosFunctions"
 import { useDispatch } from 'react-redux'
 import { getUserById } from '../redux/action'
+import GoogleLogin from 'react-google-login';
 const LogIn = () => {
 
   const dispatch = useDispatch();
@@ -33,6 +34,12 @@ const LogIn = () => {
       [property]: value,
     });
   }
+  const responseGoogle1 = () => {
+   useNavigate("/social")
+  }
+  const responseGoogle = () => {
+    useNavigate("/")
+   }
   return (
     <Box padding="5rem">
       <Link to="/" style={{textDecoration:"none"}}>
@@ -64,11 +71,20 @@ const LogIn = () => {
           placeholder="Contraseña"
           onChange={handleChange}
         ></TextField>
-        <Link to="https://backend-production-c946.up.railway.app/auth/google" style={{textDecoration:"none"}}>
-        <Button color="success" variant="outlined" sx={{fontWeight:"bold",width:"18rem"}}>
+       
+        <Button color="success" variant="outlined" sx={{fontWeight:"bold",width:"18rem"}} onClick={google}>
           <GoogleIcon  />Iniciar Sesion con Google
         </Button>
-         </Link>
+        <Box>
+      {/* <GoogleLogin
+        clientId="852448364980-1envdn41fgvqq3r9bjt5s10rodam885a.apps.googleusercontent.com"
+        buttonText="Iniciar sesión con Google"
+        onSuccess={responseGoogle1}
+        onFailure={responseGoogle1}
+        cookiePolicy={'single_host_origin'}
+      /> */}
+    </Box>
+         
         <Link to="/register" style={{textDecoration:"none"}}>
           <Button color="success" variant="outlined" sx={{fontWeight:"bold",width:"18rem"}}>Registrarse</Button>
         </Link>

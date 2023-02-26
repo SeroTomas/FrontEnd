@@ -52,7 +52,11 @@ export const sendMP = async (donacion,input) =>{
     return response
   }
 
-export const userLogin = async ({email,password})=>{
-  let response = await axios.post(`${URL_BASE}/auth/login`,{email,password})
-  return response
+export const userLogin = async (email, password)=>{
+  try {
+    let response = await axios.post(`${URL_BASE}/auth/login`,{email,password})
+    return response.data
+  } catch (error) {
+    console.log(error.message)
+  }
 }

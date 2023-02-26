@@ -34,7 +34,8 @@ const LogIn = () => {
       [property]: value,
     });
   }
-
+//borrara este coment
+a
   return (
     <Box padding="5rem">
       <Link to="/" style={{textDecoration:"none"}}>

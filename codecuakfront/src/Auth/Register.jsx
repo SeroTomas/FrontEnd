@@ -36,9 +36,9 @@ const Register = () => {
 
   return (
     backError ? <Typography>{backError}</Typography> :
-      <Box >
-        <Link to="/">
-          <Button>Volver al home</Button>
+      <Box  padding="5rem">
+        <Link to="/" style={{textDecoration:"none"}}>
+          <Button color="success" variant="outlined" sx={{fontWeight:"bold"}}>Volver al home</Button>
         </Link>
         <Typography variant='h2' align='center' fontFamily="Sen" color="#1E8449" marginBottom="20px">Register</Typography>
         <FormControl
@@ -46,6 +46,7 @@ const Register = () => {
           style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}
         >
           <TextField
+          size="small"
             required
             sx={{ color: "black" }}
             label="Nombre y Apellido"
@@ -96,11 +97,12 @@ const Register = () => {
             error={errors.password}
             helperText={errors.password}
           ></TextField>
-          <Link to="/login">
-            <Typography>Log In</Typography>
+          <Link to="/login" style={{textDecoration:"none"}}>
+            <Button  color="success" variant="outlined" sx={{fontWeight:"bold",width:"14rem"}}>Log In</Button>
           </Link>
           <Box marginTop="20px">
             <Button
+            sx={{fontWeight:"bold",width:"14rem"}}
               variant="contained"
               color="success"
               type="submit"

@@ -43,7 +43,7 @@ const PostSocialContainer = () => {
   
   // Hace Dispatch al llegar al final de la pagina y cumplir las condiciones
   function handleScroll(){
-    if ( posts.next && getPost && ((window.innerHeight + window.scrollY + 5) >= document.documentElement.scrollHeight)) {
+    if ( posts.next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
       setGetPost(false);
       dispatch(getAllPost(page+1))
       setPage(page+1)

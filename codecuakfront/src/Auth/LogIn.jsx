@@ -34,12 +34,7 @@ const LogIn = () => {
       [property]: value,
     });
   }
-  const responseGoogle1 = () => {
-   useNavigate("/social")
-  }
-  const responseGoogle = () => {
-    useNavigate("/")
-   }
+
   return (
     <Box padding="5rem">
       <Link to="/" style={{textDecoration:"none"}}>

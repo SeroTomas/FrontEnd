@@ -23,6 +23,7 @@ const Social = () => {
     return () => {dispatch(cleanPost())}
   },[dispatch])
 
+
   return (
     <>
       <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center">

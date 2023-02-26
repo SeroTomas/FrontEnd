@@ -38,10 +38,10 @@ const config = {
 // POSTEOS  🛑
 // GET ALL POST
 // solamente vamos a tener los post con la info usuario
-export const getAllPost = () => {
+export const getAllPost = (page) => {
   return function (dispatch) {
     try {
-      axios.get(URL.URL_SOCIAL).then((response) => {
+      axios.get(`${URL.URL_SOCIAL}?page=${page}`).then((response) => {
         dispatch({ type: GET_ALL_POST, payload: response.data });
       });
     } catch (error) {
@@ -56,6 +56,7 @@ export const getAllPost = () => {
 export const getPostByUserId = (userId, token) =>{
   return async (dispatch) => {
     try {
+      console.log("token: ", token)
       const data = await axios.get(`${URL.URL_USERS}/${userId}`, { headers: { "x-auth-token": token } });
       dispatch({type:GET_BYUSERID_POST, payload: data.data.socialposts})
     } catch (error) {

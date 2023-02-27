@@ -35,8 +35,8 @@ const NavBar = () => {
   ];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const user = useSelector((state) => state.userData);
-  console.log(user);
+  const user = useSelector(state => state.userData)
+  
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -219,12 +219,12 @@ const NavBar = () => {
                   </MenuItem>
                 </Link>
               ))}
-              <MenuItem
-                onClick={() => {
-                  localStorage.setItem("token", "");
-                  window.location.href = "/";
-                }}
-              >
+              {user.status == "superadmin" ? 
+              <Link to="/admin" style={{ "textDecoration": "none", "color": "black" }}>
+              <MenuItem key={user.id}>DashBoard</MenuItem> 
+              </Link> : null}
+             
+              <MenuItem onClick={() => logout({ logoutParams: { returnTo: "http://localhost:5173/" } })}>
                 <Typography textAlign="center">Cerrar Sesión</Typography>
               </MenuItem>
             </Menu>

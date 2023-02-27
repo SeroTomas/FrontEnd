@@ -32,6 +32,7 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const user = useSelector(state => state.userData)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -57,15 +58,21 @@ const NavBar = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(getUsersByName(search, token));
-    navigate("/users");
+    if(token){
+      dispatch(getUsersByName(search, token));
+      navigate("/users");
+    }
+    else alert("¡Por favor inicie sesión para buscar en codeCuak!");
   };
 
   const handlerChange = (event) => {
     event.preventDefault();
     const value = event.target.value;
-    dispatch(getUsersByName(value));
-    setSearch(value);
+    if (token){
+      dispatch(getUsersByName(value));
+      setSearch(value);
+    }
+    else alert("¡Por favor inicie sesión para buscar en codeCuak!");
   };
 
   const handlerNotifications = () => {

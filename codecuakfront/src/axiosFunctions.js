@@ -21,13 +21,10 @@ export const sendPost = async (content, userId, token) => {
 //   return data
 // };
 
-export const sendComment = async (content, userId, postId, token, dispatch) => {
-  const id = localStorage.getItem("id")
-  let data = await axios.post(`${URL_BASE}/socialcuak/${postId}/comment`, { content, userId }, { headers: { 'x-auth-token': token } });
-  if (userId === id) { dispatch(getUserById(token, id))}
-  else {dispatch(getUserDetailById(token, userId))}
+export const sendComment = async (content, userId, postId, token) => {
+  let data = await axios.post(`${URL_BASE}/socialcuak/${postId}/comment`, { content, userId }, { headers: { 'x-auth-token': token } } );
   return data
-}
+};
 // RUTA PARA EDITAR UN POST
 
 export const editPost = async (content, id) => {

@@ -199,12 +199,6 @@ export const getUserDetailById = (userId, token) => {
     };
   };
 }
-<<<<<<< HEAD
-
-
-
-
-=======
 export const allUserAdmin = () => {
   return async (dispatch) => {
     try {
@@ -215,4 +209,3 @@ export const allUserAdmin = () => {
     }
   }
 }
->>>>>>> f63625f6b6d9785af75e92d6c725a93773feb7f6

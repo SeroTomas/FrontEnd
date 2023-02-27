@@ -17,7 +17,8 @@ const Social = () => {
   const user = useSelector(state => state.userData);
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id")
-
+  
+  console.log(id);
   useEffect(()=>{
     dispatch(getUserById(token, id))
   },[dispatch])

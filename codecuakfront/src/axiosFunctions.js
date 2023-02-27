@@ -9,7 +9,8 @@ export const sendPost = async (content, userId, token) => {
     `${URL_BASE}/socialcuak`,
     { content, userId },
     { headers: { "x-auth-token": token } }
-  );
+    );
+    console.log(response);
   return response;
 };
 
@@ -83,3 +84,6 @@ export const userLogin = async (email, password) => {
     console.log(error.message);
   }
 };
+
+
+// RUTA INCIAR SESION CON GOOGLE

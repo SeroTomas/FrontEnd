@@ -14,11 +14,11 @@ import ComentContainer from "../ComentContainer/ComentContainer";
 import LongMenu from "../../LongMenu/LongMenu";
 
 
-const CardPost = ({ post }) => {
+const CardPost = ({ post, user }) => {
   // datos del posteo
-  const { content, socialcomments, userdevId, likes, id } = post;
-  //datos del usuario que hizo el posteo
-  const { name, image } = post.userdev
+  const { content, socialcomments, likes, id } = post;
+  //datos del usuario que hizo el posteo sirve para los posteos del social
+  const { name, image } = post.userdev ? post.userdev : user
 
   const [likeState, setStateLike] = useState(false);
   const [like, setLike] = useState(likes);
@@ -68,7 +68,7 @@ const CardPost = ({ post }) => {
         </Box>
         {
           viewComents ?
-            <ComentContainer socialcomments={socialcomments} postId={id}/> : null
+            <ComentContainer socialcomments={socialcomments} postId={id} /> : null
         }
       </Box>
     </>

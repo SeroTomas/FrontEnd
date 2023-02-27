@@ -5,6 +5,7 @@ import axios from "axios";
 //💥 POSTEOS 💥
 export const GET_ALL_POST = "GET_ALL_POST";
 export const GET_POST_BY_ID = "GET_POST_BY_ID";
+export const GET_POSTS_BY_USER_ID = "GET_POSTS_BY_USER_ID";
 export const PUT_POST = "PUT_POST";
 export const DELETE_POST = "DELETE_POST";
 export const CLEAN_POST = "CLEAN_POST";
@@ -19,6 +20,7 @@ export const GET_BYID_USER = "GET_BYID_USER";
 export const GET_USERS_NAME = "GET_USERS_NAME";
 export const GET_USERS_ALPHA = "GET_USERS_ALPHA";
 export const GET_BYID_USER_DETAIL = "GET_BYID_USER_DETAIL";
+export const GET_ALL_USER_ADMIN = "GET_ALL_USER_ADMIN";
 const URL_BASE = "https://backend-production-c946.up.railway.app"
 const URL = {
   URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
@@ -51,11 +53,23 @@ export const getAllPost = (page) => {
 
 
 //GET POST BY USERID
+export const getPostsByUserId = (userId, page) => {
+  return async (dispatch) => {
+    try {
+      const data = await axios.get(`${URL.URL_SOCIAL}/user/${userId}?=page${page}`)
+      dispatch({ type: GET_POSTS_BY_USER_ID, payload: data.data })
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+}
+
 //Los filtramos en el FRONT hasta que los del back hagan el filtro
 export const getPostById = (postId, token) => {
   return async (dispatch) => {
     try {
       const data = await axios.get(`${URL.URL_SOCIAL}/${postId}`, { headers: { "x-auth-token": token } });
+      console.log(token);
       dispatch({ type: GET_POST_BY_ID, payload: data.data })
     } catch (error) {
       console.log(error.message)
@@ -175,7 +189,6 @@ export const getPage = (page) => {
 
 }
 
-
 export const getUserDetailById = (userId, token) => {
   return async (dispatch) => {
     try {
@@ -186,7 +199,20 @@ export const getUserDetailById = (userId, token) => {
     };
   };
 }
+<<<<<<< HEAD
 
 
 
 
+=======
+export const allUserAdmin = () => {
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(`${URL_BASE}/users/admins`);
+      dispatch({ type: GET_ALL_USER_ADMIN, payload: response.data.results });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+>>>>>>> f63625f6b6d9785af75e92d6c725a93773feb7f6

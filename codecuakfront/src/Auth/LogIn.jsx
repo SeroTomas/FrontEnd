@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { userLogin } from "../axiosFunctions"
 import { useDispatch } from 'react-redux'
 import { getUserById } from '../redux/action'
+
 const LogIn = () => {
 
   const dispatch = useDispatch();
@@ -65,10 +66,10 @@ const LogIn = () => {
           onChange={handleChange}
         ></TextField>
         <Link to="https://backend-production-c946.up.railway.app/auth/google" style={{textDecoration:"none"}}>
-        <Button color="success" variant="outlined" sx={{fontWeight:"bold",width:"18rem"}}>
+        <Button color="success" variant="outlined" sx={{fontWeight:"bold",width:"18rem"}} >
           <GoogleIcon  />Iniciar Sesion con Google
         </Button>
-         </Link>
+        </Link>
         <Link to="/register" style={{textDecoration:"none"}}>
           <Button color="success" variant="outlined" sx={{fontWeight:"bold",width:"18rem"}}>Registrarse</Button>
         </Link>

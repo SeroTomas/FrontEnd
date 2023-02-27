@@ -13,9 +13,12 @@ import {
   GET_USERS_NAME,
   GET_USERS_ALPHA,
   GET_BYID_USER_DETAIL,
+  GET_ALL_USER_ADMIN,
+  GET_POSTS_BY_USER_ID,
 } from "./action";
 
 const initialState = {
+  alluser : [],
   userData: {},
   userDetail: {},
   users: [],
@@ -34,6 +37,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
+    case GET_POSTS_BY_USER_ID:
+      return{
+        ...state, 
+        posts:action.payload,
+      }
     case GET_ALL_USER:
       return {
         ...state,
@@ -45,7 +53,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userData: action.payload,
       };
-
     case GET_BYID_USER_DETAIL:
       return {
         ...state,
@@ -65,6 +72,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [],
+      };
+      case GET_ALL_USER_ADMIN:
+      return {
+        ...state,
+        alluser: action.payload,
       };
     default:
       return {

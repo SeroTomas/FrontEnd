@@ -75,3 +75,18 @@ export const userLogin = async (email, password) => {
     console.log(error.message);
   }
 };
+
+// RUTA INCIAR SESION CON GOOGLE
+
+export const googleLogin = async () => {
+  console.log("login google")
+  try {
+    let response = await axios.get("http://localhost:3001/auth/google", {maxRedirects: 6});
+    console.log(response)
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// RUTA INCIAR SESION CON GOOGLE

@@ -10,9 +10,8 @@ const LogoutButton = () => {
         color="success"
         variant="contained"
         sx={{ fontWeight: "bold" }}
-        onClick={() =>
-          logout({ logoutParams: { returnTo: "http://localhost:5173/" } })
-        }
+        onClick={() => 
+          localStorage.setItem("")}
       >
         Log Out
       </Button>

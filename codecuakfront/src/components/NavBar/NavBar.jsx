@@ -2,7 +2,7 @@
 import style from "./NavBar.module.css";
 //hooks
 import { useAuth0 } from "@auth0/auth0-react";
-import * as React from 'react';
+import * as React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getUsersByName } from "../../redux/action";
@@ -26,15 +26,17 @@ import {
   Menu,
   IconButton,
 } from "@mui/material";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
 const NavBar = () => {
-  const { logout } = useAuth0();
-  const settings = [{ name: "Perfil", link: "/user" }, { name: "Cuenta", link: "" }];
+  const settings = [
+    { name: "Perfil", link: "/user" },
+    { name: "Cuenta", link: "" },
+  ];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const user = useSelector(state => state.userData)
-
+  const user = useSelector((state) => state.userData);
+  console.log(user);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -50,7 +52,6 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
-
   const [search, setSearch] = useState("");
   const [data, setData] = useState(false);
   const [notiExpanded, setNotiExpanded] = useState(false);
@@ -59,7 +60,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
-
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -96,7 +96,7 @@ const NavBar = () => {
         sx={{ backgroundColor: "#1E8449" }}
       >
         <Box display="flex" justifyContent="space-around" alignItems="center">
-          <Box >
+          <Box>
             <Link to={"/"}>
               <img height="70px" src={logo} alt="loguito" />
             </Link>
@@ -118,14 +118,14 @@ const NavBar = () => {
             >
               {usersByName.results
                 ? usersByName.results.map((user) => {
-                  return (
-                    <SearchExpandedUser
-                      key={user.id}
-                      image={user.image}
-                      name={user.name}
-                    />
-                  );
-                })
+                    return (
+                      <SearchExpandedUser
+                        key={user.id}
+                        image={user.image}
+                        name={user.name}
+                      />
+                    );
+                  })
                 : null}
               {data ? (
                 <p style={{ color: "white", "font-size": "15px" }}>
@@ -210,13 +210,21 @@ const NavBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <Link to={setting.link} style={{ "textDecoration": "none", "color": "black" }}>
+                <Link
+                  to={setting.link}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting.name}</Typography>
                   </MenuItem>
                 </Link>
               ))}
-              <MenuItem onClick={() => logout({ logoutParams: { returnTo: "http://localhost:5173/" } })}>
+              <MenuItem
+                onClick={() => {
+                  localStorage.setItem("token", "");
+                  window.location.href = "/";
+                }}
+              >
                 <Typography textAlign="center">Cerrar Sesión</Typography>
               </MenuItem>
             </Menu>

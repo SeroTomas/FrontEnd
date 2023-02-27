@@ -1,7 +1,6 @@
 import {
   GET_ALL_POST,
-  GET_BYID_POST,
-  GET_BYUSERID_POST,
+  GET_POST_BY_ID,
   PUT_POST,
   DELETE_POST,
   CLEAN_POST,
@@ -14,9 +13,11 @@ import {
   GET_USERS_NAME,
   GET_USERS_ALPHA,
   GET_BYID_USER_DETAIL,
+  GET_ALL_USER_ADMIN
 } from "./action";
 
 const initialState = {
+  alluser : [],
   userData: {},
   userDetail: {},
   users: [],
@@ -30,7 +31,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
-    case GET_BYUSERID_POST:
+    case GET_POST_BY_ID:
       return {
         ...state,
         posts: action.payload,
@@ -66,6 +67,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [],
+      };
+      case GET_ALL_USER_ADMIN:
+      return {
+        ...state,
+        alluser: action.payload,
       };
     default:
       return {

@@ -4,6 +4,7 @@ import style from "./formSocialPost.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendPost } from "../../../axiosFunctions";
+import { getAllPost } from "../../../redux/action"
 // componentes
 // IMPORT MATERIAL UI
 import { Avatar, Box, Typography, TextField, Button } from "@mui/material";
@@ -25,6 +26,7 @@ const FormSocialPost = ({ user }) => {
   const handlerSubmit = async (event) => {
     event.preventDefault();
     await sendPost(form, user.id, token);
+    dispatch(getAllPost(1)); // getAllPost de la pagina 1 de posteos para que se renderice el nuevo post
     setForm("");
   };
 

@@ -66,7 +66,6 @@ export const getPostById = (postId, token) => {
 }
 // POST DEL POST XD
 // mandar post requiere contenido y el id de usuarion todo por body
-
 // PUT DEL POST
 export const modifyPost = ({ postId, content }) => {
   return async function (dispatch) {

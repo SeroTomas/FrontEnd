@@ -1,46 +1,59 @@
 // importamos estilos
 import style from "./social.module.css";
+import queryString from "query-string";
 //importamos hooks
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 //importamos actions
 import { cleanPost, getUserById } from "../../redux/action";
 //importamos componentes
-import NavBar from '../NavBar/NavBar';
+import NavBar from "../NavBar/NavBar";
 import FormSocialPost from "../AuxComponents/FormSocialPost/FormSocialPost";
 import PostSocialContainer from "../AuxComponents/PostSocialContainer/PostSocialContainer";
 // import MATERIAL UI
-import { Box } from "@mui/material"
+import { Box } from "@mui/material";
 
 const Social = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.userData);
+  const user = useSelector((state) => state.userData);
+  //LOGIN DE GOOGLE NO FUNCIIONA SI LO PONGO EN OTRA PARTE
+  const urlParams = new URLSearchParams(window.location.search);
+  const userg = JSON.parse(decodeURIComponent(urlParams.get("user")));
+  if (userg) {
+    localStorage.setItem("token", userg.token);
+    localStorage.setItem("id", userg.id);
+  }
+//////
   const token = localStorage.getItem("token");
-  const id = localStorage.getItem("id")
-  
+  const id = localStorage.getItem("id");
+  console.log(token, "google");
   console.log(id);
-  useEffect(()=>{
-    dispatch(getUserById(token, id))
-  },[dispatch])
+  useEffect(() => {
+    dispatch(getUserById(token, id));
+  }, [dispatch]);
 
-  useEffect(()=>{
-    return()=>{dispatch(cleanPost())}
-  },[dispatch])
+  useEffect(() => {
+    return () => {
+      dispatch(cleanPost());
+    };
+  }, [dispatch]);
 
-  useEffect(()=>{
+  useEffect(() => {});
 
-  })
- 
   return (
     <>
-   
-      <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center">
+      <Box
+        bgcolor="#D5DBDB"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
         <NavBar />
         <FormSocialPost user={user} />
         <PostSocialContainer />
-        </Box>
+      </Box>
     </>
-  )
-}
+  );
+};
 
-export default Social
+export default Social;

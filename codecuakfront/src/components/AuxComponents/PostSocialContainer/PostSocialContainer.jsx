@@ -55,7 +55,7 @@ const PostSocialContainer = () => {
 
   return (
     <Box display="flex" flexDirection="column" gap="15px" alignItems="center" width="90%">
-      {arrayPosts.length?
+      {arrayPosts?.length?
         arrayPosts.map((post) => {
           return <CardPost post={post} key={post.id} />;
         }) :

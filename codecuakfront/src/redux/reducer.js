@@ -15,6 +15,7 @@ import {
   GET_BYID_USER_DETAIL,
   GET_ALL_USER_ADMIN,
   GET_POSTS_BY_USER_ID,
+  CLEAN_USER_DETAIL,
 } from "./action";
 
 const initialState = {
@@ -25,6 +26,7 @@ const initialState = {
   posts: {
     name: "",
     image: "",
+    count: null,
     next: "",
     arrayPosts: []
   },
@@ -41,6 +43,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
           posts: {
             name: payload.results.name,
             image: payload.results.image,
+            count: state.count + payload.results.count,
             next: payload.next,
             arrayPosts: newPosts
           }
@@ -51,6 +54,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         posts: {
           name: payload.results.name,
           image: payload.results.image,
+          count: payload.results.count,
           next: payload.next,
           arrayPosts: payload.results.socialposts ? payload.results.socialposts : payload.results,
         }
@@ -94,8 +98,19 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case CLEAN_POST:
       return {
         ...state,
-        posts: { next: "", arrayPosts: [] },
+        posts: {
+          name: "",
+          image: "",
+          count: null,
+          next: "",
+          arrayPosts: []
+        }
       };
+    case CLEAN_USER_DETAIL:
+      return {
+        ...state,
+        userDetail: {}
+      }
     case GET_ALL_USER_ADMIN:
       return {
         ...state,

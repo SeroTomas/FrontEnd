@@ -61,7 +61,7 @@ const PostUserContainer = () => {
   return (
     <Box display="flex" flexDirection="column" alignItems="center" marginTop="15px" gap="10px">
       {
-        arrayPosts.length ?
+        count!==null?
           <>
             {arrayPosts?.map((post) => {
               return <CardPost post={post} user={{name, image}} />;

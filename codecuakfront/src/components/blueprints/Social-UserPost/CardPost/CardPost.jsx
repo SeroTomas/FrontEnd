@@ -18,7 +18,7 @@ const CardPost = ({ post, user }) => {
   // datos del posteo
   const { content, socialcomments, likes, id } = post;
   //datos del usuario que hizo el posteo sirve para los posteos del social
-  const { name, image } = post.userdev ? post.userdev : user
+  const { name, image } = (post.userdev || user)? (post.userdev || user) : {name: null, image:null}
 
   const [likeState, setStateLike] = useState(false);
   const [like, setLike] = useState(likes);
@@ -44,7 +44,7 @@ const CardPost = ({ post, user }) => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        width="48%"
+        width="620px"
         bgcolor="#f2f2f2"
         borderRadius="10px"
         padding="1em"

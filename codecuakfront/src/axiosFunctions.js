@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUserDetailById, getUserById } from "./redux/action";
 const URL_BASE = "https://backend-production-c946.up.railway.app";
 
 // RUTA PARA PUBLICAR POST
@@ -15,6 +16,11 @@ export const sendPost = async (content, userId, token) => {
 
 // RUTA PUBLICAR COMENTARIOS
 
+// export const sendComment = async (content, userId, postId, token) => {
+//   let data = await axios.post(`${URL_BASE}/socialcuak/${postId}/comment`, { content, userId }, { headers: { 'x-auth-token': token } } );
+//   return data
+// };
+
 export const sendComment = async (content, userId, postId, token) => {
   let data = await axios.post(
     `${URL_BASE}/socialcuak/${postId}/comment`,
@@ -23,7 +29,6 @@ export const sendComment = async (content, userId, postId, token) => {
   );
   return data;
 };
-
 // RUTA PARA EDITAR UN POST
 
 export const editPost = async (content, id) => {

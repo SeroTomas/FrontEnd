@@ -10,7 +10,7 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 import { Box, Card, Skeleton } from "@mui/material";
 
 const PostSocialContainer = () => {
-  const {next, arrayPosts} = useSelector((state) => state.posts);
+  const {count, next, arrayPosts} = useSelector((state) => state.posts);
   const [getPost, setGetPost] = useState(true);
   const [page, setPage] = useState(0)
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ const PostSocialContainer = () => {
 
   return (
     <Box display="flex" flexDirection="column" gap="15px" alignItems="center" width="90%">
-      {arrayPosts.length?
+      {count!==null?
         arrayPosts.map((post) => {
           return <CardPost post={post} key={post.id} />;
         }) :

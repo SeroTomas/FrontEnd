@@ -1,7 +1,7 @@
 //hooks
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getUserDetailById } from "../../redux/action";
+import { getUserDetailById, cleanUserDetail } from "../../redux/action";
 import { useParams } from "react-router-dom"
 import NavBar from "../NavBar/NavBar";
 import UserProfile from "../blueprints/UserProfile/UserProfile";
@@ -14,6 +14,8 @@ const UserDetail = () => {
 
   useEffect(() => {
     dispatch(getUserDetailById(id,token))
+    return()=> dispatch(cleanUserDetail())
+
   }, [dispatch])
 
   return (

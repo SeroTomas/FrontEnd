@@ -11,8 +11,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { userLogin } from "../axiosFunctions";
 import { useDispatch } from "react-redux";
-import { getUserById } from "../redux/action";
-
+import Google from "./google"
 const LogIn = () => {
   const dispatch = useDispatch();
 
@@ -40,6 +39,7 @@ const LogIn = () => {
       }, 3000);
     }
   };
+
 
   const handleChange = (e) => {
     const property = e.target.name;
@@ -119,8 +119,8 @@ const LogIn = () => {
           placeholder="Contraseña"
           onChange={handleChange}
         ></TextField>
-        <Link
-          to="https://backend-production-c946.up.railway.app/auth/google"
+        {/* <Link
+          to="http://localhost:3001/auth/google"
           style={{ textDecoration: "none" }}
         >
           <Button
@@ -131,7 +131,8 @@ const LogIn = () => {
             <GoogleIcon />
             Iniciar Sesion con Google
           </Button>
-        </Link>
+        </Link> */}
+        <Google></Google>
         <Link to="/register" style={{ textDecoration: "none" }}>
           <Button
             color="success"

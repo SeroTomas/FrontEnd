@@ -25,29 +25,16 @@ const Social = () => {
   }
 //////
   const token = localStorage.getItem("token");
-  const id = localStorage.getItem("id");
-  console.log(token, "google");
-  console.log(id);
-  useEffect(() => {
-    dispatch(getUserById(token, id));
-  }, [dispatch]);
+  const id = localStorage.getItem("id")
 
-  useEffect(() => {
-    return () => {
-      dispatch(cleanPost());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {});
-
+  useEffect(()=>{
+    dispatch(getUserById(token, id))
+    return()=>{dispatch(cleanPost())}
+  },[])
+ 
   return (
     <>
-      <Box
-        bgcolor="#D5DBDB"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-      >
+      <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center">
         <NavBar />
         <FormSocialPost user={user} />
         <PostSocialContainer />

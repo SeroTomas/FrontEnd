@@ -56,8 +56,8 @@ export const getAllPost = (page) => {
 export const getPostsByUserId = (userId, page) => {
   return async (dispatch) => {
     try {
-      const data = await axios.get(`${URL.URL_SOCIAL}/user/${userId}?=page${page}`)
-      dispatch({ type: GET_POSTS_BY_USER_ID, payload: data.data })
+      const data = await axios.get(`${URL.URL_SOCIAL}/user/${userId}?page=${page}`)
+      dispatch({ type: GET_ALL_POST, payload: data.data })
     } catch (error) {
       console.log(error.message)
     }
@@ -194,7 +194,7 @@ export const getUserDetailById = (userId, token) => {
       const data = await axios.get(`${URL_BASE}/users/${userId}`, { headers: { 'x-auth-token': token } })
       dispatch({ type: GET_BYID_USER_DETAIL, payload: data.data });
     } catch (error) {
-      console.log(error, 'error en getuserdatilbyid');
+      console.log(error.message, 'error en getuserdatilbyid');
     };
   };
 }

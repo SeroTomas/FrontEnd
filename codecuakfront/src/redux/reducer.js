@@ -18,73 +18,88 @@ import {
 } from "./action";
 
 const initialState = {
-  alluser : [],
+  alluser: [],
   userData: {},
   userDetail: {},
   users: [],
-  posts: {next:"", arrayPosts:[]},
+  posts: {
+    name: "",
+    image: "",
+    next: "",
+    arrayPosts: []
+  },
 };
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
+const rootReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case GET_ALL_POST:
-      if(action.payload.previus){
+      if (payload.previus) {
         const { arrayPosts } = state.posts;
-        const newPosts= arrayPosts.concat(action.payload.results)
-        return{
+        const newPosts = arrayPosts.concat(payload.results.socialposts ? payload.results.socialposts : payload.results)
+        return {
           ...state,
-          posts: {next: action.payload.next, arrayPosts: newPosts}
+          posts: {
+            name: payload.results.name,
+            image: payload.results.image,
+            next: payload.next,
+            arrayPosts: newPosts
+          }
         }
       }
-      return{
+      return {
         ...state,
-        posts: {next: action.payload.next, arrayPosts: action.payload.results}
+        posts: {
+          name: payload.results.name,
+          image: payload.results.image,
+          next: payload.next,
+          arrayPosts: payload.results.socialposts ? payload.results.socialposts : payload.results,
+        }
       }
     case GET_POST_BY_ID:
       return {
         ...state,
-        posts: action.payload,
+        posts: payload,
       };
     case GET_POSTS_BY_USER_ID:
-      return{
-        ...state, 
-        posts:action.payload,
+      return {
+        ...state,
+        posts: payload,
       }
     case GET_ALL_USER:
       return {
         ...state,
-        users: action.payload,
+        users: payload,
 
       };
     case GET_BYID_USER:
       return {
         ...state,
-        userData: action.payload,
+        userData: payload,
       };
     case GET_BYID_USER_DETAIL:
       return {
         ...state,
-        userDetail: action.payload,
+        userDetail: payload,
       };
     case GET_USERS_NAME:
       return {
         ...state,
-        users: action.payload
+        users: payload
       }
     case GET_USERS_ALPHA:
       return {
         ...state,
-        users: action.payload
+        users: payload
       }
     case CLEAN_POST:
       return {
         ...state,
-        posts: {next:"", arrayPosts:[]},
+        posts: { next: "", arrayPosts: [] },
       };
-      case GET_ALL_USER_ADMIN:
+    case GET_ALL_USER_ADMIN:
       return {
         ...state,
-        alluser: action.payload,
+        alluser: payload,
       };
     default:
       return {

@@ -10,32 +10,31 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 // dependencias mui
 import { Box, Card, Skeleton } from "@mui/material";
 import { getPostsByUserId } from "../../../redux/action";
+import { useParams } from "react-router-dom";
 
-const PostUserContainer = ({user}) => {
-
-  const posts = useSelector((state) => state.posts);
-  const [arrayPosts, setArrayPosts] = useState([]);
+const PostUserContainer = () => {
+  const { id } = useParams()
+  const detailId = id;
+  const userId = localStorage.getItem("id")
+  const {name, image, next, arrayPosts} = useSelector(state=>state.posts)
+  const dispatch = useDispatch();
   const [getPost, setGetPost] = useState(true);
   const [page, setPage] = useState(0)
-  const dispatch = useDispatch();
+
+  const idUtil = detailId ? detailId : userId;
 
   //--------Realiza petición de posts al cargar el componente---  --
   useEffect(() => {
-    dispatch(getPostsByUserId( user.id, page + 1));
+    dispatch(getPostsByUserId(idUtil, page + 1));
     setPage(page + 1);
     return () => dispatch(cleanPost());
   }, [dispatch])
 
+  //Seteo el estado local getPost en true al actualizar el estado global "posts", para que se pueda realizar nuevas peticiones
 
-  // ---------Concatena los array de posteos al actulizar el estado global "posts"------
   useEffect(() => {
-    if (page === 1) setArrayPosts(posts.results.socialposts)
-    else if (page > 1) {
-      //const newArray = arrayPosts.concat(posts.results.socialposts);
-      setArrayPosts([...arrayPosts, posts.results.socialposts]);
-      setGetPost(true) //Seteo el estado local getPost en true, para que se pueda realizar nuevas peticiones
-    }
-  }, [posts])
+    setGetPost(true)
+  }, [arrayPosts])
 
   //-------- Coloca handlerScroll al montar componente y lo retira al desmontar------- 
   useEffect(() => {
@@ -45,12 +44,11 @@ const PostUserContainer = ({user}) => {
 
   // Hace Dispatch al llegar al final de la pagina y cumplir las condiciones
   function handleScroll() {
-    if (posts.next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
+    if (next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
       setGetPost(false);
-      dispatch(getPostsByUserId(user.id, page + 1))
+      dispatch(getPostsByUserId(idUtil, page + 1))
       setPage(page + 1)
     }
-    setGetPost(false)
   };
 
 
@@ -60,7 +58,7 @@ const PostUserContainer = ({user}) => {
         arrayPosts.length ?
           <>
             {arrayPosts?.map((post) => {
-              return <CardPost post={post} user={user} />;
+              return <CardPost post={post} user={{name, image}} />;
             })}
           </> :
 

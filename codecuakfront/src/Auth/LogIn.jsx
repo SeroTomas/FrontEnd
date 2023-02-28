@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import {
   FormControl,
@@ -49,10 +49,17 @@ const LogIn = () => {
       [property]: value,
     });
   };
+
+  useEffect(() => {
+    localStorage.setItem("token", "")
+    localStorage.setItem("id", "")
+  }, [])
+
+
   return (
     <Box padding="5rem">
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <Button color="success" variant="outlined" sx={{ fontWeight: "bold" }}>
+      <Link to="/" style={{  textDecoration:  "none"  }}>
+        <Button color="success" variant="outlined" sx={{  fontWeight:  "bold"  }}>
           Volver al home
         </Button>
       </Link>
@@ -103,7 +110,7 @@ const LogIn = () => {
         ></TextField>
         <TextField
           required
-          sx={{ color: "black", width: "18rem" }}
+          sx={{ color: "black",  width:  "18rem" }}
           size="small"
           label={"Contraseña"}
           value={user.password}
@@ -136,7 +143,7 @@ const LogIn = () => {
         </Link>
         <Box marginTop="20px">
           <Button
-            sx={{ width: "18rem" }}
+              sx={{  width:  "18rem"  }}
             variant="contained"
             color="success"
             type="submit"

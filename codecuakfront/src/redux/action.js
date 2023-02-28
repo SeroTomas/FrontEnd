@@ -21,6 +21,7 @@ export const GET_USERS_NAME = "GET_USERS_NAME";
 export const GET_USERS_ALPHA = "GET_USERS_ALPHA";
 export const GET_BYID_USER_DETAIL = "GET_BYID_USER_DETAIL";
 export const GET_ALL_USER_ADMIN = "GET_ALL_USER_ADMIN";
+export const CLEAN_USER_DETAIL = "CLEAN_USER_DETAIL";
 const URL_BASE = "https://backend-production-c946.up.railway.app"
 const URL = {
   URL_SOCIAL: "https://backend-production-c946.up.railway.app/socialcuak",
@@ -198,6 +199,13 @@ export const getUserDetailById = (userId, token) => {
     };
   };
 }
+
+export const cleanUserDetail = ()=>{
+  return function(dispatch){
+    dispatch({type: CLEAN_USER_DETAIL})
+  }
+}
+
 export const allUserAdmin = () => {
   return async (dispatch) => {
     try {

@@ -16,7 +16,7 @@ const PostUserContainer = () => {
   const { id } = useParams()
   const detailId = id;
   const userId = localStorage.getItem("id")
-  const {name, image, next, arrayPosts} = useSelector(state=>state.posts)
+  const {name, image, count, next, arrayPosts} = useSelector(state=>state.posts)
   const dispatch = useDispatch();
   const [getPost, setGetPost] = useState(true);
   const [page, setPage] = useState(0)
@@ -55,7 +55,7 @@ const PostUserContainer = () => {
   return (
     <Box display="flex" flexDirection="column" alignItems="center" marginTop="15px" gap="10px">
       {
-        arrayPosts.length ?
+        count!==null?
           <>
             {arrayPosts?.map((post) => {
               return <CardPost post={post} user={{name, image}} />;

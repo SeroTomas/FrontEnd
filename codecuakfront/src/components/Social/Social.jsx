@@ -16,6 +16,7 @@ import { Box } from "@mui/material";
 const Social = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userData);
+  
   //LOGIN DE GOOGLE NO FUNCIIONA SI LO PONGO EN OTRA PARTE
   const urlParams = new URLSearchParams(window.location.search);
   const userg = JSON.parse(decodeURIComponent(urlParams.get("user")));

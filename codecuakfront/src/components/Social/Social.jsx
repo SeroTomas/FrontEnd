@@ -14,6 +14,7 @@ import PostSocialContainer from "../AuxComponents/PostSocialContainer/PostSocial
 import { Box } from "@mui/material";
 
 const Social = () => {
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userData);
 
@@ -24,15 +25,15 @@ const Social = () => {
     localStorage.setItem("token", userg.token);
     localStorage.setItem("id", userg.id);
   }
-//////
+  ///----------------------------------------------///
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id")
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getUserById(token, id))
-    return()=>{dispatch(cleanPost())}
-  },[])
- 
+    return () => { dispatch(cleanPost()) }
+  }, [])
+
   return (
     <>
       <Box bgcolor="#D5DBDB" display="flex" flexDirection="column" alignItems="center">

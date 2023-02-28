@@ -44,7 +44,7 @@ const CardPost = ({ post, user }) => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        width="620px"
+        width={1}
         bgcolor="#f2f2f2"
         borderRadius="10px"
         padding="1em"

@@ -10,43 +10,45 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 import { Box, Card, Skeleton } from "@mui/material";
 
 const PostSocialContainer = () => {
-  const {count, next, arrayPosts} = useSelector((state) => state.posts);
+  const { count, next, arrayPosts } = useSelector((state) => state.posts);
   const [getPost, setGetPost] = useState(true);
   const [page, setPage] = useState(0)
   const dispatch = useDispatch();
 
   //--------Realiza petición de posts al cargar el componente-----
   useEffect(() => {
-    dispatch(getAllPost(page+1));
-    setPage(page+1);
+    dispatch(getAllPost(page + 1));
+    setPage(page + 1);
     return () => dispatch(cleanPost());
   }, [dispatch])
 
   //Seteo el estado local getPost en true al actualizar el estado global "posts", para que se pueda realizar nuevas peticiones
-  useEffect(()=>{
+  useEffect(() => {
     setGetPost(true)
-  },[arrayPosts])
- 
+  }, [arrayPosts])
+
   //-------- Coloca handlerScroll al montar componente y lo retira al desmontar------- 
-  useEffect(()=>{
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   })
-  
+
   // Hace Dispatch al llegar al final de la pagina y cumplir las condiciones
-  function handleScroll(){
-    if ( next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
+  function handleScroll() {
+    if (next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
       setGetPost(false);
-      dispatch(getAllPost(page+1))
-      setPage(page+1)
+      dispatch(getAllPost(page + 1))
+      setPage(page + 1)
     }
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap="15px" alignItems="center" width="90%">
-      {count!==null?
+    <Box display="flex" flexDirection="column" gap="15px" alignItems="center" width="45%">
+      {count !== null ?
         arrayPosts.map((post) => {
-          return <CardPost post={post} key={post.id} />;
+          return (
+            <CardPost post={post} key={post.id} />
+          )
         }) :
         <>
           {

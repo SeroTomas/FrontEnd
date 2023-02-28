@@ -10,11 +10,9 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 import { Box, Card, Skeleton } from "@mui/material";
 
 const PostSocialContainer = () => {
-  const token = localStorage.getItem("token");
   const {next, arrayPosts} = useSelector((state) => state.posts);
   const [getPost, setGetPost] = useState(true);
   const [page, setPage] = useState(0)
-  const userData = useSelector((state) => state.userData)
   const dispatch = useDispatch();
 
   //--------Realiza petición de posts al cargar el componente-----
@@ -28,16 +26,7 @@ const PostSocialContainer = () => {
   useEffect(()=>{
     setGetPost(true)
   },[arrayPosts])
-  // ---------Concatena los array de posteos al actulizar el estado global "posts"------
-  // useEffect(()=>{
-  //   if(page==1) setArrayPosts(posts.results)
-  //   else if(page>1){
-  //     const newArray = arrayPosts.concat(posts.results);
-  //     setArrayPosts(newArray);
-  //     setGetPost(true) //Seteo el estado local getPost en true, para que se pueda realizar nuevas peticiones
-  //   }
-  // }, [posts])
-
+ 
   //-------- Coloca handlerScroll al montar componente y lo retira al desmontar------- 
   useEffect(()=>{
     window.addEventListener('scroll', handleScroll);

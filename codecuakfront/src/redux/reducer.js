@@ -22,16 +22,24 @@ const initialState = {
   userData: {},
   userDetail: {},
   users: [],
-  posts: [],
+  posts: {next:"", arrayPosts:[]},
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_POST:
-      return {
+      if(action.payload.previus){
+        const { arrayPosts } = state.posts;
+        const newPosts= arrayPosts.concat(action.payload.results)
+        return{
+          ...state,
+          posts: {next: action.payload.next, arrayPosts: newPosts}
+        }
+      }
+      return{
         ...state,
-        posts: action.payload,
-      };
+        posts: {next: action.payload.next, arrayPosts: action.payload.results}
+      }
     case GET_POST_BY_ID:
       return {
         ...state,
@@ -71,7 +79,7 @@ const rootReducer = (state = initialState, action) => {
     case CLEAN_POST:
       return {
         ...state,
-        posts: [],
+        posts: {next:"", arrayPosts:[]},
       };
       case GET_ALL_USER_ADMIN:
       return {

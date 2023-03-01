@@ -33,7 +33,7 @@ const PostUserContainer = () => {
     dispatch(getPostsByUserId(idUtil, page + 1));
     setPage(page + 1);
     return () => dispatch(cleanPost());
-  }, [dispatch])
+  }, [dispatch, id])
 
   //Seteo el estado local getPost en true al actualizar el estado global "posts", para que se pueda realizar nuevas peticiones
 

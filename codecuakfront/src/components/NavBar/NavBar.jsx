@@ -3,7 +3,7 @@ import React from "react";
 import style from "./NavBar.module.css";
 //hooks
 import { useState, useEffect } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUsersByName } from "../../redux/action";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -32,7 +32,8 @@ const NavBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const user = useSelector(state => state.userData)
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -57,15 +58,21 @@ const NavBar = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(getUsersByName(search, token));
-    navigate("/users");
+    if (token) {
+      dispatch(getUsersByName(search, token));
+      navigate("/users");
+    }
+    else alert("¡Por favor inicie sesión para buscar en codeCuak!");
   };
 
   const handlerChange = (event) => {
     event.preventDefault();
     const value = event.target.value;
-    dispatch(getUsersByName(value));
-    setSearch(value);
+    if (token) {
+      dispatch(getUsersByName(value));
+      setSearch(value);
+    }
+    else alert("¡Por favor inicie sesión para buscar en codeCuak!");
   };
 
   const handlerNotifications = () => {
@@ -82,6 +89,7 @@ const NavBar = () => {
     { name: "Q&A-Cuak", link: "/qanda" },
     { name: "HiringCuak", link: "/hiring" },
   ];
+
   return (
     <Box width="100%">
       <AppBar
@@ -112,14 +120,14 @@ const NavBar = () => {
             >
               {usersByName.results
                 ? usersByName.results.map((user) => {
-                    return (
-                      <SearchExpandedUser
-                        key={user.id}
-                        image={user.image}
-                        name={user.name}
-                      />
-                    );
-                  })
+                  return (
+                    <SearchExpandedUser
+                      key={user.id}
+                      image={user.image}
+                      name={user.name}
+                    />
+                  );
+                })
                 : null}
               {data ? (
                 <p style={{ color: "white", "font-size": "15px" }}>
@@ -213,17 +221,26 @@ const NavBar = () => {
                   </MenuItem>
                 </Link>
               ))}
-              {user.status == "superadmin" ? 
-              <Link to="/admin" style={{ "textDecoration": "none", "color": "black" }}>
-              <MenuItem key={user.id}>DashBoard</MenuItem> 
-              </Link> : null}
-             
+              {user.status == "superadmin" ?
+                <Link to="/admin" style={{ "textDecoration": "none", "color": "black" }}>
+                  <MenuItem key={user.id}>DashBoard</MenuItem>
+                </Link> : null}
+
+              {token ? 
+              
               <MenuItem onClick={() => {
-                  localStorage.setItem("token", "");
-                  window.location.href = "/";
-                }}>
+                localStorage.setItem("token", "");
+                window.location.href = "/";
+              }}>
                 <Typography textAlign="center">Cerrar Sesión</Typography>
+              </MenuItem> :
+              
+              <MenuItem onClick={() => {
+                window.location.href = "/login";
+              }}>
+                <Typography textAlign="center">Iniciar Sesión</Typography>
               </MenuItem>
+              }
             </Menu>
           </Box>
         </Box>

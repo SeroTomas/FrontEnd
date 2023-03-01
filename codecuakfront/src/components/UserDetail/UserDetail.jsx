@@ -16,8 +16,7 @@ const UserDetail = () => {
   useEffect(() => {
     dispatch(getUserDetailById(id,token))
     return()=> dispatch(cleanUserDetail())
-
-  }, [dispatch])
+  }, [dispatch, id])
 
   return (
     <div>

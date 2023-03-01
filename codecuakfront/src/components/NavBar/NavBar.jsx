@@ -126,8 +126,10 @@ const NavBar = () => {
                     return (
                       <SearchExpandedUser
                         key={user.id}
+                        id={user.id}
                         image={user.image}
                         name={user.name}
+                        onClick={()=>{setSearch("")}}
                       />
                     );
                   })

@@ -1,7 +1,7 @@
 //estilos css
 import styles from "./Landing.module.css";
 // hooks
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // dependencias MUI
 import { Box, Typography, Button, Icon } from "@mui/material";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
@@ -13,6 +13,7 @@ import {List,ListItem } from "@mui/material";
 import LoginButton from "../blueprints/buttonsAuth/LoginButton";
 import logo from "../../Media/logo-03.png";
 import Footer from "../blueprints/Footer/Footer";
+import { useEffect, useState } from "react";
 
 const Landing = () => {
   const data = [
@@ -59,6 +60,14 @@ const Landing = () => {
       icon: 4,
     },
   ];
+
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    token ? navigate("/social") : null
+  }, [])
+
   return (
     <Box className={styles.containter}>
       <Box className={styles.nav}>
@@ -75,7 +84,6 @@ const Landing = () => {
         </List>
         </Box>
         <Box className={styles.loginbtn}>
-
           <LoginButton />
         </Box>
       </Box>

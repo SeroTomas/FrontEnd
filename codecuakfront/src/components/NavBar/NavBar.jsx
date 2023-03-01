@@ -10,6 +10,9 @@ import { useSelector, useDispatch } from "react-redux";
 //componentes
 import logo from "../../Media/logo-03.png";
 import SearchExpandedUser from "../AuxComponents/SeachExpandedUser/SearchExpandedUser";
+import NoTokenFooter from "./NotTokenComponents/NoTokenFooter";
+import NotTokenMenu from "./NotTokenComponents/NotTokenMenu";
+import NotTokenSearch from "./NotTokenComponents/NotTokenSearch";
 // import MATERIAL UI
 import {
   AppBar,
@@ -28,9 +31,10 @@ const NavBar = () => {
     { name: "Perfil", link: "/user" },
     { name: "Cuenta", link: "" },
   ];
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const user = useSelector(state => state.userData)
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const user = useSelector((state) => state.userData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -61,8 +65,7 @@ const NavBar = () => {
     if (token) {
       dispatch(getUsersByName(search, token));
       navigate("/users");
-    }
-    else alert("¡Por favor inicie sesión para buscar en codeCuak!");
+    } else alert("¡Por favor inicie sesión para buscar en codeCuak!");
   };
 
   const handlerChange = (event) => {
@@ -71,8 +74,7 @@ const NavBar = () => {
     if (token) {
       dispatch(getUsersByName(value));
       setSearch(value);
-    }
-    else alert("¡Por favor inicie sesión para buscar en codeCuak!");
+    } else alert("¡Por favor inicie sesión para buscar en codeCuak!");
   };
 
   const handlerNotifications = () => {
@@ -120,14 +122,14 @@ const NavBar = () => {
             >
               {usersByName.results
                 ? usersByName.results.map((user) => {
-                  return (
-                    <SearchExpandedUser
-                      key={user.id}
-                      image={user.image}
-                      name={user.name}
-                    />
-                  );
-                })
+                    return (
+                      <SearchExpandedUser
+                        key={user.id}
+                        image={user.image}
+                        name={user.name}
+                      />
+                    );
+                  })
                 : null}
               {data ? (
                 <p style={{ color: "white", "font-size": "15px" }}>
@@ -190,61 +192,78 @@ const NavBar = () => {
             </Box>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Ajustes">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={user.image} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <Link
-                  to={setting.link}
-                  style={{ textDecoration: "none", color: "black" }}
+            {token ? (
+              <>
+                <Tooltip title="Ajustes">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={user.image} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
                 >
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting.name}</Typography>
-                  </MenuItem>
-                </Link>
-              ))}
-              {user.status == "superadmin" ?
-                <Link to="/admin" style={{ "textDecoration": "none", "color": "black" }}>
-                  <MenuItem key={user.id}>DashBoard</MenuItem>
-                </Link> : null}
+                  {settings.map((setting) => (
+                    <Link
+                      to={setting.link}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">
+                          {setting.name}
+                        </Typography>
+                      </MenuItem>
+                    </Link>
+                  ))}
 
-              {token ? 
-              
-              <MenuItem onClick={() => {
-                localStorage.setItem("token", "");
-                window.location.href = "/";
-              }}>
-                <Typography textAlign="center">Cerrar Sesión</Typography>
-              </MenuItem> :
-              
-              <MenuItem onClick={() => {
-                window.location.href = "/login";
-              }}>
-                <Typography textAlign="center">Iniciar Sesión</Typography>
-              </MenuItem>
-              }
-            </Menu>
+                  {user.status == "superadmin" ? (
+                    <Link
+                      to="/admin"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem key={user.id}>DashBoard</MenuItem>
+                    </Link>
+                  ) : null}
+
+                  {token ? (
+                    <MenuItem
+                      onClick={() => {
+                        localStorage.setItem("token", "");
+                        window.location.href = "/";
+                      }}
+                    >
+                      <Typography textAlign="center">Cerrar Sesión</Typography>
+                    </MenuItem>
+                  ) : (
+                    <MenuItem
+                      onClick={() => {
+                        window.location.href = "/login";
+                      }}
+                    >
+                      <Typography textAlign="center">Iniciar Sesión</Typography>
+                    </MenuItem>
+                  )}
+                </Menu>{" "}
+              </>
+            ) : (
+              <NotTokenMenu />
+            )}
           </Box>
         </Box>
       </AppBar>
+      {!token ? <NoTokenFooter /> : null}
     </Box>
   );
 };

@@ -1,32 +1,28 @@
-//estilos
-import styles from "./comentContainer.module.css";
+
 //hooks
-import { useState } from "react";
 import { useSelector } from "react-redux";
 //componentes
 import CardComent from "../CardComent/CardComent.jsx";
+import AddComent from "../AddComent/AddComent";
+import { Box } from "@mui/system";
 
-const ComentContainer=({socialcomments})=>{
-    const userData = useSelector((state)=>state.userData)
-    const [viewComents, setViewComents] = useState(false);
+const ComentContainer = ({ socialcomments, postId }) => {
 
-    const selectClass=()=>{
-        return(
-            socialcomments.length ? styles.buttonOn : styles.buttonOff
-        )
-    }
 
-    return(
 
-        <div className={styles.container}>
+    return (
 
-            <button className={selectClass()} onClick={()=>setViewComents(!viewComents)}>Comentarios</button>
-            
-            {viewComents ? socialcomments?.map((comment)=><CardComent comment = {comment} userData={userData}/>) :
-            <></>
-            }
+        <Box width="90%">
+            <Box display="flex" flexDirection="column" justifyContent="center" gap="15px">
+                <AddComent
+                    postId={postId} 
+                    />
+                {
+                    socialcomments?.map((comment) => <CardComent comment={comment}/>)
+                }
+            </Box>
 
-        </div>
+        </Box>
     )
 }
 

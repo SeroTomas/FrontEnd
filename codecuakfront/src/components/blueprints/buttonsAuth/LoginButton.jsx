@@ -1,16 +1,13 @@
 import React from "react";
-import { useState } from "react";
 import { Button,Box} from "@mui/material";
+import {Link} from "react-router-dom"
 const LoginButton = () => {
-  const [text,setText]=useState("Log In")
-  const handleClick=()=>{
-   text== "Log In" ? setText("Proximamente") : setText("Log In")
-  }
-
   return (
     <>
     <Box width="10rem">
-      <Button  color="success" variant="contained" sx={{fontWeight:"bold"}} onClick={handleClick}>{text}</Button>
+      <Link to="/login">
+      <Button  color="success" variant="contained" sx={{fontWeight:"bold"}}>Log In</Button>
+      </Link>
     </Box>
     </>
   )

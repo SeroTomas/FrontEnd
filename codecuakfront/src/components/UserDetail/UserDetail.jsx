@@ -1,27 +1,27 @@
 //hooks
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getUserById } from "../../redux/action";
-import {useParams} from "react-router-dom"
+import { getUserDetailById, cleanUserDetail } from "../../redux/action";
+import { useParams } from "react-router-dom"
 import NavBar from "../NavBar/NavBar";
 import UserProfile from "../blueprints/UserProfile/UserProfile";
 
 const UserDetail = () => {
+  const token  = localStorage.getItem("token")
+  const dispatch = useDispatch();
+  const userDetail = useSelector(state => state.userDetail)
+  const { id } = useParams();
 
-    const dispatch = useDispatch();
-    const userDetail = useSelector(state => state.userDetail)
-    
-    const {id} = useParams();
-    console.log(userDetail);
-    useEffect(() => {
-      dispatch(getUserById(id))
-    }, [dispatch])
-    
+  useEffect(() => {
+    dispatch(getUserDetailById(id,token))
+    return()=> dispatch(cleanUserDetail())
+
+  }, [dispatch])
 
   return (
     <div>
-        <NavBar/>
-        <UserProfile userData={userDetail}/>
+      <NavBar />
+      <UserProfile user={userDetail} />
     </div>
   )
 }

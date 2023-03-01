@@ -2,57 +2,84 @@
 import style from "./formSocialPost.module.css";
 import {Box,Typography,Button, Icon} from "@mui/material"
 //importamos hooks
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { sendPost } from "../../../axiosFunctions";
-import { getAllPost } from "../../../redux/action";
+import { getAllPost } from "../../../redux/action"
 // componentes
+// IMPORT MATERIAL UI
+import { Avatar, Box, Typography, TextField, Button } from "@mui/material";
 
-const FormSocialPost = ({user}) => {
+const FormSocialPost = ({ user }) => {
   const dispatch = useDispatch();
-  //usuario de prueba, los verdaderos vienen por props ya que el contenedor social hace el fetch de datos
   const [form, setForm] = useState("");
   const text = form.length;
-  //const [users, setUsers] = useState("a2e13a38-ae82-40e2-9a43-ac5a66310f1d");
-
+  const token = localStorage.getItem("token")
   const handlerChange = (event) => {
-    const value = event.target.value;
-    setForm(value);
+    if (token) {
+      const value = event.target.value;
+      setForm(value);
+    }
+    else alert("¡Por favor inicie sesión para publicar en codeCuak!")
   };
+
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    sendPost(form, user.id);
+    await sendPost(form, user.id, token);
+    dispatch(getAllPost(1)); // getAllPost de la pagina 1 de posteos para que se renderice el nuevo post
     setForm("");
   };
 
   return (
-    <Box className={style.container}>
-      <div className={style.wrapper}>
-        <div className={style.infoContainer}>
-          <div className={style.imgContainer}>
-            <img src={user.image} alt="foto del usuario" />
-          </div>
-          <p>{user.name}</p>
-        </div>
-        <div className={style.formContainer}>
-          <form onSubmit={handlerSubmit}>
-            <textarea
-              value={form}
+    <Box className={style.codetext} fontFamily={"Sen"} margin="15px" style={token ? {} : { pointerEvents: 'none', opacity: .7 }}>
+      <Box width="80%" display="flex" flexDirection="column" justifyContent="center" >
+        <Box display="flex" gap="1rem">
+          <Box>
+            <Avatar src={user.image} alt="foto del usuario" />
+          </Box>
+          <Typography variant="h6" fontFamily={"Sen"} color="black">
+            {user.name}
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="center" color="white" flexGrow="1" >
+          <form onSubmit={handlerSubmit} style={{ "display": "flex", "flexDirection": "column", "width": "100%" }}>
+            <TextField
+              fullWidth
+              id="outlined-multiline-static"
+              label="Que te gustaria postear?"
+              multiline
+              rows={4}
+              margin="normal"
+              required
               onChange={handlerChange}
-              placeholder={"Que es lo que quieres compartir?"}
+              color="success"
+              value={form}
             />
-            <div>
+            <Box display="flex" flexDirection="column" alignItems="center">
               {text > 1400 ? (
-                <p className={style.limitText}>{`${text}/1500 `}</p>
+                <Typography color="red" fontWeight="bold">{`${text}/1500 `}</Typography>
               ) : null}
-              <button type="submit" disabled={text > 1500}>
+              <Button
+                style={{
+                  width: 150,
+                  height: 40,
+                  fontSize: 20,
+                }}
+                size="large"
+                color="success"
+                variant="contained"
+                sx={{ fontWeight: "bold", fontSize: "100" }}
+                type="submit"
+                disabled={text > 1500}
+
+              >
                 Publicar
-              </button>
-            </div>
+              </Button>
+            </Box>
           </form>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Box>
   );
 };

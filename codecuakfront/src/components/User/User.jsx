@@ -19,7 +19,7 @@ const User = () => {
       dispatch(getUserById(token, id));
     } else {
       navigate("/social");
-      alert("¡Por favor inicie sesión para ver el pe2rfil!");
+      alert("¡Por favor inicie sesión para ver el perfil!");
     }
   }, [dispatch, token]);
 

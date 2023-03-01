@@ -60,7 +60,7 @@ export const getPostsByUserId = (userId, page) => {
       const data = await axios.get(`${URL.URL_SOCIAL}/user/${userId}?page=${page}`)
       dispatch({ type: GET_ALL_POST, payload: data.data })
     } catch (error) {
-      console.log(error.message)
+      console.log(error)
     }
   }
 }

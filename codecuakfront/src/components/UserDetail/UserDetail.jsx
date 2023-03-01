@@ -8,6 +8,7 @@ import UserProfile from "../blueprints/UserProfile/UserProfile";
 
 const UserDetail = () => {
   const token  = localStorage.getItem("token")
+  
   const dispatch = useDispatch();
   const userDetail = useSelector(state => state.userDetail)
   const { id } = useParams();

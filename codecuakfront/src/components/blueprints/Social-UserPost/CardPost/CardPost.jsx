@@ -44,7 +44,7 @@ const CardPost = ({ post, user }) => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        width="620px"
+        width={1}
         bgcolor="#f2f2f2"
         borderRadius="10px"
         padding="1em"
@@ -56,7 +56,6 @@ const CardPost = ({ post, user }) => {
             <Avatar src={image} alt="Foto de perfil" />
             <Typography fontFamily="sen" variant="h6" color="black">{name}</Typography>
           </Box>
-          {/* {userdevId === userId ? <LongMenu post={post}/> : null} */}
           <LongMenu post={post} />
         </Box>
         <Box width="90%" >

@@ -13,15 +13,20 @@ import { getPostsByUserId } from "../../../redux/action";
 import { useParams } from "react-router-dom";
 
 const PostUserContainer = () => {
+
+  const dispatch = useDispatch();
+
+  // se verifica si hay un id en params (userDetail)
+  // para saber si se renderizan los posteos del
+  // usuario que inicio sesion, o los de algun usuario X
   const { id } = useParams()
   const detailId = id;
   const userId = localStorage.getItem("id")
-  const {name, image, count, next, arrayPosts} = useSelector(state=>state.posts)
-  const dispatch = useDispatch();
-  const [getPost, setGetPost] = useState(true);
-  const [page, setPage] = useState(0)
-
   const idUtil = detailId ? detailId : userId;
+
+  const {name, image, count, next, arrayPosts} = useSelector(state=>state.posts)
+  const [getPost, setGetPost] = useState(true);
+  const [page, setPage] = useState(0);
 
   //--------Realiza petición de posts al cargar el componente---  --
   useEffect(() => {
@@ -53,12 +58,12 @@ const PostUserContainer = () => {
 
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" marginTop="15px" gap="10px">
+    <Box display="flex" flexDirection="column" alignItems="center" marginTop="15px" gap="10px" width={1}>
       {
-        count!==null?
+        count !== null ?
           <>
             {arrayPosts?.map((post) => {
-              return <CardPost post={post} user={{name, image}} />;
+              return <CardPost post={post} user={{ name, image }} />;
             })}
           </> :
 

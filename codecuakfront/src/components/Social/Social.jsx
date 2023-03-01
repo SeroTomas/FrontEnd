@@ -4,6 +4,7 @@ import style from "./social.module.css";
 //importamos hooks
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 //importamos actions
 import { cleanPost, getUserById } from "../../redux/action";
 //importamos componentes
@@ -15,7 +16,7 @@ import NoTokenFooter from "../NavBar/NotTokenComponents/NoTokenFooter";
 import { Box } from "@mui/material";
 
 const Social = () => {
-
+  const navigateTo = useNavigate()
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userData);
 
@@ -25,6 +26,7 @@ const Social = () => {
   if (userg) {
     localStorage.setItem("token", userg.token);
     localStorage.setItem("id", userg.id);
+    navigateTo("/social")
   }
   ///----------------------------------------------///
   const token = localStorage.getItem("token");

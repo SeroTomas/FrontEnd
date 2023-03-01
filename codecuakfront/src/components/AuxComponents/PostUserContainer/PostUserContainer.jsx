@@ -24,16 +24,9 @@ const PostUserContainer = () => {
   const userId = localStorage.getItem("id")
   const idUtil = detailId ? detailId : userId;
 
-  const { name, image, next, arrayPosts } = useSelector(state => state.posts)
+  const {name, image, count, next, arrayPosts} = useSelector(state=>state.posts)
   const [getPost, setGetPost] = useState(true);
-  const [page, setPage] = useState(0)
-
-
-  
-  //solucion momentanea para el count que no esta definido
-  const count = true;
-  //solucion momentanea para el count que no esta definido
-
+  const [page, setPage] = useState(0);
 
   //--------Realiza petición de posts al cargar el componente---  --
   useEffect(() => {

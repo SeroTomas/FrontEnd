@@ -11,6 +11,7 @@ import NavBar from "../NavBar/NavBar";
 import FormSocialPost from "../AuxComponents/FormSocialPost/FormSocialPost";
 import PostSocialContainer from "../AuxComponents/PostSocialContainer/PostSocialContainer";
 // import MATERIAL UI
+import NoTokenFooter from "../NavBar/NotTokenComponents/NoTokenFooter";
 import { Box } from "@mui/material";
 
 const Social = () => {
@@ -40,6 +41,7 @@ const Social = () => {
         <NavBar />
         <FormSocialPost user={user} />
         <PostSocialContainer />
+        {!token ? <NoTokenFooter /> : null}
       </Box>
     </>
   );

@@ -1,5 +1,6 @@
 // importamos estilos
 import style from "./social.module.css";
+import {Box,Typography,Button, Icon} from "@mui/material"
 //importamos hooks
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -23,11 +24,11 @@ const Social = () => {
   console.log(user);
   return (
     <>
-      <div className={style.socialContainer}>
+      <Box className={style.socialContainer}>
         <NavBar />
         <FormSocialPost user = {user}/>
         <PostSocialContainer />
-      </div>
+      </Box>
     </>
   )
 }

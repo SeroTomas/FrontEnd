@@ -1,5 +1,6 @@
 //importamos estilos
 import style from "./formSocialPost.module.css";
+import {Box,Typography,Button, Icon} from "@mui/material"
 //importamos hooks
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +27,7 @@ const FormSocialPost = ({user}) => {
   };
 
   return (
-    <div className={style.container}>
+    <Box className={style.container}>
       <div className={style.wrapper}>
         <div className={style.infoContainer}>
           <div className={style.imgContainer}>
@@ -52,7 +53,7 @@ const FormSocialPost = ({user}) => {
           </form>
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 export default FormSocialPost;

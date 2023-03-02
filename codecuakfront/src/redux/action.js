@@ -9,6 +9,7 @@ export const GET_POSTS_BY_USER_ID = "GET_POSTS_BY_USER_ID";
 export const PUT_POST = "PUT_POST";
 export const DELETE_POST = "DELETE_POST";
 export const CLEAN_POST = "CLEAN_POST";
+export const POST_LIKE = "POST_LIKE";
 // 💥COMENTARIOS💥
 export const POST_COMMENT = "POST_COMMENT";
 export const PUT_COMMENT = "PUT_COMMENT";
@@ -66,7 +67,6 @@ export const getPostById = (postId, token) => {
   return async (dispatch) => {
     try {
       const data = await axios.get(`${URL_BASE}/socialcuak/${postId}`, { headers: { "x-auth-token": token } });
-      console.log(token);
       dispatch({ type: GET_POST_BY_ID, payload: data.data })
     } catch (error) {
       console.log(error.message)
@@ -96,6 +96,19 @@ export const cleanPost = () => {
     return dispatch({ type: CLEAN_POST })
   };
 };
+
+// POST LIKE
+export const postLike = (postId, userId, token) => {
+  return async function(dispatch){
+    try {
+      const response = await axios.post(`${URL.URL_SOCIAL}/${postId}/like`, null, { headers: { "x-auth-token": token }});
+      const message = response.data.msg;
+      return dispatch({type: POST_LIKE, payload: {message, postId, userId}});
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 // COMENTARIOS  🛑
 // para mandar un comentario tenemos q mandar la ID DEL POST por PARAMS y por BODY tenemos que mandar el USERID y el CONTENIDO del COMENTARIO
 // POST DEL COMENTARIO

@@ -24,6 +24,7 @@ const initialState = {
   userDetail: {},
   users: [],
   posts: {
+    id:"",
     name: "",
     image: "",
     count: null,
@@ -41,10 +42,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         return {
           ...state,
           posts: {
+            id:payload.results.id,
+            count:  payload.count,
+            next: payload.next,
             name: payload.results.name,
             image: payload.results.image,
-            count: state.count + payload.results.count,
-            next: payload.next,
             arrayPosts: newPosts
           }
         }
@@ -52,6 +54,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         posts: {
+          id:payload.results.id,
           name: payload.results.name,
           image: payload.results.image,
           count: payload.results.count,

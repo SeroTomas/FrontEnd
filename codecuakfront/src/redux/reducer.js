@@ -4,6 +4,7 @@ import {
   PUT_POST,
   DELETE_POST,
   CLEAN_POST,
+  POST_LIKE,
   POST_COMMENT,
   PUT_COMMENT,
   DELETE_DESTROY_COMMENT,
@@ -71,6 +72,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         posts: payload,
+      }
+    case POST_LIKE:
+      const { message, postId, userId } = payload;
+      const { arrayPosts } = state.posts;
+      const newArray = arrayPosts.map((post)=>{
+        if(post.id == postId){
+          return{
+            ...post, 
+            likes: (message === "El like se ha agregado")? post.likes.concat(userId): post.likes.filter((id)=> id!=userId)
+          }
+        }else{
+          return post;
+          }
+      });
+      return{
+        ...state,
+        posts: {...state.posts, arrayPosts: newArray}
       }
     case GET_ALL_USER:
       return {

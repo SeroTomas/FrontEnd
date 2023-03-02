@@ -49,7 +49,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
           }
         }
       }
-      console.log(payload.count)
       return {
         ...state,
         posts: {

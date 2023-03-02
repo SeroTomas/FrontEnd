@@ -72,8 +72,7 @@ const PostUserContainer = () => {
               />;
             })}
           </> 
-          :
-          //---skeletons---
+          :          //---skeletons---
           <>
             {
               Array(5).fill().map((_, i) => {

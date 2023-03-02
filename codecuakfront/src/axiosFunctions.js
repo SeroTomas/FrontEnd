@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getUserDetailById, getUserById } from "./redux/action";
+import { useDispatch } from "react-redux";
+import { getUserDetailById, getUserById, getAllPost } from "./redux/action";
 const URL_BASE = "https://backend-production-c946.up.railway.app";
 
 // RUTA PARA PUBLICAR POST
@@ -25,8 +26,7 @@ export const sendComment = async (content, userId, postId, token) => {
   let data = await axios.post(
     `${URL_BASE}/socialcuak/${postId}/comment`,
     { content, userId },
-    { headers: { "x-auth-token": token } }
-  );
+    { headers: { "x-auth-token": token } });
   return data;
 };
 // RUTA PARA EDITAR UN POST
@@ -86,9 +86,9 @@ export const userRegister = async (name, email, nickName, password) => {
         throw "El email ya esta usado por un usuario";
       } else if (
         error.response.data.errors[0]?.msg ==
-          "El nickName ya es usado por un usuario" ||
+        "El nickName ya es usado por un usuario" ||
         error.response.data.errors[1]?.msg ==
-          "El nickName ya es usado por un usuario"
+        "El nickName ya es usado por un usuario"
       ) {
         throw "El nickName ya es usado por un usuario";
       } else {

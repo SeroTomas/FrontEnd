@@ -1,8 +1,5 @@
-//estilos
-import styles from "./CardPost.module.css";
 //hooks
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 //auxiliares
 import { Avatar, Box, Button, Typography, } from "@mui/material";
@@ -22,7 +19,8 @@ const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
   const [likeState, setStateLike] = useState(false);
   const [like, setLike] = useState(likes);
   const [viewComents, setViewComents] = useState(false);
- 
+  const status = localStorage.getItem("status")
+  console.log(status);
   const handlerClick = () => {
     if (likeState == true) {
       setLike(like - 1)
@@ -55,7 +53,7 @@ const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
             <Avatar src={image} alt="Foto de perfil" />
             <Typography fontFamily="sen" variant="h6" color="black">{name}</Typography>
           </Box>
-          {userId === id ? <LongMenu /> : null}
+          {status === "admin" || status === "superadmin"   ?  <LongMenu /> : (userId === id ? <LongMenu /> : null) }
         </Box>
         <Box width="90%" style={{ wordBreak: 'break-all' }}>
           <Typography fontFamily="Sen" variant="body1" color="black" fontSize="1.1em" whiteSpace="pre-wrap" > {content}</Typography>

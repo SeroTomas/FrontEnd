@@ -101,7 +101,7 @@ export const cleanPost = () => {
 export const postLike = (postId, userId, token) => {
   return async function(dispatch){
     try {
-      const response = await axios.post(`${URL.URL_SOCIAL}/${postId}/like`, null, { headers: { "x-auth-token": token }});
+      const response = await axios.post(`${URL_BASE}/socialcuak/${postId}/like`, null, { headers: { "x-auth-token": token }});
       const message = response.data.msg;
       return dispatch({type: POST_LIKE, payload: {message, postId, userId}});
     } catch (error) {

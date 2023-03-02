@@ -3,7 +3,8 @@ import styles from "./CardPost.module.css";
 //hooks
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+//actions
+import { postLike } from "../../../../redux/action"
 //auxiliares
 import { Avatar, Box, Button, Typography, } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -15,23 +16,19 @@ import LongMenu from "../../LongMenu/LongMenu";
 
 
 const CardPost = ({ post, user }) => {
+  const dispatch = useDispatch();
   // datos del posteo
   const { content, socialcomments, likes, id } = post;
   //datos del usuario que hizo el posteo sirve para los posteos del social
+  const userId = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
   const { name, image } = (post.userdev || user)? (post.userdev || user) : {name: null, image:null}
-
-  const [likeState, setStateLike] = useState(false);
-  const [like, setLike] = useState(likes);
+  //Estados locales
   const [viewComents, setViewComents] = useState(false);
 
+
   const handlerClick = () => {
-    if (likeState == true) {
-      setLike(like - 1)
-    }
-    else {
-      setLike(like + 1)
-    }
-    setStateLike(!likeState)
+    dispatch(postLike(id, userId, token));
   }
 
   const handlerComment = () => {
@@ -62,7 +59,7 @@ const CardPost = ({ post, user }) => {
           <Typography fontFamily="Sen" variant="body1" color="black" fontSize="1.1em">{content}</Typography>
         </Box>
         <Box display="flex" flexDirection="row" alignItems="center" alignSelf="start" marginLeft="20px" gap="10px">
-          <Button onClick={() => handlerClick()} sx={{ color: "#1E8449" }}> {likeState ? <FavoriteIcon /> : <FavoriteBorderIcon />}</Button>
+          <Button onClick={() => handlerClick()} sx={{ color: "#1E8449" }}> {likes.includes(userId) ? <FavoriteIcon /> : <FavoriteBorderIcon />}{likes.length}</Button>
           <Button onClick={() => { handlerComment() }} color="success">Comentar</Button>
         </Box>
         {

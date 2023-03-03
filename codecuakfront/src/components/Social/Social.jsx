@@ -34,6 +34,7 @@ const Social = () => {
   
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id")
+  localStorage.setItem("status", user.status)
   useEffect(() => {
     dispatch(getUserById(token, id));
     window.scrollTo(0,0);

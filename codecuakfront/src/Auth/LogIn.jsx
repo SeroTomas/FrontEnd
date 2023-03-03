@@ -25,7 +25,6 @@ const LogIn = () => {
       const response = await userLogin(user.email, user.password);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("id", response.data.user?.id);
-      localStorage.setItem("status", response.data.user?.status)
       if (response?.status === 200) {
         setSuccess("Inicio de sesion exitoso");
         setTimeout(() => {

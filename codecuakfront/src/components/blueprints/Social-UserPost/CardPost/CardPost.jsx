@@ -17,8 +17,8 @@ const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
   const dispatch = useDispatch();
   // datos del posteo
   //datos del usuario que hizo el posteo sirve para los posteos del social
-  const token = localStorage.getItem("token");
   const { name, image, id } = (userDev || user) ? (userDev || user) : { name: null, image: null }
+  const token = localStorage.getItem("token");
   const [likeState, setStateLike] = useState(false);
   const [like, setLike] = useState(likes);
   const [viewComents, setViewComents] = useState(false);

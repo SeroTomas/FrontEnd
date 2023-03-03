@@ -13,17 +13,22 @@ import ComentContainer from "../ComentContainer/ComentContainer";
 import LongMenu from "../../LongMenu/LongMenu";
 
 
+// datos del posteo por props
 const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
   const dispatch = useDispatch();
-  // datos del posteo
   //datos del usuario que hizo el posteo sirve para los posteos del social
   const { name, image, id } = (userDev || user) ? (userDev || user) : { name: null, image: null }
-  const token = localStorage.getItem("token");
   const [likeState, setStateLike] = useState(false);
   const [like, setLike] = useState(likes);
   const [viewComents, setViewComents] = useState(false);
+
+  // traemos el token para poder hacer el dispatch de los likes
+  const token = localStorage.getItem("token");
+  // traemos el status para poder verificar que categoria es el usuario
+  // y saber si renderizar el menu desplegable de opciones para hacer
+  // put y delete de los posteos
   const status = localStorage.getItem("status")
-  console.log(status);
+
   const handlerClick = () => {
     dispatch(postLike(postId, id, token));
   }
@@ -50,7 +55,12 @@ const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
             <Avatar src={image} alt="Foto de perfil" />
             <Typography fontFamily="sen" variant="h6" color="black">{name}</Typography>
           </Box>
-          {status === "admin" || status === "superadmin"   ?  <LongMenu /> : (userId === id ? <LongMenu /> : null) }
+          { 
+            // primero averiguamos si el status se trata de un superadmin o admin
+            // para renderizar las opciones en todos los posteos
+            // si el usuario es dev, solo se le renderizaran en los posteos propios
+            status === "admin" || status === "superadmin" ? <LongMenu /> : (userId === id ? <LongMenu /> : null)
+          }
         </Box>
         <Box width="90%" style={{ wordBreak: 'break-all' }}>
           <Typography fontFamily="Sen" variant="body1" color="black" fontSize="1.1em" whiteSpace="pre-wrap" > {content}</Typography>

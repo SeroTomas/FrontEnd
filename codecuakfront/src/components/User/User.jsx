@@ -1,7 +1,7 @@
 //importo Hooks
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getUserById } from "../../redux/action";
+import { cleanPost, getUserById } from "../../redux/action";
 import { useNavigate } from "react-router-dom";
 //Importo componentes react
 import NavBar from "../NavBar/NavBar";
@@ -17,6 +17,9 @@ const User = () => {
   const id = localStorage.getItem("id");
 
   useEffect(() => {
+    
+    dispatch(cleanPost())
+
     if (token) {
       dispatch(getUserById(token, id));
       window.scrollTo(0,0)

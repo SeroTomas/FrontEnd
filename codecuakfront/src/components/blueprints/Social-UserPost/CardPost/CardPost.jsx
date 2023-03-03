@@ -17,13 +17,11 @@ import LongMenu from "../../LongMenu/LongMenu";
 const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
   const dispatch = useDispatch();
   //datos del usuario que hizo el posteo sirve para los posteos del social
-  const { name, image, id } = (userDev || user) ? (userDev || user) : { name: null, image: null }
-  const [likeState, setStateLike] = useState(false);
-  const [like, setLike] = useState(likes);
-  const [viewComents, setViewComents] = useState(false);
-
   // traemos el token para poder hacer el dispatch de los likes
   const token = localStorage.getItem("token");
+  const { name, image, id } = (userDev || user) ? (userDev || user) : { name: null, image: null };
+  const [viewComents, setViewComents] = useState(false);
+
   // traemos el status para poder verificar que categoria es el usuario
   // y saber si renderizar el menu desplegable de opciones para hacer
   // put y delete de los posteos

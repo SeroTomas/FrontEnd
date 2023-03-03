@@ -69,7 +69,7 @@ const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
         </Box>
         {
           viewComents ?
-            <ComentContainer socialcomments={socialcomments} postId={id} /> : null
+            <ComentContainer postId={postId} /> : null
         }
       </Box>
     </>

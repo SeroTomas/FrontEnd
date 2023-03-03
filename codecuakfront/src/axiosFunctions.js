@@ -23,6 +23,16 @@ export const sendPost = async (content, userId, token) => {
 //   let data = await axios.post(`${URL_BASE}/socialcuak/${postId}/comment`, { content, userId }, { headers: { 'x-auth-token': token } } );
 //   return data
 // };
+// ruta para traer comments
+export const getComments = (postId, page) => {
+  try {
+    axios.get(`${URL_BASE}/socialcuak/${postId}/comments?page=${page}`).then(
+      response => {return response.data}
+    )
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 export const sendComment = async (content, userId, postId, token) => {
   let data = await axios.post(

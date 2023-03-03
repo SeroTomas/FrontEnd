@@ -17,6 +17,7 @@ import {
   GET_ALL_USER_ADMIN,
   GET_POSTS_BY_USER_ID,
   CLEAN_USER_DETAIL,
+  GET_COMMENTS,
 } from "./action";
 
 const initialState = {

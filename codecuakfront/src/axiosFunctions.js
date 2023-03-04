@@ -27,7 +27,7 @@ export const sendPost = async (content, userId, token) => {
 export const getComments = (postId, page) => {
   try {
     axios.get(`${URL_BASE}/socialcuak/${postId}/comments?page=${page}`).then(
-      response => {return response.data}
+      response => { return response.data }
     )
   } catch (error) {
     console.log(error.message);
@@ -35,11 +35,15 @@ export const getComments = (postId, page) => {
 }
 
 export const sendComment = async (content, userId, postId, token) => {
-  let data = await axios.post(
-    `${URL_BASE}/socialcuak/${postId}/comment`,
-    { content, userId },
-    { headers: { "x-auth-token": token } });
-  return data;
+  try {
+    const data = await axios.post(
+      `${URL_BASE}/socialcuak/${postId}/comment`,
+      { content, userId },
+      { headers: { "x-auth-token": token } });
+      return data;
+  } catch (error) {
+    console.log(error.message)
+  }
 };
 // RUTA PARA EDITAR UN POST
 

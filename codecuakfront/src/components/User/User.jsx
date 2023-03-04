@@ -15,7 +15,7 @@ const User = () => {
   const userData = useSelector((state) => state.userData);
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-
+  console.log(token);
   useEffect(() => {
     
     dispatch(cleanPost())

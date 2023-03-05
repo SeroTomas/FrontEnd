@@ -16,10 +16,12 @@ import NoTokenFooter from "../NavBar/NotTokenComponents/NoTokenFooter";
 import { Box } from "@mui/material";
 
 const Social = () => {
+
+  //  NO MOVER DE LUGAR ESTO O SE ROMPE EL INICIO DE GOOGLE
   const navigateTo = useNavigate()
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userData);
-
+  //  NO MOVER DE LUGAR ESTO O SE ROMPE EL INICIO DE GOOGLE
   //LOGIN DE GOOGLE NO FUNCIIONA SI LO PONGO EN OTRA PARTE
   const urlParams = new URLSearchParams(window.location.search);
   const userg = JSON.parse(decodeURIComponent(urlParams.get("user")));
@@ -29,11 +31,13 @@ const Social = () => {
     navigateTo("/social")
   }
   ///----------------------------------------------///
+  
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id")
-
+  localStorage.setItem("status", user.status)
   useEffect(() => {
-    dispatch(getUserById(token, id))
+    dispatch(getUserById(token, id));
+    window.scrollTo(0,0);
     return () => { dispatch(cleanPost()) }
   }, [])
 

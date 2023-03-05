@@ -43,6 +43,7 @@ const Register = () => {
         const loginResponse = await userLogin(user.email, user.password);
         localStorage.setItem("token", loginResponse.data.token);
         localStorage.setItem("id", loginResponse.data.user.id);
+        localStorage.setItem("status", response.data.user.status)
         setTimeout(() => {
           navigate("/social");
         }, 3000);

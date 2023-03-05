@@ -32,8 +32,7 @@ const FormSocialPost = ({ user }) => {
 
 const[imagen,setImagen] = useState("")
   const handleImg = () => {
-    
-    const formData = new FormData();
+        const formData = new FormData();
     formData.append("image", imageUrl);
     formData.append("publicId", randomId);
     axios
@@ -61,18 +60,8 @@ console.log(form);
   };
 
   return (
-    <Box
-      className={style.codetext}
-      fontFamily={"Sen"}
-      margin="15px"
-      style={token ? {} : { pointerEvents: "none", opacity: 0.7 }}
-    >
-      <Box
-        width="80%"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-      >
+    <Box className={style.codetext} fontFamily={"Sen"} marginTop="100px" marginBottom="25px" style={token ? {} : { pointerEvents: 'none', opacity: .7 }}>
+      <Box width="80%" display="flex" flexDirection="column" justifyContent="center" >
         <Box display="flex" gap="1rem">
           <Box>
             <Avatar src={user.image} alt="foto del usuario" />
@@ -87,7 +76,6 @@ console.log(form);
             style={{ display: "flex", flexDirection: "column", width: "100%" }}
           >
             <TextField
-              fullWidth
               id="outlined-multiline-static"
               label="Que te gustaria postear?"
               multiline

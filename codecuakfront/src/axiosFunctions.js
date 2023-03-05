@@ -1,7 +1,10 @@
 import axios from "axios";
-import { getUserDetailById, getUserById } from "./redux/action";
+import { useDispatch } from "react-redux";
+import { getUserDetailById, getUserById, getAllPost } from "./redux/action";
 const URL_BASE = "https://backend-production-c946.up.railway.app";
-const local = "http://localhost:3001";
+const local = "http://localhost:3001";//  http://localhost:3001
+// https://backend-production-c946.up.railway.app
+
 // RUTA PARA PUBLICAR POST
 // falta fixear las rutas
 export const sendPost = async (content, image, userId, token) => {
@@ -30,8 +33,7 @@ export const sendComment = async (content, userId, postId, token) => {
   let data = await axios.post(
     `${URL_BASE}/socialcuak/${postId}/comment`,
     { content, userId },
-    { headers: { "x-auth-token": token } }
-  );
+    { headers: { "x-auth-token": token } });
   return data;
 };
 // RUTA PARA EDITAR UN POST
@@ -58,7 +60,7 @@ export const deletePost = async (id) => {
 };
 // RUTA POST DEL MERCADO PAGO
 export const sendMP = async (donacion, input) => {
-  let data = await axios.post(`http://localhost:3001/payment`, {
+  let data = await axios.post(`${URL_BASE}/payment`, {
     ...donacion,
     ...input,
   });
@@ -70,7 +72,7 @@ export const sendMP = async (donacion, input) => {
 export const userRegister = async (name, email, nickName, password) => {
   try {
     let response = await axios.post(
-      "https://backend-production-c946.up.railway.app/auth/signup",
+      `${URL_BASE}/auth/signup`,
       {
         name,
         email,
@@ -91,9 +93,9 @@ export const userRegister = async (name, email, nickName, password) => {
         throw "El email ya esta usado por un usuario";
       } else if (
         error.response.data.errors[0]?.msg ==
-          "El nickName ya es usado por un usuario" ||
+        "El nickName ya es usado por un usuario" ||
         error.response.data.errors[1]?.msg ==
-          "El nickName ya es usado por un usuario"
+        "El nickName ya es usado por un usuario"
       ) {
         throw "El nickName ya es usado por un usuario";
       } else {

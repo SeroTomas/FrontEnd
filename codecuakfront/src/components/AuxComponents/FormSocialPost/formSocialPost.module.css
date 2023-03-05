@@ -14,3 +14,9 @@
     margin-top: 4rem;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
   }
+/* 
+  <input type="file" accept="/image"/>
+  <input type="text" value={publicId} onChange={handlerIDIMG}></input>
+  <Box  display="flex" justifyContent="center">{imagen ? <>
+  <img width="100px" height="100px" src={imagen}/>
+  </> : <p>image cargando</p>}</Box> */

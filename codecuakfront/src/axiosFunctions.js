@@ -1,15 +1,20 @@
 import axios from "axios";
 import { getUserDetailById, getUserById } from "./redux/action";
 const URL_BASE = "https://backend-production-c946.up.railway.app";
-
+const local = "http://localhost:3001";
 // RUTA PARA PUBLICAR POST
 // falta fixear las rutas
-export const sendPost = async (content, userId, token) => {
-  let response = await axios.post(
-    `${URL_BASE}/socialcuak`,
-    { content, userId },
-    { headers: { "x-auth-token": token } }
-  );
+export const sendPost = async (content, image, userId, token) => {
+  const formData = new FormData();
+  formData.append("content", content);
+  formData.append("image", image);
+
+  let response = await axios.post(`${local}/socialcuak`, formData, userId, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "x-auth-token": token,
+    },
+  });
   console.log(response);
   return response;
 };
@@ -111,5 +116,24 @@ export const userLogin = async (email, password) => {
   }
 };
 
-
+export const cloud = async (image, publicId) => {
+  try {
+    const res = await axios.post(
+      "https://backend-production-c946.up.railway.app/cloudinary",
+      { image: image, publicId: publicId }
+    );
+    console.log(res);
+    return res.data.secure_url;
+  } catch (error) {
+    console.log(error);
+  }
+};
 // RUTA INCIAR SESION CON GOOGLE
+// export const cloud = async (file,publicid) =>{
+//   try {
+//     const res = await axios.post("https://backend-production-c946.up.railway.app/cloudinary",{file, publicid})
+//     return res.data.url
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }

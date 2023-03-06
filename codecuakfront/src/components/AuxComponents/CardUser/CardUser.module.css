@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Dosis");
+
+.container{
+    display: flex;
+    width: 60%;
+    height: 200px;
+    padding: 10px;
+    z-index: 2;
+}
+
+.containerData{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.contacts{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}

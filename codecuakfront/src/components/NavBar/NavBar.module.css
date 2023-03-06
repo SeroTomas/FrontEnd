@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Ruda&display=swap');
+
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+}
+
+.searchContainer input {
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+    border: none;
+    height: 20px;
+    outline: none;
+    font-size: 1em;
+}
+
+.searchContainer input::placeholder{
+    color: #1E8449;
+}
+
+.searchContainer i {
+    color: #1E8449;
+}
+
+.ulContainer ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    list-style: none;
+}
+
+.ulContainer li{
+    padding: 10px;
+    transition: ease-out .2s;
+}
+
+.ulContainer li:hover{
+    background-color: #1E8449;
+    border-radius: 5px;
+    transition: ease-in .2s;
+}
+
+.ulContainer a {
+    text-decoration: none;
+    font-size: 1.1em;
+    color: #1E8449;
+}
+
+.iconsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.iconsContainer i {
+    color:#B6F7C1 ;
+}
+.iconsContainer button{
+    background: none;
+    border: none;
+}
+
+.iconsContainer button:hover{
+    cursor: pointer;
+}
+
+.logoContainer img{
+    height: 70px;
+}
+
+.notiExpanded{
+    height: 600px;
+    width: 350px;
+    background-color: #1E8449;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 0px 0px 10px 10px;
+    overflow-y: scroll;
+    z-index: 10000;
+}
+
+.notiNotExpanded{
+    display: none;
+}
+
+.notiContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notiHeader{
+    height: 40px;
+    border-bottom: 1px solid#1E8449;
+    color: #7e97a6;
+}
+
+.notifications{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 5px;
+}
+
+.searchExpanded{
+    background-color:#3d7554 ;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    width: 250px;
+    top: 90%;
+    left: 0;
+    z-index: 9000;
+}
+
+.searchNotExpanded{
+    display: none;
+}

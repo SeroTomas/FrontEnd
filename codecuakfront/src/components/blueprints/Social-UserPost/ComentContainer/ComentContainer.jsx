@@ -1,12 +1,10 @@
 //hooks
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 //componentes
 import CardComent from "../CardComent/CardComent.jsx";
 import AddComent from "../AddComent/AddComent";
 //MUI
 import { Box } from "@mui/system";
-import { getComments } from "../../../../axiosFunctions";
 //dependencias
 import axios from "axios";
 import Button from '@mui/material/Button'
@@ -15,7 +13,12 @@ import Button from '@mui/material/Button'
 const ComentContainer = ({ postId }) => {
     const [page, setPage] = useState(1);
     const [data, setData] = useState({})
-    const [submit, setSubmit] = useState(false)
+
+    function handleclick() {
+        setPage(page + 1);
+    };
+
+    // se cargan todos los datos de la primer pagina en el estado local.
     useEffect(() => {
         try {
             axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page}`).then(
@@ -27,23 +30,21 @@ const ComentContainer = ({ postId }) => {
         }
     }, []);
 
-
-    // Hace Dispatch al llegar al final de la pagina y cumplir las condiciones
-    function handleclick() {
-        setPage(page + 1);
-    };
-
-    useEffect(()=>{
+    // se ejecuta el nuevo llamado cuando se cliquea el boton para cargar mas comentarios
+    // se llama a la siguiente pagina y se concatenan los comentarios
+    useEffect(() => {
         try {
             axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page}`).then(
-                response => { setData({
-                    ...response.data,
-                    results:[...data.results, ...response.data.results]
-                }) })
+                response => {
+                    setData({
+                        ...response.data,
+                        results: [...data.results, ...response.data.results]
+                    })
+                })
         } catch (error) {
             console.log(error.message)
         }
-    },[page])
+    }, [page])
 
     return (
 
@@ -58,7 +59,7 @@ const ComentContainer = ({ postId }) => {
                 }
 
                 {
-                data.count ? <Button disabled={!data.next} onClick={handleclick}>Mostrar mas comentarios</Button> : null
+                    data.count ? <Button disabled={!data.next} onClick={handleclick}>Mostrar mas comentarios</Button> : null
                 }
 
             </Box>

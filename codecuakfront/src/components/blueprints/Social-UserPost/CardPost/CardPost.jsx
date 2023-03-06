@@ -1,6 +1,6 @@
 //hooks
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 //actions
 import { postLike } from "../../../../redux/action"
 //auxiliares
@@ -35,6 +35,7 @@ const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
     setViewComents(!viewComents)
   }
 
+
   return (
     <>
       <Box
@@ -53,7 +54,7 @@ const CardPost = ({ postId, content, likes, userDev, user, userId }) => {
             <Avatar src={image} alt="Foto de perfil" />
             <Typography fontFamily="sen" variant="h6" color="black">{name}</Typography>
           </Box>
-          { 
+          {
             // primero averiguamos si el status se trata de un superadmin o admin
             // para renderizar las opciones en todos los posteos
             // si el usuario es dev, solo se le renderizaran en los posteos propios

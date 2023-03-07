@@ -10,6 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { width } from "@mui/system";
 import Ban from "../Ban";
 import Status from "../Status.jsx"
+import Perfiles from "./Perfiles";
 const Members = ({allusers}) => {
   const loading= [
 		{

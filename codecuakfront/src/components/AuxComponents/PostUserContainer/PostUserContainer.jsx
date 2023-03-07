@@ -21,6 +21,8 @@ const PostUserContainer = () => {
   const params = useParams()
   const detailId = params.id;
   const userId = localStorage.getItem("id")
+  const token = localStorage.getItem("token")
+  console.log(token);
   // idUtil es igual al id que exista
   const idUtil = detailId ? detailId : userId;
   const {name, image, count, id, next, arrayPosts} = useSelector(state=>state.posts)
@@ -29,7 +31,7 @@ const PostUserContainer = () => {
 
   //--------Realiza petición de posts al cargar el componente---  --
   useEffect(() => {
-    dispatch(getPostsByUserId(idUtil, page + 1));
+    dispatch(getPostsByUserId(idUtil, page + 1, token));
     setPage(page + 1);
     return () => dispatch(cleanPost());
   }, [idUtil])
@@ -63,6 +65,7 @@ const PostUserContainer = () => {
             {arrayPosts?.map((post) => {
               return <CardPost  
               key={post.id} 
+              imagenPost={post.image}
               postId={post.id}
               userId={userId}
               content={post.content}

@@ -87,7 +87,7 @@ const NavBar = () => {
 
   const pages = [
     { name: "SocialCuak", link: "/social" },
-    { name: "Donacion", link: "/gracias" }
+    { name: "Donacion", link: "/donaciones" }
   ];
 
   return (

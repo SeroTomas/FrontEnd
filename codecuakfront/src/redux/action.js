@@ -11,6 +11,7 @@ export const DELETE_POST = "DELETE_POST";
 export const CLEAN_POST = "CLEAN_POST";
 export const POST_LIKE = "POST_LIKE";
 // 💥COMENTARIOS💥
+export const GET_COMMENTS = "GET_COMMENTS";
 export const POST_COMMENT = "POST_COMMENT";
 export const PUT_COMMENT = "PUT_COMMENT";
 export const DELETE_DESTROY_COMMENT = "DELETE_DESTROY_COMMENT";
@@ -110,6 +111,16 @@ export const postLike = (postId, userId, token) => {
   }
 }
 // COMENTARIOS  🛑
+export const getComments = (postId, page) =>{
+  return async function(dispatch) {
+    try {
+      const response = await axios.get(`${URL_BASE}/socialcuak/${postId}/comments`)
+      return dispatch ({type:GET_COMMENTS, payload:response.data.results})
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+}
 // para mandar un comentario tenemos q mandar la ID DEL POST por PARAMS y por BODY tenemos que mandar el USERID y el CONTENIDO del COMENTARIO
 // POST DEL COMENTARIO
 export const sendComment = ({ content, userId, postId }) => {

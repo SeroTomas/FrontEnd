@@ -241,7 +241,7 @@ const NavBar = () => {
                   {token ? (
                     <MenuItem
                       onClick={() => {
-                        // localStorage.setItem("token", "");
+                        localStorage.setItem("token", "");
                         window.location.href = "/";
                       }}
                     >

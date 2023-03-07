@@ -7,14 +7,16 @@ const URL_BASE = "https://backend-production-c946.up.railway.app";
 
 // RUTA PARA PUBLICAR POST
 // falta fixear las rutas
-export const sendPost = async (content,image, userId, token) => {
-  let response = await axios.post(
-    `${URL_BASE}/socialcuak`,
-    { content,image, userId },
-    { headers: { "x-auth-token": token } }
-  );
-  console.log(response);
-  return response;
+export const sendPost = async (content, image, userId, token) => {
+  try {
+    let response = await axios.post(
+      `${URL_BASE}/socialcuak`,
+      { content, image, userId },
+      { headers: { "x-auth-token": token } }
+    );
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 // RUTA PUBLICAR COMENTARIOS
@@ -40,9 +42,9 @@ export const sendComment = async (content, userId, postId, token) => {
       `${URL_BASE}/socialcuak/${postId}/comment`,
       { content, userId },
       { headers: { "x-auth-token": token } });
-      return data;
+    return data;
   } catch (error) {
-    console.log(error.message)
+    console.log(error)
   }
 };
 // RUTA PARA EDITAR UN POST

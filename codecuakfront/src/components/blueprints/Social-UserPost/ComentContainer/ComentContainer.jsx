@@ -1,26 +1,82 @@
-
 //hooks
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 //componentes
 import CardComent from "../CardComent/CardComent.jsx";
 import AddComent from "../AddComent/AddComent";
+//MUI
 import { Box } from "@mui/system";
+//dependencias
+import axios from "axios";
+import Button from '@mui/material/Button'
 
-const ComentContainer = ({ socialcomments, image, userdevId, postId }) => {
-    const userData = useSelector((state) => state.userData)
+
+const ComentContainer = ({ postId }) => {
+    const [page, setPage] = useState(1);
+    const [data, setData] = useState({})
+    const [update, setUpdate] = useState("");
+
+    function handleclick() {
+        setPage(page + 1);
+    };
+
+    
+    // se cargan todos los datos de la primer pagina en el estado local.
+    useEffect(() => {
+        try {
+            axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page}`).then(
+                response => {
+                    setData(response.data)
+                })
+        } catch (error) {
+            console.log(error.message)
+        }
+    }, []);
+
+    useEffect(() => {
+        try {
+            axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page}`).then(
+                response => {
+                    setData(response.data)
+                })
+        } catch (error) {
+            console.log(error.message)
+        }
+    }, [update]);
+
+    // se ejecuta el nuevo llamado cuando se cliquea el boton para cargar mas comentarios
+    // se llama a la siguiente pagina y se concatenan los comentarios
+    useEffect(() => {
+        try {
+            axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page}`).then(
+                response => {
+                    setData({
+                        ...response.data,
+                        results: [...data.results, ...response.data.results]
+                    })
+                })
+        } catch (error) {
+            console.log(error.message)
+        }
+    }, [page])
+
     return (
 
         <Box width="90%">
             <Box display="flex" flexDirection="column" justifyContent="center" gap="15px">
+
                 <AddComent
-                    userData={userData}
-                    image={image}
-                    userdevId={userdevId}
-                    postId={postId} 
-                    />
+                    postId={postId}
+                    updateInfo={setUpdate}
+                />
+
                 {
-                    socialcomments?.map((comment) => <CardComent comment={comment} userData={userData} />)
+                    data.count ? data.results?.map(comment => <CardComent comment={comment} key={comment.id} />) : null
                 }
+
+                {
+                    data.count ? <Button disabled={!data.next} onClick={handleclick}>Mostrar mas comentarios</Button> : null
+                }
+
             </Box>
 
         </Box>

@@ -1,7 +1,7 @@
 //estilos
 import styles from "./postSocialContainer.module.css";
 //hooks
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost, cleanPost } from "../../../redux/action";
 //componentes
@@ -10,18 +10,38 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 import { Box, Card, Skeleton } from "@mui/material";
 
 const PostSocialContainer = () => {
-  const token = localStorage.getItem("token");
-  const posts = useSelector((state) => state.posts);
+  const userId = localStorage.getItem("id")
+  const { count, next, name, image, id, arrayPosts } = useSelector((state) => state.posts);
+  const [getPost, setGetPost] = useState(true);
+  const [page, setPage] = useState(0)
   const dispatch = useDispatch();
-  
+
+  //--------Realiza petición de posts al cargar el componente-----
   useEffect(() => {
-    dispatch(getAllPost());
+    dispatch(getAllPost(page + 1));
+    setPage(page + 1);
     return () => dispatch(cleanPost());
-  }, [dispatch])
-  
-  // useEffect(() => {
-  //   dispatch(getAllPost());
-  // }, [dispatch, posts]);
+  }, [dispatch, id])
+
+  //Seteo el estado local getPost en true al actualizar el estado global "posts", para que se pueda realizar nuevas peticiones
+  useEffect(() => {
+    setGetPost(true)
+  }, [arrayPosts])
+
+  //-------- Coloca handlerScroll al montar componente y lo retira al desmontar------- 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  })
+
+  // Hace Dispatch al llegar al final de la pagina y cumplir las condiciones
+  function handleScroll() {
+    if (next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
+      setGetPost(false);
+      dispatch(getAllPost(page + 1))
+      setPage(page + 1)
+    }
+  };
 
   return (
     <Box display="flex" flexDirection="column" gap="15px" alignItems="center" width="90%">

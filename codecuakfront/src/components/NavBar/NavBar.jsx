@@ -1,39 +1,42 @@
 //estilos
+import React from "react";
 import style from "./NavBar.module.css";
 //hooks
-import { useAuth0 } from "@auth0/auth0-react";
-import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getUsersByName } from "../../redux/action";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllUsers } from "./../../redux/action";
+
 //componentes
 import logo from "../../Media/logo-03.png";
 import SearchExpandedUser from "../AuxComponents/SeachExpandedUser/SearchExpandedUser";
-import { useNavigate } from "react-router-dom";
+import NoTokenFooter from "./NotTokenComponents/NoTokenFooter";
+import NotTokenMenu from "./NotTokenComponents/NotTokenMenu";
+import NotTokenSearch from "./NotTokenComponents/NotTokenSearch";
 // import MATERIAL UI
 import {
   AppBar,
   Box,
-  Toolbar,
   MenuItem,
   Typography,
-  TextField,
   Tooltip,
   Avatar,
-  Container,
   Menu,
   IconButton,
 } from "@mui/material";
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
 const NavBar = () => {
-  const { logout } = useAuth0();
-  const settings = [{ name: "Perfil", link: "/user" }, { name: "Cuenta", link: "" }];
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const user = useSelector(state => state.userData)
+  const settings = [
+    { name: "Perfil", link: "/user" },
+    { name: "Cuenta", link: "" },
+  ];
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const user = useSelector((state) => state.userData);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -50,28 +53,28 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
-
   const [search, setSearch] = useState("");
   const [data, setData] = useState(false);
   const [notiExpanded, setNotiExpanded] = useState(false);
   const usersByName = useSelector((state) => state.users);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
 
-
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(getUsersByName(search, token));
-    navigate("/users");
+    if (token) {
+      dispatch(getUsersByName(search, token));
+      navigate("/users");
+    } else alert("¡Por favor inicie sesión para buscar en codeCuak!");
   };
 
   const handlerChange = (event) => {
     event.preventDefault();
     const value = event.target.value;
-    dispatch(getUsersByName(value));
-    setSearch(value);
+    if (token) {
+      dispatch(getUsersByName(value));
+      setSearch(value);
+    } else alert("¡Por favor inicie sesión para buscar en codeCuak!");
   };
 
   const handlerNotifications = () => {
@@ -84,19 +87,18 @@ const NavBar = () => {
 
   const pages = [
     { name: "SocialCuak", link: "/social" },
-    { name: "WorkCuak", link: "/work" },
-    { name: "Q&A-Cuak", link: "/qanda" },
-    { name: "HiringCuak", link: "/hiring" },
+    { name: "Donacion", link: "/donaciones" }
   ];
+
   return (
     <Box width="100%">
       <AppBar
         width="100%"
-        position="static"
+        position="fixed"
         sx={{ backgroundColor: "#1E8449" }}
       >
-        <Box display="flex" justifyContent="space-around" alignItems="center">
-          <Box >
+        <Box display="flex" justifyContent="space-evenly" alignItems="center">
+          <Box>
             <Link to={"/"}>
               <img height="70px" src={logo} alt="loguito" />
             </Link>
@@ -104,12 +106,13 @@ const NavBar = () => {
           <Box className={style.searchContainer}>
             <i className="fa-sharp fa-solid fa-magnifying-glass fa-lm" />
             <form onSubmit={submitHandler}>
-              <input
+              {token ? <input
                 type="text"
                 value={search}
                 onChange={handlerChange}
                 placeholder="Buscar en codeCuak"
-              />
+              /> : <NotTokenSearch />}
+
             </form>
             <Box
               className={
@@ -121,8 +124,10 @@ const NavBar = () => {
                   return (
                     <SearchExpandedUser
                       key={user.id}
+                      id={user.id}
                       image={user.image}
                       name={user.name}
+                      onClick={() => { setSearch("") }}
                     />
                   );
                 })
@@ -188,41 +193,78 @@ const NavBar = () => {
             </Box>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Ajustes">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={user.image} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <Link to={setting.link} style={{ "textDecoration": "none", "color": "black" }}>
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting.name}</Typography>
-                  </MenuItem>
-                </Link>
-              ))}
-              <MenuItem onClick={() => logout({ logoutParams: { returnTo: "http://localhost:5173/" } })}>
-                <Typography textAlign="center">Cerrar Sesión</Typography>
-              </MenuItem>
-            </Menu>
+            {token ? (
+              <>
+                <Tooltip title="Ajustes">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={user.image} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <Link
+                      to={setting.link}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">
+                          {setting.name}
+                        </Typography>
+                      </MenuItem>
+                    </Link>
+                  ))}
+
+                  {user.status == "superadmin" ? (
+                    <Link
+                      to="/admin"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <MenuItem key={user.id}>DashBoard</MenuItem>
+                    </Link>
+                  ) : null}
+
+                  {token ? (
+                    <MenuItem
+                      onClick={() => {
+                        // localStorage.setItem("token", "");
+                        window.location.href = "/";
+                      }}
+                    >
+                      <Typography textAlign="center">Cerrar Sesión</Typography>
+                    </MenuItem>
+                  ) : (
+                    <MenuItem
+                      onClick={() => {
+                        window.location.href = "/login";
+                      }}
+                    >
+                      <Typography textAlign="center">Iniciar Sesión</Typography>
+                    </MenuItem>
+                  )}
+                </Menu>{" "}
+              </>
+            ) : (
+              <NotTokenMenu />
+            )}
           </Box>
         </Box>
       </AppBar>
+
     </Box>
   );
 };

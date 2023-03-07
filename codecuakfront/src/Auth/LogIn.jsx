@@ -7,24 +7,33 @@ import { useDispatch } from 'react-redux'
 import { getUserById } from '../redux/action'
 import GoogleLogin from 'react-google-login';
 const LogIn = () => {
-
   const dispatch = useDispatch();
 
-  const [user, setUser] = useState({ email: '', password: '' })
-
+  const [user, setUser] = useState({ email: "", password: "" });
+  const [backError, setBackError] = useState("");
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
-
 
   const handleSubmit = async () => {
     try {
-      const response = await userLogin(user.email, user.password)
-      localStorage.setItem("token", response.token)
-      localStorage.setItem("id", response.user.id)
-      navigate("/social")
+      const response = await userLogin(user.email, user.password);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("id", response.data.user?.id);
+      if (response?.status === 200) {
+        setSuccess("Inicio de sesion exitoso");
+        setTimeout(() => {
+          navigate("/social");
+        }, 3000);
+      }
     } catch (error) {
-      console.log(error.message)
+      console.log(error);
+      setBackError("Algunos de los datos es incorrecto");
+      setTimeout(() => {
+        setBackError("");
+      }, 3000);
     }
-  }
+  };
+
 
   const handleChange = (e) => {
     const property = e.target.name;
@@ -38,17 +47,49 @@ const LogIn = () => {
 a
   return (
     <Box padding="5rem">
-      <Link to="/" style={{textDecoration:"none"}}>
-        <Button color="success" variant="outlined" sx={{fontWeight:"bold"}}>Volver al home</Button>
+      <Link to="/" style={{  textDecoration:  "none"  }}>
+        <Button color="success" variant="outlined" sx={{  fontWeight:  "bold"  }}>
+          Volver al home
+        </Button>
       </Link>
-      <Typography variant='h2' align='center' fontFamily="Sen" color="#1E8449" marginBottom="40px">LOG IN</Typography>
+
+      <Typography
+        variant="h2"
+        align="center"
+        fontFamily="Sen"
+        color="#1E8449"
+        marginBottom="40px"
+      >
+        LOG IN
+      </Typography>
+      {success && (
+        <Alert
+          severity="success"
+          sx={{ width: "15%", margin: "auto", marginBottom: "2rem" }}
+        >
+          {success}
+        </Alert>
+      )}
+      {backError && (
+        <Alert
+          severity="error"
+          sx={{ width: "15%", margin: "auto", marginBottom: "2rem" }}
+        >
+          {backError}
+        </Alert>
+      )}
       <FormControl
         onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          alignItems: "center",
+        }}
       >
         <TextField
           required
-          sx={{ color: "black",width:"18rem" }}
+          sx={{ color: "black", width: "18rem" }}
           size="small"
           label="Email"
           value={user.email}
@@ -58,7 +99,7 @@ a
         ></TextField>
         <TextField
           required
-          sx={{ color: "black",width:"18rem" }}
+          sx={{ color: "black",  width:  "18rem" }}
           size="small"
           label={"Contraseña"}
           value={user.password}
@@ -86,7 +127,7 @@ a
         </Link>
         <Box marginTop="20px">
           <Button
-          sx={{width:"18rem"}}
+              sx={{  width:  "18rem"  }}
             variant="contained"
             color="success"
             type="submit"
@@ -97,8 +138,7 @@ a
         </Box>
       </FormControl>
     </Box>
+  );
+};
 
-  )
-}
-
-export default LogIn
+export default LogIn;

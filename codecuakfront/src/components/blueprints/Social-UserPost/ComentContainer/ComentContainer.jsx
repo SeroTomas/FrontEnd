@@ -13,12 +13,13 @@ import Button from '@mui/material/Button'
 const ComentContainer = ({ postId }) => {
     const [page, setPage] = useState(1);
     const [data, setData] = useState({})
-    const [update, setUpdate] = useState(false);
+    const [update, setUpdate] = useState("");
 
     function handleclick() {
         setPage(page + 1);
     };
 
+    
     // se cargan todos los datos de la primer pagina en el estado local.
     useEffect(() => {
         try {
@@ -31,6 +32,21 @@ const ComentContainer = ({ postId }) => {
         }
     }, []);
 
+    // se realiza una peticion nuevamente cuando se envia un comentario
+    // esto hace que se actualice automaticamente
+    useEffect(() => {
+        try {
+            axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page + 1 - page}`).then(
+                response => {
+                    setData({
+                        ...data,
+                        results: [response.data.results[0], ...data.results]
+                    })
+                })
+        } catch (error) {
+            console.log(error.message)
+        }
+    }, [update]);
 
     // se ejecuta el nuevo llamado cuando se cliquea el boton para cargar mas comentarios
     // se llama a la siguiente pagina y se concatenan los comentarios
@@ -46,15 +62,16 @@ const ComentContainer = ({ postId }) => {
         } catch (error) {
             console.log(error.message)
         }
-    }, [page ])
+    }, [page])
 
     return (
 
         <Box width="90%">
             <Box display="flex" flexDirection="column" justifyContent="center" gap="15px">
+
                 <AddComent
                     postId={postId}
-                    updateInfo={()=>{setUpdate(!update)}}
+                    setUpdate={setUpdate}
                 />
 
                 {

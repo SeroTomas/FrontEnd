@@ -19,6 +19,7 @@ const ComentContainer = ({ postId }) => {
         setPage(page + 1);
     };
 
+    
     // se cargan todos los datos de la primer pagina en el estado local.
     useEffect(() => {
         try {
@@ -26,11 +27,23 @@ const ComentContainer = ({ postId }) => {
                 response => {
                     setData(response.data)
                 })
+                console.log(update);
         } catch (error) {
             console.log(error.message)
         }
     }, []);
 
+    useEffect(() => {
+        try {
+            console.log("esto esta pasando");
+            axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page}`).then(
+                response => {
+                    setData(response.data)
+                })
+        } catch (error) {
+            console.log(error.message)
+        }
+    }, [update]);
 
     // se ejecuta el nuevo llamado cuando se cliquea el boton para cargar mas comentarios
     // se llama a la siguiente pagina y se concatenan los comentarios
@@ -46,12 +59,13 @@ const ComentContainer = ({ postId }) => {
         } catch (error) {
             console.log(error.message)
         }
-    }, [page ])
+    }, [page])
 
     return (
 
         <Box width="90%">
             <Box display="flex" flexDirection="column" justifyContent="center" gap="15px">
+
                 <AddComent
                     postId={postId}
                     updateInfo={()=>{setUpdate(!update)}}

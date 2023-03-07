@@ -22,6 +22,7 @@ const AddComent = ({postId, updateInfo}) => {
         event.preventDefault();
         sendComment(coment, id, postId, token);
         setComent("");
+        updateInfo()
     }
 
 

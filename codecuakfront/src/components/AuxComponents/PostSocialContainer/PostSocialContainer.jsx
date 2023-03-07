@@ -50,6 +50,7 @@ const PostSocialContainer = () => {
           return (
             <CardPost 
             key={post.id} 
+            imagenPost={post.image}
             postId={post.id}
             userId={userId}
             content={post.content}

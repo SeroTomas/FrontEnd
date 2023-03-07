@@ -165,7 +165,7 @@ export const getUserById = (token, userId) => {
       const data = await axios.get(`${URL_BASE}/users/${userId}`, { headers: { "x-auth-token": token } });
       return dispatch({ type: GET_BYID_USER, payload: data.data });
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
 };

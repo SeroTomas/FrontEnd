@@ -34,7 +34,6 @@ const ComentContainer = ({ postId }) => {
 
     useEffect(() => {
         try {
-            console.log("esto esta pasando");
             axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page}`).then(
                 response => {
                     setData(response.data)
@@ -67,7 +66,7 @@ const ComentContainer = ({ postId }) => {
 
                 <AddComent
                     postId={postId}
-                    updateInfo={()=>{setUpdate(!update)}}
+                    updateInfo={setUpdate}
                 />
 
                 {

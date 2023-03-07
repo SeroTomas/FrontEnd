@@ -87,9 +87,7 @@ const NavBar = () => {
 
   const pages = [
     { name: "SocialCuak", link: "/social" },
-    { name: "WorkCuak", link: "/work" },
-    { name: "Q&A-Cuak", link: "/qanda" },
-    { name: "HiringCuak", link: "/hiring" },
+    { name: "Donacion", link: "/gracias" }
   ];
 
   return (
@@ -99,7 +97,7 @@ const NavBar = () => {
         position="fixed"
         sx={{ backgroundColor: "#1E8449" }}
       >
-        <Box display="flex" justifyContent="space-around" alignItems="center">
+        <Box display="flex" justifyContent="space-evenly" alignItems="center">
           <Box>
             <Link to={"/"}>
               <img height="70px" src={logo} alt="loguito" />
@@ -113,8 +111,8 @@ const NavBar = () => {
                 value={search}
                 onChange={handlerChange}
                 placeholder="Buscar en codeCuak"
-              /> : <NotTokenSearch/>}
-              
+              /> : <NotTokenSearch />}
+
             </form>
             <Box
               className={
@@ -123,16 +121,16 @@ const NavBar = () => {
             >
               {usersByName.results
                 ? usersByName.results.map((user) => {
-                    return (
-                      <SearchExpandedUser
-                        key={user.id}
-                        id={user.id}
-                        image={user.image}
-                        name={user.name}
-                        onClick={()=>{setSearch("")}}
-                      />
-                    );
-                  })
+                  return (
+                    <SearchExpandedUser
+                      key={user.id}
+                      id={user.id}
+                      image={user.image}
+                      name={user.name}
+                      onClick={() => { setSearch("") }}
+                    />
+                  );
+                })
                 : null}
               {data ? (
                 <p style={{ color: "white", "font-size": "15px" }}>
@@ -266,7 +264,7 @@ const NavBar = () => {
           </Box>
         </Box>
       </AppBar>
-      
+
     </Box>
   );
 };

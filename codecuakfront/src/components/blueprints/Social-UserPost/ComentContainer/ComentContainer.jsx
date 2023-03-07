@@ -13,6 +13,7 @@ import Button from '@mui/material/Button'
 const ComentContainer = ({ postId }) => {
     const [page, setPage] = useState(1);
     const [data, setData] = useState({})
+    const [update, setUpdate] = useState(false);
 
     function handleclick() {
         setPage(page + 1);
@@ -30,6 +31,7 @@ const ComentContainer = ({ postId }) => {
         }
     }, []);
 
+
     // se ejecuta el nuevo llamado cuando se cliquea el boton para cargar mas comentarios
     // se llama a la siguiente pagina y se concatenan los comentarios
     useEffect(() => {
@@ -44,7 +46,7 @@ const ComentContainer = ({ postId }) => {
         } catch (error) {
             console.log(error.message)
         }
-    }, [page])
+    }, [page ])
 
     return (
 
@@ -52,6 +54,7 @@ const ComentContainer = ({ postId }) => {
             <Box display="flex" flexDirection="column" justifyContent="center" gap="15px">
                 <AddComent
                     postId={postId}
+                    updateInfo={()=>{setUpdate(!update)}}
                 />
 
                 {

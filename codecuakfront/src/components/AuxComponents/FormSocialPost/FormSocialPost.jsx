@@ -1,13 +1,16 @@
 //importamos estilos
 import style from "./formSocialPost.module.css";
 //importamos hooks
-import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { sendPost } from "../../../axiosFunctions";
+import { sendPost,cloudinary } from "../../../axiosFunctions";
 import { getAllPost } from "../../../redux/action"
 // componentes
 // IMPORT MATERIAL UI
-import { Avatar, Box, Typography, TextField, Button } from "@mui/material";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Avatar, Box, Typography, TextField, Button,IconButton } from "@mui/material";
 
 const FormSocialPost = ({ user }) => {
   const dispatch = useDispatch();
@@ -21,10 +24,22 @@ const FormSocialPost = ({ user }) => {
     }
     else alert("¡Por favor inicie sesión para publicar en codeCuak!")
   };
+   //CLOUDINARY
+   const randomId = uuidv4();
+   const [imageUrl, setImageUrl] = useState("");
+   const [imagen, setImagen] = useState("");
+   useEffect(() => {
+     if (imageUrl) {
+       cloudinary(imageUrl, randomId).then((res) => {
+         setImagen(res);
+       });
+     }
+   }, [imageUrl]);
+/////
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    await sendPost(form, user.id, token);
+    await sendPost(form,imagen,user.id,token);
     dispatch(getAllPost(1)); // getAllPost de la pagina 1 de posteos para que se renderice el nuevo post
     setForm("");
   };
@@ -53,6 +68,49 @@ const FormSocialPost = ({ user }) => {
               color="success"
               value={form}
             />
+             <Box display="flex" justifyContent="start">
+              <IconButton component="label" size="large" color="success">
+                <AddPhotoAlternateIcon fontSize="large" />
+                <TextField
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    setImageUrl(e.target.files[0]);
+                  }}
+                  style={{ display: "none" }}
+                />
+              </IconButton>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="center"
+              margin="1rem"
+              position="relative"
+            >
+              {imageUrl ? (
+                <>
+                  <img
+                    style={{ maxWidth: "50%" }}
+                    src={URL.createObjectURL(imageUrl)}
+                  />
+
+                  <IconButton
+                    aria-label="delete"
+                    size="large"
+                    style={{
+                      position: "absolute",
+                      top: -25,
+                      right: 160,
+                    }}
+                    onClick={() => {
+                      setImageUrl("");
+                    }}
+                  >
+                    <DeleteIcon fontSize="large" color="success" />
+                  </IconButton>
+                </>
+              ) : null}
+            </Box>
             <Box display="flex" flexDirection="column" alignItems="center">
               {text > 1400 ? (
                 <Typography color="red" fontWeight="bold">{`${text}/1500 `}</Typography>

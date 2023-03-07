@@ -127,5 +127,12 @@ export const userLogin = async (email, password) => {
   }
 };
 
+export const cloudinary = async (imageUrl, randomId) => {
+  const formData = new FormData();
+  formData.append("image", imageUrl);
+  formData.append("publicId", randomId);
+  const response = await axios.post(`${URL_BASE}/cloudinary`, formData);
+  return response.data;
+};
 
 // RUTA INCIAR SESION CON GOOGLE

@@ -7,10 +7,10 @@ const URL_BASE = "https://backend-production-c946.up.railway.app";
 
 // RUTA PARA PUBLICAR POST
 // falta fixear las rutas
-export const sendPost = async (content, userId, token) => {
+export const sendPost = async (content,image, userId, token) => {
   let response = await axios.post(
     `${URL_BASE}/socialcuak`,
-    { content, userId },
+    { content,image, userId },
     { headers: { "x-auth-token": token } }
   );
   console.log(response);
@@ -127,9 +127,9 @@ export const userLogin = async (email, password) => {
   }
 };
 
-export const cloudinary = async (imageUrl, randomId) => {
+export const cloudinary = async (imagen, randomId) => {
   const formData = new FormData();
-  formData.append("image", imageUrl);
+  formData.append("image", imagen);
   formData.append("publicId", randomId);
   const response = await axios.post(`${URL_BASE}/cloudinary`, formData);
   return response.data;

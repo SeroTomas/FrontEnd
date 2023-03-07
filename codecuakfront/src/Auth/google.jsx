@@ -15,7 +15,7 @@ const Google = () => {
   return (
     <>
       <Link
-        to="https://backend-production-c946.up.railway.app/auth/google/callback"
+        to="https://backend-production-c946.up.railway.app/auth/google"
         style={{ textDecoration: "none" }}
       >
         <Button

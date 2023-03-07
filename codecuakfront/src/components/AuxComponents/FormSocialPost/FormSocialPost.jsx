@@ -30,15 +30,16 @@ const FormSocialPost = ({ user }) => {
    const [imagen, setImagen] = useState("");
    useEffect(() => {
      if (imageUrl) {
-       cloudinary(imagen, randomId).then((res) => {
+       cloudinary(imageUrl, randomId).then((res) => {
          setImagen(res);
        });
      }
    }, [imageUrl]);
 /////
+
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    await sendPost(form, user.id, token);
+    await sendPost(form,imagen,user.id,token);
     dispatch(getAllPost(1)); // getAllPost de la pagina 1 de posteos para que se renderice el nuevo post
     setForm("");
   };

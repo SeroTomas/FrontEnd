@@ -7,7 +7,7 @@ import { sendComment } from "../../../../axiosFunctions";
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import {  useDispatch, useSelector } from "react-redux";
 
-const AddComent = ({postId}) => {
+const AddComent = ({postId, updateInfo}) => {
     const userData = useSelector(state => state.userData);
     const token = localStorage.getItem("token")
     const id = localStorage.getItem("id")
@@ -23,6 +23,7 @@ const AddComent = ({postId}) => {
         sendComment(coment, id, postId, token);
         setComent("");
     }
+
 
 
     return (

@@ -13,7 +13,7 @@ import Button from '@mui/material/Button'
 const ComentContainer = ({ postId }) => {
     const [page, setPage] = useState(1);
     const [data, setData] = useState({})
-    const [update, setUpdate] = useState(false);
+    const [update, setUpdate] = useState("hola");
 
     function handleclick() {
         setPage(page + 1);
@@ -27,7 +27,6 @@ const ComentContainer = ({ postId }) => {
                 response => {
                     setData(response.data)
                 })
-                console.log(update);
         } catch (error) {
             console.log(error.message)
         }

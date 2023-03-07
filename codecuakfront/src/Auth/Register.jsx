@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 // FUNCION REGISTER POST
 import { userRegister, userLogin } from "../axiosFunctions";
+import { Opacity } from "@mui/icons-material";
 
 const Register = () => {
   // ESTADOS LOCALES
@@ -24,7 +25,14 @@ const Register = () => {
   });
   const [backError, setBackError] = useState("");
   const [success, setSuccess] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    nickName: "",
+    password: "",
+  });
+  // readySubmit se setea en true cuando no hay errores y estan todos los campos completos. Se usa para habilitar el boton Submit
+  const readySubmit = (!errors.name && !errors.email && !errors.nickName && !errors.password && user.name && user.email && user.nickName && user.password)
   const navigate = useNavigate();
   const handleAlert = () => {
     setBackError("");
@@ -70,7 +78,7 @@ const Register = () => {
   const handleChange = (e) => {
     const property = e.target.name;
     const value = e.target.value;
-    setErrors(validations({ ...user, [property]: value }));
+    validations(property, value, errors, setErrors);
     setUser({
       ...user,
       [property]: value,
@@ -121,19 +129,19 @@ const Register = () => {
         <TextField
           size="small"
           required
-          sx={{ color: "black" }}
+          sx={{ color: "black", width:"225px"}}
           label="Nombre y Apellido"
           value={user.name}
           name="name"
           placeholder="Nombre y Apellido"
           onChange={handleChange}
-          error={errors.name}
+          error={errors.name.length}
           helperText={errors.name}
-        ></TextField>
+        />
 
         <TextField
           required
-          sx={{ color: "black" }}
+          sx={{ color: "black",  width:"225px" }}
           size="small"
           label={"Email"}
           value={user.email}
@@ -142,12 +150,12 @@ const Register = () => {
           placeholder="ejemplo@hotmail.com"
           onChange={handleChange}
           onClick={handleAlert}
-          error={errors.email}
+          error={errors.email.length}
           helperText={errors.email}
         ></TextField>
         <TextField
           required
-          sx={{ color: "black" }}
+          sx={{ color: "black",  width:"225px" }}
           size="small"
           label={"Nombre de usuario"}
           value={user.nickName}
@@ -155,12 +163,12 @@ const Register = () => {
           type="text"
           placeholder="nombre de usuario"
           onChange={handleChange}
-          error={errors.nickName}
+          error={errors.nickName.length}
           helperText={errors.nickName}
         ></TextField>
         <TextField
           required
-          sx={{ color: "black" }}
+          sx={{ color: "black",  width:"225px" }}
           size="small"
           label={"Contraseña"}
           value={user.password}
@@ -168,7 +176,7 @@ const Register = () => {
           type="password"
           placeholder="contraseña"
           onChange={handleChange}
-          error={errors.password}
+          error={errors.password.length}
           helperText={errors.password}
         ></TextField>
 
@@ -184,10 +192,12 @@ const Register = () => {
         <Box marginTop="20px">
           <Button
             sx={{ fontWeight: "bold", width: "14rem" }}
+            style={ readySubmit? {} : {opacity: 0.7} }
             variant="contained"
             color="success"
             type="submit"
             onClick={handleSubmit}
+            disabled={!readySubmit}
           >
             Enviar
           </Button>

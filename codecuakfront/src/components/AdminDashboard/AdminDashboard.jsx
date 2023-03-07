@@ -10,6 +10,7 @@ import Members from "./utils/Members";
 const AdminDashboard = () => {
   const token  = localStorage.getItem("token")
   const allusers = useSelector((state) => state.alluser);
+  console.log(allusers)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allUserAdmin(token));
@@ -54,7 +55,7 @@ const AdminDashboard = () => {
             justifyContent="center"
           >
              <StatBox
-              title={allusers.data.countAllUsers}
+              title={allusers.data?.countAllUsers}
               subtitle="Total de Usuarios"
               icon={
                 <PersonAddIcon
@@ -77,7 +78,7 @@ const AdminDashboard = () => {
             justifyContent="center"
           >
             <StatBox
-              title={allusers.data.countAllPost}
+              title={allusers.data?.countAllPost}
               subtitle="Total de Post"
               icon={
                 <DynamicFeedIcon
@@ -93,7 +94,7 @@ const AdminDashboard = () => {
         </Box>
       </Box>
       <Box>
-        <Members allusers={allusers.data.results} /> 
+          <Members allusers={allusers.data?.results} />  
       </Box>
     </Box>
   );

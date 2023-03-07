@@ -32,11 +32,16 @@ const ComentContainer = ({ postId }) => {
         }
     }, []);
 
+    // se realiza una peticion nuevamente cuando se envia un comentario
+    // esto hace que se actualice automaticamente
     useEffect(() => {
         try {
-            axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page}`).then(
+            axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page + 1 - page}`).then(
                 response => {
-                    setData(response.data)
+                    setData({
+                        ...data,
+                        results: [response.data.results[0], ...data.results]
+                    })
                 })
         } catch (error) {
             console.log(error.message)
@@ -66,7 +71,7 @@ const ComentContainer = ({ postId }) => {
 
                 <AddComent
                     postId={postId}
-                    updateInfo={setUpdate}
+                    setUpdate={setUpdate}
                 />
 
                 {

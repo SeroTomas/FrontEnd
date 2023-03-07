@@ -7,24 +7,24 @@ import { sendComment } from "../../../../axiosFunctions";
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import {  useDispatch, useSelector } from "react-redux";
 
-const AddComent = ({postId, updateInfo}) => {
+const AddComent = ({postId, setUpdate}) => {
     const userData = useSelector(state => state.userData);
     const token = localStorage.getItem("token")
     const id = localStorage.getItem("id")
     const [coment, setComent] = useState("")
+    const [send, setSend] = useState(false)
 
     const handlerChange = (event) => {
         const value = event.target.value;
         setComent(value);
     }
 
-    const submitHandler = (event) => {
+    const submitHandler = async (event) => {
         event.preventDefault();
-        sendComment(coment, id, postId, token);
+        await sendComment(coment, id, postId, token);
+        setUpdate(`actualizado${coment}`)
         setComent("");
-        updateInfo(`actualizado${coment}`)
     }
-
 
 
     return (

@@ -7,10 +7,10 @@ const URL_BASE = "https://backend-production-c946.up.railway.app";
 
 // RUTA PARA PUBLICAR POST
 // falta fixear las rutas
-export const sendPost = async (content,image, userId, token) => {
+export const sendPost = async (content, image, userId, token) => {
   let response = await axios.post(
     `${URL_BASE}/socialcuak`,
-    { content,image, userId },
+    { content, image, userId },
     { headers: { "x-auth-token": token } }
   );
   console.log(response);
@@ -26,23 +26,26 @@ export const sendPost = async (content,image, userId, token) => {
 // ruta para traer comments
 export const getComments = (postId, page) => {
   try {
-    axios.get(`${URL_BASE}/socialcuak/${postId}/comments?page=${page}`).then(
-      response => { return response.data }
-    )
+    axios
+      .get(`${URL_BASE}/socialcuak/${postId}/comments?page=${page}`)
+      .then((response) => {
+        return response.data;
+      });
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 export const sendComment = async (content, userId, postId, token) => {
   try {
     const data = await axios.post(
       `${URL_BASE}/socialcuak/${postId}/comment`,
       { content, userId },
-      { headers: { "x-auth-token": token } });
-      return data;
+      { headers: { "x-auth-token": token } }
+    );
+    return data;
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 };
 // RUTA PARA EDITAR UN POST
@@ -80,15 +83,12 @@ export const sendMP = async (donacion, input) => {
 
 export const userRegister = async (name, email, nickName, password) => {
   try {
-    let response = await axios.post(
-      `${URL_BASE}/auth/signup`,
-      {
-        name,
-        email,
-        nickName,
-        password,
-      }
-    );
+    let response = await axios.post(`${URL_BASE}/auth/signup`, {
+      name,
+      email,
+      nickName,
+      password,
+    });
     return response;
   } catch (error) {
     console.log(error);
@@ -102,9 +102,9 @@ export const userRegister = async (name, email, nickName, password) => {
         throw "El email ya esta usado por un usuario";
       } else if (
         error.response.data.errors[0]?.msg ==
-        "El nickName ya es usado por un usuario" ||
+          "El nickName ya es usado por un usuario" ||
         error.response.data.errors[1]?.msg ==
-        "El nickName ya es usado por un usuario"
+          "El nickName ya es usado por un usuario"
       ) {
         throw "El nickName ya es usado por un usuario";
       } else {
@@ -135,4 +135,25 @@ export const cloudinary = async (imagen, randomId) => {
   return response.data;
 };
 
-// RUTA INCIAR SESION CON GOOGLE
+export const editUser = async (
+  id,
+  name,
+  description,
+  skills,
+  token
+  
+) => {
+  console.log(id);
+  console.log(token);
+  try {
+    const response = await axios.put(`${URL_BASE}/users/${id}`, {
+      name,
+  description,
+  skills,
+    },{ headers: { "x-auth-token": token } });
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

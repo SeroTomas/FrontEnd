@@ -42,6 +42,7 @@ const FormSocialPost = ({ user }) => {
     await sendPost(form,imagen,user.id,token);
     dispatch(getAllPost(1)); // getAllPost de la pagina 1 de posteos para que se renderice el nuevo post
     setForm("");
+    setImagen("")
   };
 
   return (
@@ -87,7 +88,7 @@ const FormSocialPost = ({ user }) => {
               margin="1rem"
               position="relative"
             >
-              {imageUrl ? (
+              {imagen ? (
                 <>
                   <img
                     style={{ maxWidth: "50%" }}

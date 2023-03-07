@@ -28,6 +28,12 @@ const Members = ({allusers}) => {
   const [rowId, setRowId] = useState(null);
   const [pageSize, setPageSize] = useState(5);
   const columns = [
+    {
+      field: "perfil",
+      headerName: "Perfil",
+      renderCell: (params) => <Perfiles {...{ params, rowId, setRowId }} />,
+      width:"60"
+    },
     { field: "id", headerName: "ID" ,width:300,},
     {
       field: "name",

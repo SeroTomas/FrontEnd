@@ -20,27 +20,47 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 
 export default function FormEditUser() {
   const userData = useSelector((state) => state.userData);
+  const userDetail = useSelector((state) => state.userDetail);
+
   const [success, setSuccess] = useState("");
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState({
     name: "",
     description: "",
     skills: [],
+    github: "",
+    about: "",
   });
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(""); 
   const [imagen, setImagen] = useState("");
+  const [userid, setUserid] = useState(true);
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
+  
+  useEffect(() => {
+    if (userDetail.id) {
+      setUserid(false);
+    }else{
+      setUserid(true);
+    }
+  }, [userDetail,edit]);
+  console.log(userData)
+
+
   useEffect(() => {
     if (userData) {
       setEdit({
-        name: userData.name,
-        description: userData.description,
-        skills: userData.skills?.join(", "),
+        name:  userData.name,
+        description:userData.description,
+        skills:userData.skills,
+        github: userData.github,
+        about: userData.about,
       });
-      setImagen({imagen:userData.image})
+      setImagen({ imagen: userData.image});
     }
   }, [userData]);
   const handleClickOpen = () => {
@@ -77,33 +97,26 @@ export default function FormEditUser() {
     }
   }, [imageUrl]);
   /////
-  console.log(imagen);
-  const token = localStorage.getItem("token");
-  const id = localStorage.getItem("id");
-
-  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
-
       const res = await editUser(
         id,
         edit.name,
         edit.description,
         edit.skills,
-        imagen,
+        edit.github,
+        edit.about,
+        imagen ? imagen.imagen : "",
         token
       );
-      console.log(res, "rrrrrrrrrrrrrr");
       if (res?.status === 200) {
         setSuccess("Usuario editado correctamente");
         setTimeout(() => {
           setOpen(false);
-          setSuccess("")
-          window.location.reload();
+          setSuccess("");
         }, 3000);
-   
-      
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -111,7 +124,7 @@ export default function FormEditUser() {
   };
   return (
     <>
-      <Box display="flex" justifyContent="end">
+    {userid  ? <Box display="flex" justifyContent="end">
         <IconButton>
           <EditIcon onClick={handleClickOpen} />
         </IconButton>
@@ -124,29 +137,30 @@ export default function FormEditUser() {
               style: { backgroundColor: "#ffffff" },
             }}
           >
-            <DialogContent sx={{ width: "30rem", height: "40rem" }}>
+            <DialogContent sx={{ width: "35rem", height: "45rem" }}>
               <DialogContentText
                 fontSize={30}
                 margin="auto"
                 color="#1E8449"
                 fontFamily={"Sen"}
-                >
+              >
                 Edita tu perfil
               </DialogContentText>
-                {success && (
-                  <Alert
-                    severity="success"
-                    sx={{ width: "22rem",marginTop: "2rem" }}
-                  >
-                    {success}
-                  </Alert>
-                )}
+              {success && (
+                <Alert
+                  severity="success"
+                  sx={{ width: "22rem", marginTop: "2rem" }}
+                >
+                  {success}
+                </Alert>
+              )}
               <Box
                 display="flex"
                 flexDirection="column"
                 justifyContent="center"
                 alignItems="center"
                 marginTop="5rem"
+                gap="2rem"
               >
                 <TextField
                   size="small"
@@ -165,7 +179,7 @@ export default function FormEditUser() {
                   required
                   variant="outlined"
                   color="success"
-                  sx={{ color: "#ffffff", margin: "5rem", width: "100%" }}
+                  sx={{ color: "#ffffff", width: "100%" }}
                   label="description"
                   value={edit.description}
                   name="description"
@@ -184,7 +198,32 @@ export default function FormEditUser() {
                   placeholder="skills"
                   onChange={handleChange}
                 />
+                <TextField
+                  size="small"
+                  required
+                  variant="outlined"
+                  color="success"
+                  sx={{ color: "#ffffff", width: "100%" }}
+                  label="github"
+                  value={edit.github}
+                  name="github"
+                  placeholder="Ingrese Link de GitHub"
+                  onChange={handleChange}
+                />
+                <TextField
+                  size="small"
+                  required
+                  variant="outlined"
+                  color="success"
+                  sx={{ color: "#ffffff", width: "100%" }}
+                  label="about"
+                  value={edit.about}
+                  name="about"
+                  placeholder="about"
+                  onChange={handleChange}
+                />
               </Box>
+
               <Box display="flex" justifyContent="start">
                 <IconButton component="label" size="large" color="success">
                   <AddPhotoAlternateIcon fontSize="large" />
@@ -226,7 +265,7 @@ export default function FormEditUser() {
                       <DeleteIcon fontSize="large" color="success" />
                     </IconButton>
                   </>
-                ) : null}
+                ) : <img src={imagen.imagen} width="200px"/>}
               </Box>
             </DialogContent>
             <DialogActions>
@@ -239,7 +278,8 @@ export default function FormEditUser() {
             </DialogActions>
           </Dialog>
         </FormControl>
-      </Box>
+      </Box> : null}
+      
     </>
   );
 }

@@ -6,11 +6,13 @@ import { useParams } from "react-router-dom"
 import NavBar from "../NavBar/NavBar";
 import UserProfile from "../blueprints/UserProfile/UserProfile";
 
+
 const UserDetail = () => {
   const token  = localStorage.getItem("token")
   
   const dispatch = useDispatch();
   const userDetail = useSelector(state => state.userDetail)
+  console.log(userDetail);
   const { id } = useParams();
   useEffect(() => {
     dispatch(getUserDetailById(id,token))

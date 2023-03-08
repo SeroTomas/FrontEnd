@@ -43,10 +43,11 @@ export const sendComment = async (content, userId, postId, token) => {
     const data = await axios.post(
       `${URL_BASE}/socialcuak/${postId}/comment`,
       { content, userId },
-      { headers: { "x-auth-token": token } });
+      { headers: { "x-auth-token": token } }
+    );
     return data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 // RUTA PARA EDITAR UN POST
@@ -139,19 +140,26 @@ export const editUser = async (
   name,
   description,
   skills,
+  github,
+  about,
   image,
   token
-  
 ) => {
   console.log(id);
-  console.log(token);
+
   try {
-    const response = await axios.put(`${URL_BASE}/users/${id}`, {
-      name,
-  description,
-  skills,
-  image
-    },{ headers: { "x-auth-token": token } });
+    const response = await axios.put(
+      `${URL_BASE}/users/${id}`,
+      {
+        name,
+        description,
+        skills,
+        github,
+        about,
+        image,
+      },
+      { headers: { "x-auth-token": token } }
+    );
     console.log(response);
     return response;
   } catch (error) {

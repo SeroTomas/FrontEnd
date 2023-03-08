@@ -1,5 +1,5 @@
 //hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 //actions
 import { postLike } from "../../../../redux/action";
@@ -12,6 +12,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ComentContainer from "../ComentContainer/ComentContainer";
 import LongMenu from "../../LongMenu/LongMenu";
 import FormDialog from "../../FormDialog/FormDialog";
+import { deletePost } from "../../../../axiosFunctions";
 
 // datos del posteo por props
 const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost }) => {
@@ -35,7 +36,11 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
     setViewComents(!viewComents);
   };
 
-  console.log(option)
+  useEffect(()=>{
+    if (option === "Eliminar") {
+    deletePost()
+    }
+  },[])
   return (
     <>
       <Box

@@ -25,21 +25,14 @@ const PostUserContainer = () => {
   // idUtil es igual al id que exista
   const idUtil = detailId ? detailId : userId;
   const {name, image, count, id, next, arrayPosts} = useSelector(state=>state.posts)
-  const [getPost, setGetPost] = useState(true);
   const [page, setPage] = useState(0);
-
+  let getPost = true;
   //--------Realiza petición de posts al cargar el componente---  --
   useEffect(() => {
     dispatch(getPostsByUserId(idUtil, page + 1, token));
     setPage(page + 1);
     return () => dispatch(cleanPost());
   }, [idUtil])
-
-  //Seteo el estado local getPost en true al actualizar el estado global "posts", para que se pueda realizar nuevas peticiones
-
-  useEffect(() => {
-    setGetPost(true)
-  }, [arrayPosts])
 
   //-------- Coloca handlerScroll al montar componente y lo retira al desmontar------- 
   useEffect(() => {
@@ -50,10 +43,12 @@ const PostUserContainer = () => {
   // Hace Dispatch al llegar al final de la pagina y cumplir las condiciones
   function handleScroll() {
     if (next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
-      setGetPost(false);
+      console.log("handleScroll")
+      getPost=false;
       dispatch(getPostsByUserId(idUtil, page + 1))
       setPage(page + 1)
     }
+    
   };
 
   return (

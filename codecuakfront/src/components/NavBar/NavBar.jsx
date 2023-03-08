@@ -29,7 +29,6 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 const NavBar = () => {
   const settings = [
     { name: "Perfil", link: "/user" },
-    { name: "Cuenta", link: "" },
   ];
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -161,12 +160,6 @@ const NavBar = () => {
               </Link>
             </MenuItem>
           ))}
-
-          <Box className={style.iconsContainer}>
-            <button onClick={handlerNotifications}>
-              <NotificationsActiveIcon sx={{ color: "white" }} />
-            </button>
-          </Box>
           <Box
             className={
               notiExpanded ? style.notiExpanded : style.notiNotExpanded

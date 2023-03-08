@@ -27,38 +27,6 @@ const Landing = () => {
         "Lo que buscamos con “social-Cuak” es distendernos y conocernos; encontrar un clima agradable para despejar la mente.",
       icon: 1,
     },
-    {
-      id: "Q&A",
-      link: "/qanda",
-      title: "Q&A-Cuak",
-      color: "#D5DBDB",
-      secondTitle: "Para crecer necesitamos ayudarnos entre todos",
-      description:
-        "Por eso en “Q&A-Cuak” los usuarios podrán generar nuevas publicaciones solicitando ayuda o responder las consultas ya existentes.",
-      icon: 2,
-    },
-    {
-      id: "work",
-      link: "/work",
-      title: "workCuak",
-      color: "#dce3e3",
-      secondTitle: "La programación es un trabajo de equipo",
-      description:
-        "“work-Cuack” está diseñado para buscar colaboradores para desarrollar proyectos propios.",
-      icon: 3,
-    },
-    {
-      id: "hiring",
-      link: "/hiring",
-
-      title: "hiringCuak",
-      color: "#D5DBDB",
-      secondTitle:
-        "En codeCuak nos preocupamos por el futuro de nuestros miembros",
-      description:
-        "Ideamos una sección en la que podrán cargar su perfil en el caso de que estén en búsqueda activa de empleo.Tambien las empresas podrán registrarse y publicar ofertas laborales para que los desarrolladores apliquen a ellas.",
-      icon: 4,
-    },
   ];
 
   const token = localStorage.getItem("token");
@@ -79,9 +47,9 @@ const Landing = () => {
         <Box>
           <List component="ul" className={styles.navul}>
             <ListItem ><Link href="#social" className={styles.a} >{">_"}socialCuak</Link></ListItem>
-            <ListItem><Link href="#Q&A" className={styles.a} >{">_"}Q&A-Cuak</Link></ListItem>
+            {/* <ListItem><Link href="#Q&A" className={styles.a} >{">_"}Q&A-Cuak</Link></ListItem>
             <ListItem ><Link href="#work" className={styles.a} >{">_"}workCuak</Link></ListItem>
-            <ListItem><Link href="#hiring" className={styles.a}>{">_"}hiringCuak</Link></ListItem>
+            <ListItem><Link href="#hiring" className={styles.a}>{">_"}hiringCuak</Link></ListItem> */}
             <ListItem><Link to="/donaciones" className={styles.a}>{">_"}donaciones</Link></ListItem>
           </List>
         </Box>

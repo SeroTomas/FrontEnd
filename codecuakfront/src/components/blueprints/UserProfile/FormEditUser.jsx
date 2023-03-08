@@ -175,6 +175,7 @@ export default function FormEditUser() {
                   <TextField
                     size="small"
                     required
+                    multiline
                     variant="outlined"
                     color="success"
                     sx={{ color: "#ffffff", width: "100%" }}
@@ -211,6 +212,7 @@ export default function FormEditUser() {
                   <TextField
                     size="small"
                     required
+                    multiline
                     variant="outlined"
                     color="success"
                     sx={{ color: "#ffffff", width: "100%" }}

@@ -11,6 +11,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 //componentes
 import ComentContainer from "../ComentContainer/ComentContainer";
 import LongMenu from "../../LongMenu/LongMenu";
+import FormDialog from "../../FormDialog/FormDialog";
 
 // datos del posteo por props
 const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost }) => {
@@ -18,10 +19,9 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
   //datos del usuario que hizo el posteo sirve para los posteos del social
   // traemos el token para poder hacer el dispatch de los likes
   const token = localStorage.getItem("token");
-  const { name, image, id } =
-    userDev || user ? userDev || user : { name: null, image: null };
+  const { name, image, id } = userDev || user ? userDev || user : { name: null, image: null };
   const [viewComents, setViewComents] = useState(false);
-
+  const [option, setOption] = useState("")
   // traemos el status para poder verificar que categoria es el usuario
   // y saber si renderizar el menu desplegable de opciones para hacer
   // put y delete de los posteos
@@ -35,6 +35,7 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
     setViewComents(!viewComents);
   };
 
+  console.log(option)
   return (
     <>
       <Box
@@ -54,15 +55,19 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
             <Typography fontFamily="sen" variant="h6" color="black">
               {name}
             </Typography>
+            {
+              // aca vamos a intentar tener el input desplegable para modificar el posteo
+              option === "Editar" ? <FormDialog setOption={setOption} postId={postId} content={content} /> : null
+            }
           </Box>
           {
             // primero averiguamos si el status se trata de un superadmin o admin
             // para renderizar las opciones en todos los posteos
             // si el usuario es dev, solo se le renderizaran en los posteos propios
             status === "admin" || status === "superadmin" ? (
-              <LongMenu />
+              <LongMenu setOption={setOption} />
             ) : userId === id ? (
-              <LongMenu />
+              <LongMenu setOption={setOption} />
             ) : null
           }
         </Box>

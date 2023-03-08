@@ -12,7 +12,6 @@ const UserDetail = () => {
   const dispatch = useDispatch();
   const userDetail = useSelector(state => state.userDetail)
   const { id } = useParams();
-
   useEffect(() => {
     dispatch(getUserDetailById(id,token))
     return()=> dispatch(cleanUserDetail())

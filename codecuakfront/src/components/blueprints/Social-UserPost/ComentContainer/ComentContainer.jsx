@@ -43,11 +43,8 @@ const ComentContainer = ({ postId }) => {
                         ...data,
                         results: [response.data.results[0], ...data.results]
                     }) 
-                    :8 
-                    setData({
-                        ...data,
-                        results: [...response.data.results]
-                    })
+                    :
+                    setData(response.data)
                 })
         } catch (error) {
             console.log(error.message)

@@ -22,13 +22,14 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
   const { name, image, id } = userDev || user ? userDev || user : { name: null, image: null };
   const [viewComents, setViewComents] = useState(false);
   const [option, setOption] = useState("")
+  const idUserlog = localStorage.getItem("Id")
   // traemos el status para poder verificar que categoria es el usuario
   // y saber si renderizar el menu desplegable de opciones para hacer
   // put y delete de los posteos
   const status = localStorage.getItem("status");
 
   const handlerClick = () => {
-    dispatch(postLike(postId, id, token));
+    dispatch(postLike(postId, idUserlog, token));
   };
 
   const handlerComment = () => {
@@ -99,7 +100,7 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
           gap="10px"
         >
           <Button onClick={() => handlerClick()} sx={{ color: "#1E8449" }}>
-            {likes.includes(userId) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {likes.includes(idUserlog) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             {likes.length}
           </Button>
           <Button

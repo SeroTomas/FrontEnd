@@ -16,8 +16,10 @@ import Gracias from "./components/blueprints/Donaciones/Gracias";
 import LogIn from "./Auth/LogIn";
 import Register from "./Auth/Register";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
-
+import NotAdmin from "./components/NotAdmin/NotAdmin";
+import { useSelector } from "react-redux";
 function App() {
+  const userData = useSelector((state) => state.userData);
   return (
     <div className="App">
       <Routes>
@@ -33,10 +35,11 @@ function App() {
         <Route exact path="/users" element={<UsersAll />} />
         <Route exact path="/users/:id" element={<UserDetail />} />
         <Route exact path="/donaciones" element={<Donaciones />} />
-        <Route exact path="/gracias" element={<Gracias/>} />
+        <Route exact path="/gracias" element={<Gracias />} />
         <Route exact path="/login" element={<LogIn />} />
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/admin" element={<AdminDashboard />} />
+        <Route exact path="/admin/" element={<AdminDashboard user={userData} />} />
+        <Route exact path="/notadmin" element={<NotAdmin />} />
       </Routes>
     </div>
   );

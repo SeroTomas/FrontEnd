@@ -1,7 +1,8 @@
 //estilos
 import styles from "./postUserContainer.module.css";
 //hooks
-import { useEffect, useState } from "react"; ``
+import { useEffect, useState } from "react";
+``;
 import { useDispatch, useSelector } from "react-redux";
 //actions
 import { cleanPost } from "../../../redux/action";
@@ -13,82 +14,116 @@ import { getPostsByUserId } from "../../../redux/action";
 import { useParams } from "react-router-dom";
 
 const PostUserContainer = () => {
-
   const dispatch = useDispatch();
   // se verifica si hay un id en params (userDetail)
   // para saber si se renderizan los posteos del
   // usuario que inicio sesion, o los de algun usuario X
-  const params = useParams()
+  const params = useParams();
   const detailId = params.id;
-  const userId = localStorage.getItem("id")
-  const token = localStorage.getItem("token")
+  const userId = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
   // idUtil es igual al id que exista
   const idUtil = detailId ? detailId : userId;
-  const {name, image, count, id, next, arrayPosts} = useSelector(state=>state.posts)
+  const { name, image, count, id, next, arrayPosts } = useSelector(
+    (state) => state.posts
+  );
   const [page, setPage] = useState(0);
   let getPost = true;
   //--------Realiza petición de posts al cargar el componente---  --
   useEffect(() => {
-    dispatch(getPostsByUserId(idUtil, page + 1, token));
-    setPage(page + 1);
+    dispatch(getPostsByUserId(idUtil, 1, token));
+    setPage(1);
     return () => dispatch(cleanPost());
-  }, [idUtil])
+  }, [idUtil]);
 
-  //-------- Coloca handlerScroll al montar componente y lo retira al desmontar------- 
+  //-------- Coloca handlerScroll al montar componente y lo retira al desmontar-------
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  })
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
 
   // Hace Dispatch al llegar al final de la pagina y cumplir las condiciones
   function handleScroll() {
-    if (next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
-      console.log("handleScroll")
-      getPost=false;
-      dispatch(getPostsByUserId(idUtil, page + 1))
-      setPage(page + 1)
+    if (
+      next &&
+      getPost &&
+      window.innerHeight + window.scrollY + 1 >=
+        document.documentElement.scrollHeight
+    ) {
+      console.log("handleScroll");
+      getPost = false;
+      dispatch(getPostsByUserId(idUtil, page + 1));
+      setPage(page + 1);
     }
-    
-  };
+  }
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" marginTop="15px" gap="10px">
-      {
-        count !== null ?
-          <>
-            {arrayPosts?.map((post) => {
-              return <CardPost  
-              key={post.id} 
-              imagenPost={post.image}
-              postId={post.id}
-              userId={userId}
-              content={post.content}
-              likes={post.likes}
-              userDev={post.userdev}
-              user= {{name, image, id}}
-              />;
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      marginTop="15px"
+      gap="10px"
+    >
+      {count !== null ? (
+        <>
+          {arrayPosts?.map((post) => {
+            return (
+              <CardPost
+                key={post.id}
+                imagenPost={post.image}
+                postId={post.id}
+                userId={userId}
+                content={post.content}
+                likes={post.likes}
+                userDev={post.userdev}
+                user={{ name, image, id }}
+              />
+            );
+          })}
+        </>
+      ) : (
+        //---skeletons---
+        <>
+          {Array(5)
+            .fill()
+            .map((_, i) => {
+              return (
+                <Card key={i} sx={{ padding: 1, width: 620, marginBottom: 1 }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginTop: 2,
+                      marginLeft: 3,
+                    }}
+                  >
+                    <Skeleton
+                      animation="wave"
+                      variant="circular"
+                      width={40}
+                      height={40}
+                    />
+                    <Skeleton
+                      animation="wave"
+                      height={20}
+                      width="30%"
+                      sx={{ marginLeft: 2 }}
+                    />
+                  </Box>
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <Skeleton
+                      variant="rounded"
+                      width={550}
+                      height={60}
+                      sx={{ marginTop: 3, marginBottom: 3 }}
+                    />
+                  </Box>
+                </Card>
+              );
             })}
-          </> 
-          :          //---skeletons---
-          <>
-            {
-              Array(5).fill().map((_, i) => {
-                return (
-                  <Card key={i} sx={{ padding: 1, width: 620, marginBottom: 1 }}>
-                    <Box sx={{ display: "flex", alignItems: "center", marginTop: 2, marginLeft: 3 }}>
-                      <Skeleton animation="wave" variant="circular" width={40} height={40} />
-                      <Skeleton animation="wave" height={20} width="30%" sx={{ marginLeft: 2 }} />
-                    </Box>
-                    <Box sx={{ display: "flex", justifyContent: "center" }}>
-                      <Skeleton variant="rounded" width={550} height={60} sx={{ marginTop: 3, marginBottom: 3 }} />
-                    </Box>
-                  </Card>
-                )
-              })
-            }
-          </>
-
-      }
+        </>
+      )}
     </Box>
   );
 };

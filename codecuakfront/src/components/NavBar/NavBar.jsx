@@ -160,12 +160,6 @@ const NavBar = () => {
               </Link>
             </MenuItem>
           ))}
-
-          <Box className={style.iconsContainer}>
-            <button onClick={handlerNotifications}>
-              <NotificationsActiveIcon sx={{ color: "white" }} />
-            </button>
-          </Box>
           <Box
             className={
               notiExpanded ? style.notiExpanded : style.notiNotExpanded

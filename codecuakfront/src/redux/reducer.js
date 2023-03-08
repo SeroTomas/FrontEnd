@@ -84,10 +84,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       const { arrayPosts } = state.posts;
       const newArray = arrayPosts.map((post)=>{
         if(post.id == postId){
-          return{
+          console.log(post.likes)
+          const h={
             ...post, 
             likes: (message === "El like se ha agregado")? post.likes.concat(userId): post.likes.filter((id)=> id!=userId)
           }
+          console.log(h.likes)
+          return h
         }else{
           return post;
           }

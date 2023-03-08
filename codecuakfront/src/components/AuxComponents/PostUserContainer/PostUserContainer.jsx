@@ -22,7 +22,6 @@ const PostUserContainer = () => {
   const detailId = params.id;
   const userId = localStorage.getItem("id")
   const token = localStorage.getItem("token")
-  console.log(token);
   // idUtil es igual al id que exista
   const idUtil = detailId ? detailId : userId;
   const {name, image, count, id, next, arrayPosts} = useSelector(state=>state.posts)

@@ -1,11 +1,11 @@
 //estilos css
 import styles from "./userProfile.module.css"
 // dependencias MUI
-import { Box, Typography, Divider } from "@mui/material"
+import { Box, Typography, Divider} from "@mui/material"
 // componentes
+import FormEditUser from "./FormEditUser";
 import CardUser from "../../AuxComponents/CardUser/CardUser";
 import PostUserContainer from "../../AuxComponents/PostUserContainer/PostUserContainer";
-
 const UserProfile = ({ user }) => {
 
     // imagenes portada y perfil por default
@@ -21,13 +21,17 @@ const UserProfile = ({ user }) => {
         gitHub:user.gitHub
     }
 
+
     return (
         <Box bgcolor="#D5DBDB" className={styles.container} marginTop="70px">
             <Box className={styles.subContainer1}>
                 <Box className={styles.subContainerUser} sx={{ boxShadow: '0px 4px 6px rgba(1, 1, 1, 0.20)' }} maxWidth="70%">
                     <Box className={styles.portada}>
                         <img src={user.portada || portadaDefault} alt="Imagen de portada" />
+                      <FormEditUser/>
+                  
                     </Box>
+        
                     <Box className={styles.subContainerData}>
                         <CardUser user={cardUserData} />
                     </Box>
@@ -41,7 +45,7 @@ const UserProfile = ({ user }) => {
                                 <Typography>Technical Skills:</Typography>
                                 <Box>
                                     <ul>
-                                        {user.softSkills?.map((skill) => {
+                                        {user.skills?.map((skill) => {
                                             return (
                                                 <li>{skill}</li>
                                             )
@@ -49,7 +53,7 @@ const UserProfile = ({ user }) => {
                                     </ul>
                                 </Box>
                             </Box>
-                            <Box className={styles.SoftSkills}>
+                            {/* <Box className={styles.SoftSkills}>
                                 <Typography>Soft Skills:</Typography>
                                 <Box>
                                     <ul>
@@ -60,10 +64,10 @@ const UserProfile = ({ user }) => {
                                         })}
                                     </ul>
                                 </Box>
-                            </Box>
+                            </Box> */}
                         </Box>
                         <Divider orientation="vertical" flexItem />
-                        <Box className={styles.containerExperience}>
+                        {/* <Box className={styles.containerExperience}>
                             <Box className={styles.title}>
                                 <Typography>Mis experiencias:</Typography>
                             </Box>
@@ -76,7 +80,7 @@ const UserProfile = ({ user }) => {
                                     })}
                                 </ul>
                             </Box>
-                        </Box>
+                        </Box> */}
                     </Box>
                     <Divider variant="middle" sx={{ borderBottomWidth: 2 }} />
                     <PostUserContainer/>

@@ -1,6 +1,7 @@
 //hooks
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import {Link} from "react-router-dom"
 //actions
 import { postLike } from "../../../../redux/action";
 //auxiliares
@@ -52,7 +53,9 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
       >
         <Box display="flex" flexDirection="row" alignItems="start" width={1}>
           <Box display="flex" gap="15px" alignItems="center" flexGrow={1}>
+            <Link to={`/users/${userDev?.id}`}>
             <Avatar src={image} alt="Foto de perfil" />
+            </Link>
             <Typography fontFamily="sen" variant="h6" color="black">
               {name}
             </Typography>

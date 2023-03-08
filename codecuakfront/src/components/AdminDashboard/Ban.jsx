@@ -5,8 +5,12 @@ import { green } from "@mui/material/colors";
 import { deleteUser } from "../../redux/action";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Check } from "@mui/icons-material";
-
+import {allUserAdmin} from "../../redux/action"
+import { useDispatch } from "react-redux";
 const Ban = ({ params, rowId, setRowId }) => {
+  let { status} = params.row
+  const dispatch= useDispatch()
+  
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const token  = localStorage.getItem("token")
@@ -19,6 +23,9 @@ const Ban = ({ params, rowId, setRowId }) => {
       setRowId(null);
     }
     setLoading(false);
+    
+    dispatch(allUserAdmin())
+    window.location.reload()
   };
 
   useEffect(() => {
@@ -38,8 +45,8 @@ const Ban = ({ params, rowId, setRowId }) => {
           sx={{
             width: 40,
             height: 40,
-            bgcolor: green[500],
-            "&:hover": { bgcolor: green[700] },
+            bgcolor: blue,
+            "&:hover": { bgcolor: blue },
           }}
         >
           <Check />
@@ -51,7 +58,7 @@ const Ban = ({ params, rowId, setRowId }) => {
             width: 40,
             height: 40,
           }}
-          disabled={loading}
+          disabled={status=="superadmin"?true:loading}
           onClick={handleSubmit}
         >
           <DeleteIcon />
@@ -61,7 +68,7 @@ const Ban = ({ params, rowId, setRowId }) => {
         <CircularProgress
           size={52}
           sx={{
-            color: green[500],
+            color: "#ffff",
             position: "absolute",
             top: -6,
             left: -6,

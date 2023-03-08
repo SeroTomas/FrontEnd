@@ -10,6 +10,7 @@ import {
   Typography,
   FormHelperText,
   Alert,
+  CircularProgress
 } from "@mui/material";
 // FUNCION REGISTER POST
 import { userRegister, userLogin } from "../axiosFunctions";
@@ -54,7 +55,7 @@ const Register = () => {
         localStorage.setItem("status", response.data.user.status)
         setTimeout(() => {
           navigate("/social");
-        }, 3000);
+        }, 1000);
       }
     } catch (error) {
       
@@ -71,7 +72,7 @@ const Register = () => {
       }
       setTimeout(() => {
         setBackError("");
-      }, 3000);
+      }, 5000);
     }
   };
 
@@ -104,9 +105,10 @@ const Register = () => {
       {success && (
         <Alert
           severity="success"
-          sx={{ width: "15%", margin: "auto", marginBottom: "2rem" }}
+          sx={{ width: "15rem", margin: "auto", marginBottom: "2rem" }}
         >
           {success}
+          <CircularProgress color="success" />
         </Alert>
       )}
       {backError && (

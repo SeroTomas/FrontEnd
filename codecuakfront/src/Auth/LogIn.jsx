@@ -7,6 +7,7 @@ import {
   Button,
   Typography,
   Alert,
+  CircularProgress
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { userLogin } from "../axiosFunctions";
@@ -29,14 +30,14 @@ const LogIn = () => {
         setSuccess("Inicio de sesion exitoso");
         setTimeout(() => {
           navigate("/social");
-        }, 3000);
+        }, 1000);
       }
     } catch (error) {
       console.log(error);
       setBackError("Algunos de los datos es incorrecto");
       setTimeout(() => {
         setBackError("");
-      }, 3000);
+      }, 5000);
     }
   };
 
@@ -76,9 +77,10 @@ const LogIn = () => {
       {success && (
         <Alert
           severity="success"
-          sx={{ width: "15%", margin: "auto", marginBottom: "2rem" }}
+          sx={{ width: "15rem", margin: "auto", marginBottom: "2rem"}}
         >
           {success}
+          <CircularProgress color="success" />
         </Alert>
       )}
       {backError && (

@@ -7,8 +7,6 @@ import CircleIcon from "@mui/icons-material/Circle";
 import FormEditUser from "./FormEditUser";
 import CardUser from "../../AuxComponents/CardUser/CardUser";
 import PostUserContainer from "../../AuxComponents/PostUserContainer/PostUserContainer";
-import { useState } from "react";
-import { useEffect } from "react";
 const UserProfile = ({ user }) => {
   // imagenes portada y perfil por default
   const portadaDefault =
@@ -90,9 +88,10 @@ const UserProfile = ({ user }) => {
               <Box
                 display="flex"
                 justifyContent="center"
+                alignItems="center"
                 textAlign="start"
                 maxWidth="100%"
-                height="5rem"
+                height="10rem"
               >
                 <Typography
                   variant="h7"

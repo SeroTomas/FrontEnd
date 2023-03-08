@@ -8,7 +8,6 @@ import { getAllPost, cleanPost } from "../../../redux/action";
 import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 // dependencias mui
 import { Box, Card, Skeleton } from "@mui/material";
-import io from 'socket.io-client';
 
 
 const PostSocialContainer = () => {
@@ -17,8 +16,7 @@ const PostSocialContainer = () => {
   const [getPost, setGetPost] = useState(true);
   const [page, setPage] = useState(0)
   const dispatch = useDispatch();
-  const socket = io('https://backend-production-c946.up.railway.app/');
-
+  
   
   //--------Realiza petición de posts al cargar el componente-----
   useEffect(() => {

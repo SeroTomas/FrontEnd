@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState} from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,45 +6,54 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Box } from '@mui/system';
+import { editPost } from '../../../axiosFunctions';
 
-export default function FormDialog() {
-  const [open, setOpen] = React.useState(false);
+export default function FormDialog({setOption, postId, content}) {
+  const [open, setOpen] = useState(true);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const [post, setPost] = useState(content)
+
+  const token = localStorage.getItem("token");
 
   const handleClose = () => {
     setOpen(false);
+    setOption("")
   };
 
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setPost(value);
+  }
+
+  const handleEdit = () => {
+    editPost(post, postId, token)
+    setOpen(false)
+  }
+
+
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
+    <Box >
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Editar</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
-            type="email"
+            label="Que quieres editar?"
+            type="text"
             fullWidth
+            value={post}
+            onChange={handleChange}
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Cancelar</Button>
+          <Button onClick={handleEdit}>Confirmar edicion</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 }

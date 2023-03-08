@@ -9,13 +9,15 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 // dependencias mui
 import { Box, Card, Skeleton } from "@mui/material";
 
+
 const PostSocialContainer = () => {
   const userId = localStorage.getItem("id")
   const { count, next, name, image, id, arrayPosts } = useSelector((state) => state.posts);
   const [getPost, setGetPost] = useState(true);
   const [page, setPage] = useState(0)
   const dispatch = useDispatch();
-
+  
+  
   //--------Realiza petición de posts al cargar el componente-----
   useEffect(() => {
     dispatch(getAllPost(page + 1));

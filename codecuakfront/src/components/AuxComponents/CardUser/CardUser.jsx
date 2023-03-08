@@ -3,7 +3,9 @@ import style from "./CardUser.module.css"
 // dependencias MUI
 import { Box, Avatar, Typography, Skeleton } from "@mui/material"
 
+
 const CardUser=({ user })=>{
+  
     return(
         <Box className={style.container}>
             {user.name?

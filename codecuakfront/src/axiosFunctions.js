@@ -141,6 +141,7 @@ export const editUser = async (
   name,
   description,
   skills,
+  image,
   token
   
 ) => {
@@ -151,9 +152,10 @@ export const editUser = async (
       name,
   description,
   skills,
+  image
     },{ headers: { "x-auth-token": token } });
     console.log(response);
-    return response.data;
+    return response;
   } catch (error) {
     console.log(error);
   }

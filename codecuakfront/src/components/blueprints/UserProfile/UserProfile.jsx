@@ -1,13 +1,13 @@
 //estilos css
 import styles from "./userProfile.module.css"
 // dependencias MUI
-import { Box, Typography, Divider,DialogContent,DialogContentText,DialogTitle} from "@mui/material"
+import { Box, Typography, Divider} from "@mui/material"
 // componentes
 import FormEditUser from "./FormEditUser";
 import CardUser from "../../AuxComponents/CardUser/CardUser";
 import PostUserContainer from "../../AuxComponents/PostUserContainer/PostUserContainer";
 const UserProfile = ({ user }) => {
-console.log(user);
+
     // imagenes portada y perfil por default
     const portadaDefault = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTZZeLZAzPyAtBhCUl384gDJYN3ROMfPXtPDUlu3QAX9gyEEX6';
     const imageDefault = 'https://st2.depositphotos.com/19428878/44645/v/600/depositphotos_446453832-stock-illustration-default-avatar-profile-icon-social.jpg';
@@ -21,16 +21,17 @@ console.log(user);
         gitHub:user.gitHub
     }
 
-    //put
-   
+
     return (
         <Box bgcolor="#D5DBDB" className={styles.container} marginTop="70px">
             <Box className={styles.subContainer1}>
                 <Box className={styles.subContainerUser} sx={{ boxShadow: '0px 4px 6px rgba(1, 1, 1, 0.20)' }} maxWidth="70%">
                     <Box className={styles.portada}>
                         <img src={user.portada || portadaDefault} alt="Imagen de portada" />
-        <FormEditUser/>
+                      <FormEditUser/>
+                  
                     </Box>
+        
                     <Box className={styles.subContainerData}>
                         <CardUser user={cardUserData} />
                     </Box>

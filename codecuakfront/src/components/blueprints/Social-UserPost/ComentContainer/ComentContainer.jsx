@@ -38,10 +38,13 @@ const ComentContainer = ({ postId }) => {
         try {
             axios.get(`https://backend-production-c946.up.railway.app/socialcuak/${postId}/comments?page=${page + 1 - page}`).then(
                 response => {
+                    data.results.length?
                     setData({
                         ...data,
                         results: [response.data.results[0], ...data.results]
-                    })
+                    }) 
+                    :
+                    setData(response.data)
                 })
         } catch (error) {
             console.log(error.message)

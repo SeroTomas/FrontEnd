@@ -52,13 +52,11 @@ export const sendComment = async (content, userId, postId, token) => {
 };
 // RUTA PARA EDITAR UN POST
 
-export const editPost = async (content, id) => {
+export const editPost = async (content, id, token) => {
   try {
-    const data = await axios.put(`${URL_BASE}/socialcuak/${id}`, { content });
-    return "Publicacion modificada con exito";
+    const data = await axios.put(`${URL_BASE}/socialcuak/${id}`, { content },  { headers: { "x-auth-token": token } });
   } catch (error) {
     console.log(error.mesage);
-    return "Algo ha salido mal";
   }
 };
 // RUTA PARA BORRAR UN POST

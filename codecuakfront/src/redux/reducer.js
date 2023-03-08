@@ -26,6 +26,7 @@ const initialState = {
   userDetail: {},
   users: [],
   posts: {
+    origin:"",
     id:"",
     name: "",
     image: "",
@@ -38,17 +39,20 @@ const initialState = {
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_POST:
-      if (payload.previus) {
+      const {data, origin} = payload;
+      
+      if (data.previus && origin==state.posts.origin) {
         const { arrayPosts } = state.posts;
-        const newPosts = arrayPosts.concat(payload.results.socialposts ? payload.results.socialposts : payload.results)
+        const newPosts = arrayPosts.concat(data.results.socialposts ? data.results.socialposts : data.results)
         return {
           ...state,
           posts: {
-            id:payload.results.id,
-            count:  payload.count,
-            next: payload.next,
-            name: payload.results.name,
-            image: payload.results.image,
+            origin: origin,
+            id:data.results.id,
+            count:  data.count,
+            next: data.next,
+            name: data.results.name,
+            image: data.results.image,
             arrayPosts: newPosts
           }
         }
@@ -56,12 +60,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         posts: {
-          id:payload.results.id,
-          name: payload.results.name,
-          image: payload.results.image,
-          count: payload.results.count,
-          next: payload.next,
-          arrayPosts: payload.results.socialposts ? payload.results.socialposts : payload.results,
+          origin: origin,
+          id:data.results.id,
+          name: data.results.name,
+          image: data.results.image,
+          count: data.results.count,
+          next: data.next,
+          arrayPosts: data.results.socialposts ? data.results.socialposts : data.results,
         }
       }
     case GET_POST_BY_ID:

@@ -42,7 +42,7 @@ export const getAllPost = (page) => {
   return function (dispatch) {
     try {
       axios.get(`${URL_BASE}/socialcuak?page=${page}`).then((response) => {
-        dispatch({ type: GET_ALL_POST, payload: response.data });
+        dispatch({ type: GET_ALL_POST, payload: {data: response.data, origin: "social"} });
       });
     } catch (error) {
       console.log(error.message)
@@ -56,7 +56,7 @@ export const getPostsByUserId = (userId, page) => {
   return async (dispatch) => {
     try {
       const data = await axios.get(`${URL_BASE}/socialcuak/user/${userId}?page=${page}`)
-      dispatch({ type: GET_ALL_POST, payload: data.data })
+      dispatch({ type: GET_ALL_POST, payload: {data: data.data, origin: "user"} })
     } catch (error) {
       console.log(error)
     }

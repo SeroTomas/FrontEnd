@@ -19,7 +19,7 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu() {
+export default function LongMenu({setOption}) {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [value, setValue] = useState(false)
@@ -30,9 +30,8 @@ export default function LongMenu() {
     setAnchorEl(target);
   };
 
-  const handleClose = (event) => {
-    const name = event.target.innerHTML;
-    setValue(name)
+  const handleClose = (option) => {
+    setOption(option);
     setAnchorEl(null);
   };
 
@@ -65,7 +64,7 @@ export default function LongMenu() {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} onClick={handleClose}  >
+          <MenuItem key={option} onClick={()=> {handleClose(option)}}  >
             <Typography variant="body1" color="initial"> {option}</Typography>
           </MenuItem>
         ))}

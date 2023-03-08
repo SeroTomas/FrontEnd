@@ -29,7 +29,6 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 const NavBar = () => {
   const settings = [
     { name: "Perfil", link: "/user" },
-    { name: "Cuenta", link: "" },
   ];
 
   const [anchorElNav, setAnchorElNav] = useState(null);

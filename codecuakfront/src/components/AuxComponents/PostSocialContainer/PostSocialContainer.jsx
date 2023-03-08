@@ -20,8 +20,8 @@ const PostSocialContainer = () => {
   
   //--------Realiza petición de posts al cargar el componente-----
   useEffect(() => {
-    dispatch(getAllPost(page + 1));
-    setPage(page + 1);
+    dispatch(getAllPost(1));
+    setPage(1);
     return () => dispatch(cleanPost());
   }, [dispatch, id])
 

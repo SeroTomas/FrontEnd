@@ -98,7 +98,7 @@ const NavBar = () => {
       >
         <Box display="flex" justifyContent="space-evenly" alignItems="center">
           <Box>
-            <Link to={"/"}>
+            <Link to={"/"} >
               <img height="70px" src={logo} alt="loguito" />
             </Link>
           </Box>
@@ -146,6 +146,7 @@ const NavBar = () => {
           {pages.map((page) => (
             <MenuItem key={page}>
               <Link
+              className={style.a}
                 to={page.link}
                 style={{ textDecoration: "none", color: "white" }}
               >

@@ -1,18 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Box, Typography, Button } from "@mui/material";
 import StatBox from "./utils/StatBox";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import { getAllUsers, getAllPost, allUserAdmin } from "../../redux/action";
 import Members from "./utils/Members";
-const AdminDashboard = () => {
-  const token  = localStorage.getItem("token")
+const AdminDashboard = ({ user }) => {
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
   const allusers = useSelector((state) => state.alluser);
-  console.log(allusers)
+  const navigate = useNavigate();
+  console.log(id);
+  console.log(token);
   const dispatch = useDispatch();
   useEffect(() => {
+    if (id != "1c434c87-2b90-4add-a2f2-e8a03cd15201" || !token)
+      navigate("/notadmin");
     dispatch(allUserAdmin(token));
   }, [dispatch]);
 
@@ -54,7 +59,7 @@ const AdminDashboard = () => {
             alignItems="center"
             justifyContent="center"
           >
-             <StatBox
+            <StatBox
               title={allusers.data?.countAllUsers}
               subtitle="Total de Usuarios"
               icon={
@@ -66,8 +71,8 @@ const AdminDashboard = () => {
                   }}
                 />
               }
-            /> 
-          </Box> 
+            />
+          </Box>
           <Box
             width="10rem"
             height="10rem"
@@ -94,7 +99,7 @@ const AdminDashboard = () => {
         </Box>
       </Box>
       <Box>
-          <Members allusers={allusers.data?.results} />  
+        <Members allusers={allusers.data?.results} />
       </Box>
     </Box>
   );

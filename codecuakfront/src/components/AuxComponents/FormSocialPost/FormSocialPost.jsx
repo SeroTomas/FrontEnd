@@ -2,52 +2,69 @@
 import style from "./formSocialPost.module.css";
 //importamos hooks
 import { v4 as uuidv4 } from "uuid";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { sendPost,cloudinary } from "../../../axiosFunctions";
-import { getAllPost } from "../../../redux/action"
+import { sendPost, cloudinary } from "../../../axiosFunctions";
+import { getAllPost } from "../../../redux/action";
 // componentes
 // IMPORT MATERIAL UI
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Avatar, Box, Typography, TextField, Button,IconButton } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  IconButton,
+} from "@mui/material";
 
 const FormSocialPost = ({ user }) => {
   const dispatch = useDispatch();
   const [form, setForm] = useState("");
   const text = form.length;
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   const handlerChange = (event) => {
     if (token) {
       const value = event.target.value;
       setForm(value);
-    }
-    else alert("¡Por favor inicie sesión para publicar en codeCuak!")
+    } else alert("¡Por favor inicie sesión para publicar en codeCuak!");
   };
-   //CLOUDINARY
-   const randomId = uuidv4();
-   const [imageUrl, setImageUrl] = useState("");
-   const [imagen, setImagen] = useState("");
-   useEffect(() => {
-     if (imageUrl) {
-       cloudinary(imageUrl, randomId).then((res) => {
-         setImagen(res);
-       });
-     }
-   }, [imageUrl]);
-/////
+  //CLOUDINARY
+  const randomId = uuidv4();
+  const [imageUrl, setImageUrl] = useState("");
+  const [imagen, setImagen] = useState("");
+  useEffect(() => {
+    if (imageUrl) {
+      cloudinary(imageUrl, randomId).then((res) => {
+        setImagen(res);
+      });
+    }
+  }, [imageUrl]);
+  /////
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    await sendPost(form,imagen,user.id,token);
+    await sendPost(form, imagen, user.id, token);
     dispatch(getAllPost(1)); // getAllPost de la pagina 1 de posteos para que se renderice el nuevo post
     setForm("");
-    setImagen("")
+    setImagen("");
   };
 
   return (
-    <Box className={style.codetext} fontFamily={"Sen"} marginTop="100px" marginBottom="25px" style={token ? {} : { pointerEvents: 'none', opacity: .7 }}>
-      <Box width="80%" display="flex" flexDirection="column" justifyContent="center" >
+    <Box
+      className={style.codetext}
+      fontFamily={"Sen"}
+      marginTop="100px"
+      marginBottom="25px"
+      style={token ? {} : { pointerEvents: "none", opacity: 0.7 }}
+    >
+      <Box
+        width="80%"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+      >
         <Box display="flex" gap="1rem">
           <Box>
             <Avatar src={user.image} alt="foto del usuario" />
@@ -56,8 +73,11 @@ const FormSocialPost = ({ user }) => {
             {user.name}
           </Typography>
         </Box>
-        <Box display="flex" justifyContent="center" color="white" flexGrow="1" >
-          <form onSubmit={handlerSubmit} style={{ "display": "flex", "flexDirection": "column", "width": "100%" }}>
+        <Box display="flex" justifyContent="center" color="white" flexGrow="1">
+          <form
+            onSubmit={handlerSubmit}
+            style={{ display: "flex", flexDirection: "column", width: "100%" }}
+          >
             <TextField
               id="outlined-multiline-static"
               label="Que te gustaria postear?"
@@ -69,7 +89,7 @@ const FormSocialPost = ({ user }) => {
               color="success"
               value={form}
             />
-             <Box display="flex" justifyContent="start">
+            <Box display="flex" justifyContent="start">
               <IconButton component="label" size="large" color="success">
                 <AddPhotoAlternateIcon fontSize="large" />
                 <TextField
@@ -88,7 +108,7 @@ const FormSocialPost = ({ user }) => {
               margin="1rem"
               position="relative"
             >
-              {imagen ? (
+              {imageUrl ? (
                 <>
                   <img
                     style={{ maxWidth: "50%" }}
@@ -100,8 +120,8 @@ const FormSocialPost = ({ user }) => {
                     size="large"
                     style={{
                       position: "absolute",
-                      top: -25,
-                      right: 160,
+                      bottom: 0,
+                      right: 0,
                     }}
                     onClick={() => {
                       setImageUrl("");
@@ -114,7 +134,10 @@ const FormSocialPost = ({ user }) => {
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center">
               {text > 1400 ? (
-                <Typography color="red" fontWeight="bold">{`${text}/1500 `}</Typography>
+                <Typography
+                  color="red"
+                  fontWeight="bold"
+                >{`${text}/1500 `}</Typography>
               ) : null}
               <Button
                 style={{
@@ -128,7 +151,6 @@ const FormSocialPost = ({ user }) => {
                 sx={{ fontWeight: "bold", fontSize: "100" }}
                 type="submit"
                 disabled={text > 1500}
-
               >
                 Publicar
               </Button>

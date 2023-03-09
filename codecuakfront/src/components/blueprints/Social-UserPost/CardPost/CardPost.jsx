@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom"
 //actions
-import { postLike } from "../../../../redux/action";
+import {  postLike } from "../../../../redux/action";
 //auxiliares
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -40,9 +40,11 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
 
   useEffect(()=>{
     if (option === "Eliminar") {
-    deletePost()
+     deletePost(postId, token)
+     setTimeout(()=>{window.location.reload()}, 1000)
     }
-  },[])
+  },[option])
+
   return (
     <>
       <Box

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/system';
 import { editPost } from '../../../axiosFunctions';
 
-export default function FormDialog({setOption, postId, content}) {
+export default function FormDialog({ setOption, postId, content }) {
   const [open, setOpen] = useState(true);
 
   const [post, setPost] = useState(content)
@@ -29,17 +29,16 @@ export default function FormDialog({setOption, postId, content}) {
   const handleEdit = () => {
     editPost(post, postId, token)
     setOpen(false)
+    setTimeout(()=>{window.location.reload()}, 1000)
   }
 
 
   return (
-    <Box >
+    <Box>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Editar</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
-            margin="dense"
             id="name"
             label="Que quieres editar?"
             type="text"
@@ -47,6 +46,7 @@ export default function FormDialog({setOption, postId, content}) {
             value={post}
             onChange={handleChange}
             variant="standard"
+            multiline
           />
         </DialogContent>
         <DialogActions>

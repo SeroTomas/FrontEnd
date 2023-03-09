@@ -26,8 +26,8 @@ const initialState = {
   userDetail: {},
   users: [],
   posts: {
-    origin:"",
-    id:"",
+    origin: "",
+    id: "",
     name: "",
     image: "",
     count: null,
@@ -39,17 +39,17 @@ const initialState = {
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_POST:
-      const {data, origin} = payload;
-      
-      if (data.previus && origin==state.posts.origin) {
+      const { data, origin } = payload;
+
+      if (data.previus && origin == state.posts.origin) {
         const { arrayPosts } = state.posts;
         const newPosts = arrayPosts.concat(data.results.socialposts ? data.results.socialposts : data.results)
         return {
           ...state,
           posts: {
             origin: origin,
-            id:data.results.id,
-            count:  data.count,
+            id: data.results.id,
+            count: data.count,
             next: data.next,
             name: data.results.name,
             image: data.results.image,
@@ -61,12 +61,26 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         posts: {
           origin: origin,
-          id:data.results.id,
+          id: data.results.id,
           name: data.results.name,
           image: data.results.image,
           count: data.results.count,
           next: data.next,
           arrayPosts: data.results.socialposts ? data.results.socialposts : data.results,
+        }
+      }
+    case DELETE_POST:
+      const newPosts = state.posts.arrayPosts.filter(post => post.id !== payload)
+      return {
+        ...state,
+        post: {
+          origin: state.posts.origin,
+          id: state.posts.id,
+          name: state.posts.name,
+          image: state.posts.image,
+          count: state.posts.count - 1,
+          next: state.posts.next,
+          arrayPosts: newPosts
         }
       }
     case GET_POST_BY_ID:
@@ -82,22 +96,22 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case POST_LIKE:
       const { message, postId, userId } = payload;
       const { arrayPosts } = state.posts;
-      const newArray = arrayPosts.map((post)=>{
-        if(post.id == postId){
+      const newArray = arrayPosts.map((post) => {
+        if (post.id == postId) {
           console.log(post.likes)
-          const h={
-            ...post, 
-            likes: (message === "El like se ha agregado")? post.likes.concat(userId): post.likes.filter((id)=> id!=userId)
+          const h = {
+            ...post,
+            likes: (message === "El like se ha agregado") ? post.likes.concat(userId) : post.likes.filter((id) => id != userId)
           }
           console.log(h.likes)
           return h
-        }else{
+        } else {
           return post;
-          }
+        }
       });
-      return{
+      return {
         ...state,
-        posts: {...state.posts, arrayPosts: newArray}
+        posts: { ...state.posts, arrayPosts: newArray }
       }
     case GET_ALL_USER:
       return {

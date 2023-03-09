@@ -90,8 +90,8 @@ const NavBar = () => {
   }, [usersByName]);
 
   const pages = [
-    { name: "SocialCuak", link: "/social" },
-    { name: "Donacion", link: "/donaciones" }
+    { name: "SocialCuak", link: "/social", doSomething: ()=> {window.scrollTo(0,0)}},
+    { name: "Donacion", link: "/donaciones", doSomething: null }
   ];
 
   return (
@@ -149,7 +149,7 @@ const NavBar = () => {
             className={search ? style.searchExpanded : style.searchNotExpanded}
           ></Box>
           {pages.map((page) => (
-            <MenuItem key={page}>
+            <MenuItem key={page} onClick={page.doSomething}>
               <Link
               className={style.a}
                 to={page.link}

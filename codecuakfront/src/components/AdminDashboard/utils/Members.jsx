@@ -10,7 +10,17 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { width } from "@mui/system";
 import Ban from "../Ban";
 import Status from "../Status.jsx"
+import Perfiles from "./Perfiles";
 const Members = ({allusers}) => {
+  const loading= [
+		{
+			"id": "1c434c87-2b90-4add-a2f2-e8a03cd15201",
+			"name": "codeCuak",
+			"nickName": "codeCuak",
+			"status": "superadmin",
+			"email": "codecuak@gmail.com",
+			"active": true
+		}]
   // const dispatch = useDispatch()
   // const users = useSelector((state)=>state.alluser)
   //  useEffect(()=>{
@@ -19,6 +29,12 @@ const Members = ({allusers}) => {
   const [rowId, setRowId] = useState(null);
   const [pageSize, setPageSize] = useState(5);
   const columns = [
+    {
+      field: "perfil",
+      headerName: "Perfil",
+      renderCell: (params) => <Perfiles {...{ params, rowId, setRowId }} />,
+      width:"60"
+    },
     { field: "id", headerName: "ID" ,width:300,},
     {
       field: "name",
@@ -93,7 +109,7 @@ const Members = ({allusers}) => {
           },
         }}
       >
-        <DataGrid rowsPerPageOptions={[5, 10, 20, 100]} onPageSizeChange={(newPageSize) => setPageSize(newPageSize)} pageSize={pageSize} onCellEditCommit={(params) => setRowId(params.id)}  getRowId={(row) => row.id}  rows={allusers} columns={columns} fontFamily={"Sen"} />
+        <DataGrid rowsPerPageOptions={[5, 10, 20, 100]} onPageSizeChange={(newPageSize) => setPageSize(newPageSize)} pageSize={pageSize} onCellEditCommit={(params) => setRowId(params.id)}  getRowId={(row) => row.id}  rows={allusers?allusers:loading} columns={columns} fontFamily={"Sen"} />
       </Box>
     </Box>
   );

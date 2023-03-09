@@ -4,7 +4,7 @@ import style from "./NavBar.module.css";
 //hooks
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUsersByName } from "../../redux/action";
+import { getUsersByName, getUserById } from "../../redux/action";
 import { useSelector, useDispatch } from "react-redux";
 
 //componentes
@@ -29,14 +29,19 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 const NavBar = () => {
   const settings = [
     { name: "Perfil", link: "/user" },
-    { name: "Cuenta", link: "" },
   ];
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const user = useSelector((state) => state.userData);
+  const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if(!user.image) dispatch(getUserById(token, id));
+  },[])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -58,7 +63,6 @@ const NavBar = () => {
   const [notiExpanded, setNotiExpanded] = useState(false);
   const usersByName = useSelector((state) => state.users);
 
-  const token = localStorage.getItem("token");
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -86,10 +90,8 @@ const NavBar = () => {
   }, [usersByName]);
 
   const pages = [
-    { name: "SocialCuak", link: "/social" },
-    { name: "WorkCuak", link: "/work" },
-    { name: "Q&A-Cuak", link: "/qanda" },
-    { name: "HiringCuak", link: "/hiring" },
+    { name: "SocialCuak", link: "/social", doSomething: ()=> {window.scrollTo(0,0)}},
+    { name: "Donacion", link: "/donaciones", doSomething: null }
   ];
 
   return (
@@ -99,9 +101,9 @@ const NavBar = () => {
         position="fixed"
         sx={{ backgroundColor: "#1E8449" }}
       >
-        <Box display="flex" justifyContent="space-around" alignItems="center">
+        <Box display="flex" justifyContent="space-evenly" alignItems="center">
           <Box>
-            <Link to={"/"}>
+            <Link to={"/"} >
               <img height="70px" src={logo} alt="loguito" />
             </Link>
           </Box>
@@ -113,8 +115,8 @@ const NavBar = () => {
                 value={search}
                 onChange={handlerChange}
                 placeholder="Buscar en codeCuak"
-              /> : <NotTokenSearch/>}
-              
+              /> : <NotTokenSearch />}
+
             </form>
             <Box
               className={
@@ -123,16 +125,16 @@ const NavBar = () => {
             >
               {usersByName.results
                 ? usersByName.results.map((user) => {
-                    return (
-                      <SearchExpandedUser
-                        key={user.id}
-                        id={user.id}
-                        image={user.image}
-                        name={user.name}
-                        onClick={()=>{setSearch("")}}
-                      />
-                    );
-                  })
+                  return (
+                    <SearchExpandedUser
+                      key={user.id}
+                      id={user.id}
+                      image={user.image}
+                      name={user.name}
+                      onClick={() => { setSearch("") }}
+                    />
+                  );
+                })
                 : null}
               {data ? (
                 <p style={{ color: "white", "font-size": "15px" }}>
@@ -147,8 +149,9 @@ const NavBar = () => {
             className={search ? style.searchExpanded : style.searchNotExpanded}
           ></Box>
           {pages.map((page) => (
-            <MenuItem key={page}>
+            <MenuItem key={page} onClick={page.doSomething}>
               <Link
+              className={style.a}
                 to={page.link}
                 style={{ textDecoration: "none", color: "white" }}
               >
@@ -163,12 +166,6 @@ const NavBar = () => {
               </Link>
             </MenuItem>
           ))}
-
-          <Box className={style.iconsContainer}>
-            <button onClick={handlerNotifications}>
-              <NotificationsActiveIcon sx={{ color: "white" }} />
-            </button>
-          </Box>
           <Box
             className={
               notiExpanded ? style.notiExpanded : style.notiNotExpanded
@@ -266,7 +263,7 @@ const NavBar = () => {
           </Box>
         </Box>
       </AppBar>
-      
+
     </Box>
   );
 };

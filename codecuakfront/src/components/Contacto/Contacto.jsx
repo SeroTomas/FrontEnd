@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
 import BacktoHome from "../blueprints/buttonsAuth/backToHome/BacktoHome";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import styles from "./Contacto.module.css";
-import { Box } from "@mui/system";
-import { Button, Paper, Typography, TextField } from "@mui/material";
+import { Button,Typography, TextField,CircularProgress,Box,Alert } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import Alert from "@mui/material/Alert";
+
 const Contacto = () => {
   const [submit, setSubmit] = useState(false);
   const SERVICE_ID = "service_oaksvac";
@@ -26,7 +25,10 @@ const Contacto = () => {
       }
     );
     setSubmit(true);
-    setTimeout(() => setSubmit(false), 3000);
+    setTimeout(() => {
+      navigateTo("/");
+      setSubmit(false);
+    },3000);
     e.target.reset();
   };
 
@@ -39,7 +41,20 @@ const Contacto = () => {
       fontFamily={"Sen"}
       sx={{ backgroundAttachment: "fixed", backgroundSize: "cover" }}
     >
-      {submit ? <Alert severity="success">Se envió con exito!</Alert> : <></>}
+      {submit ? (
+        < >
+        <Alert
+          severity="success"
+          sx={{ width: "15%", margin: "auto", marginBottom: "2rem" }}
+        >
+          
+          El mensaje se envió con exito!
+        <CircularProgress color="success" />
+        </Alert>
+        </>
+      ) : (
+        <></>
+      )}
 
       <Box>
         <BacktoHome />
@@ -79,7 +94,7 @@ const Contacto = () => {
               <TextField
                 required
                 fullWidth
-                name="name"
+                name="user_name"
                 label="Nombre"
                 margin="normal"
               ></TextField>
@@ -107,6 +122,7 @@ const Contacto = () => {
               <TextField
                 fullWidth
                 id="outlined-multiline-static"
+                name="message"
                 label="Mensaje"
                 multiline
                 rows={4}

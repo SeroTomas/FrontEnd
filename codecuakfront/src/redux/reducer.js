@@ -17,6 +17,7 @@ import {
   GET_ALL_USER_ADMIN,
   GET_POSTS_BY_USER_ID,
   CLEAN_USER_DETAIL,
+  GET_COMMENTS,
 } from "./action";
 
 const initialState = {
@@ -25,7 +26,8 @@ const initialState = {
   userDetail: {},
   users: [],
   posts: {
-    id:"",
+    origin: "",
+    id: "",
     name: "",
     image: "",
     count: null,
@@ -37,17 +39,20 @@ const initialState = {
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_POST:
-      if (payload.previus) {
+      const { data, origin } = payload;
+
+      if (data.previus && origin == state.posts.origin) {
         const { arrayPosts } = state.posts;
-        const newPosts = arrayPosts.concat(payload.results.socialposts ? payload.results.socialposts : payload.results)
+        const newPosts = arrayPosts.concat(data.results.socialposts ? data.results.socialposts : data.results)
         return {
           ...state,
           posts: {
-            id:payload.results.id,
-            count:  payload.count,
-            next: payload.next,
-            name: payload.results.name,
-            image: payload.results.image,
+            origin: origin,
+            id: data.results.id,
+            count: data.count,
+            next: data.next,
+            name: data.results.name,
+            image: data.results.image,
             arrayPosts: newPosts
           }
         }
@@ -55,12 +60,27 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         posts: {
-          id:payload.results.id,
-          name: payload.results.name,
-          image: payload.results.image,
-          count: payload.results.count,
-          next: payload.next,
-          arrayPosts: payload.results.socialposts ? payload.results.socialposts : payload.results,
+          origin: origin,
+          id: data.results.id,
+          name: data.results.name,
+          image: data.results.image,
+          count: data.results.count,
+          next: data.next,
+          arrayPosts: data.results.socialposts ? data.results.socialposts : data.results,
+        }
+      }
+    case DELETE_POST:
+      const newPosts = state.posts.arrayPosts.filter(post => post.id !== payload)
+      return {
+        ...state,
+        post: {
+          origin: state.posts.origin,
+          id: state.posts.id,
+          name: state.posts.name,
+          image: state.posts.image,
+          count: state.posts.count - 1,
+          next: state.posts.next,
+          arrayPosts: newPosts
         }
       }
     case GET_POST_BY_ID:
@@ -76,19 +96,22 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case POST_LIKE:
       const { message, postId, userId } = payload;
       const { arrayPosts } = state.posts;
-      const newArray = arrayPosts.map((post)=>{
-        if(post.id == postId){
-          return{
-            ...post, 
-            likes: (message === "El like se ha agregado")? post.likes.concat(userId): post.likes.filter((id)=> id!=userId)
+      const newArray = arrayPosts.map((post) => {
+        if (post.id == postId) {
+          console.log(post.likes)
+          const h = {
+            ...post,
+            likes: (message === "El like se ha agregado") ? post.likes.concat(userId) : post.likes.filter((id) => id != userId)
           }
-        }else{
+          console.log(h.likes)
+          return h
+        } else {
           return post;
-          }
+        }
       });
-      return{
+      return {
         ...state,
-        posts: {...state.posts, arrayPosts: newArray}
+        posts: { ...state.posts, arrayPosts: newArray }
       }
     case GET_ALL_USER:
       return {

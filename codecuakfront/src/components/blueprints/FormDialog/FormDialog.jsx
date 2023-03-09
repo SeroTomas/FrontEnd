@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,53 +6,62 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Box } from '@mui/system';
 import { editPost } from '../../../axiosFunctions';
 
-export default function FormDialog({post}) {
+export default function FormDialog({ setOption, postId, content }) {
 
-  const [open, setOpen] = React.useState(true);
-  const [form, setForm] = React.useState(post.content)
+  const [open, setOpen] = useState(true);
+
+  const [post, setPost] = useState(content);
+
+  const token = localStorage.getItem("token");
 
   const handleClose = () => {
     setOpen(false);
+    setOption("");
   };
 
-  const handlerChange = (event) => {
+  const handleChange = (event) => {
     const value = event.target.value;
-    setForm(value)
+    setPost(value);
+  };
+
+  const handleEdit = () => {
+    editPost(post, postId, token)
+    setOpen(false)
+    setTimeout(()=>{window.location.reload()}, 1000)
   }
 
-  const handlerSubmit = () => {
-    editPost(form)
-    setOpen(false)
-  }
 
   return (
-    <div>
+    <Box>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Edite su publicacion</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
+        <DialogTitle>Editar</DialogTitle>
+        <DialogContent sx={{ width: "35rem", height: "30rem" }}>
           <TextField
             autoFocus
+            multiline
+            color="success"
             margin="dense"
             id="name"
-            label="Email Address"
-            type="email"
+            label="Que quieres editar?"
+            type="text"
             fullWidth
+            value={post}
+            onChange={handleChange}
             variant="standard"
-            value={form}
-            onChange={handlerChange}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handlerSubmit}>Editar</Button>
+          <Button onClick={handleClose} color="success">
+            Cancelar
+          </Button>
+          <Button onClick={handleEdit} color="success">
+            Confirmar edicion
+          </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 }

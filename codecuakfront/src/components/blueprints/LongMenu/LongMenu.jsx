@@ -1,11 +1,12 @@
 import * as React from 'react';
-
+//hooks
+import { useState, useEffect } from 'react';
 //mui
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 // componentes
 import FormDialog from "../FormDialog/FormDialog";
@@ -18,21 +19,22 @@ const options = [
 
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function LongMenu({setOption}) {
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [value, setValue] = useState(false)
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    const target = event.currentTarget;
+    setAnchorEl(target);
   };
 
-  const handleClose = (event) => {
-    const value = event.target.value;
-    if (value === "Editar") {return <FormDialog />}
-    if (value === "Eliminar") {}
+  const handleClose = (option) => {
+    setOption(option);
     setAnchorEl(null);
-
-
   };
+
 
   return (
     <Box>
@@ -62,8 +64,8 @@ export default function LongMenu() {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} onClick={handleClose} >
-            {option}
+          <MenuItem key={option} onClick={()=> {handleClose(option)}}  >
+            <Typography variant="body1" color="initial"> {option}</Typography>
           </MenuItem>
         ))}
       </Menu>

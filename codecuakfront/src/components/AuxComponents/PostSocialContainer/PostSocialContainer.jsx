@@ -9,24 +9,21 @@ import CardPost from "../../blueprints/Social-UserPost/CardPost/CardPost";
 // dependencias mui
 import { Box, Card, Skeleton } from "@mui/material";
 
+
 const PostSocialContainer = () => {
   const userId = localStorage.getItem("id")
   const { count, next, name, image, id, arrayPosts } = useSelector((state) => state.posts);
-  const [getPost, setGetPost] = useState(true);
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(0);
   const dispatch = useDispatch();
-
+  let getPost = true;
+  
+  
   //--------Realiza petición de posts al cargar el componente-----
   useEffect(() => {
-    dispatch(getAllPost(page + 1));
-    setPage(page + 1);
+    dispatch(getAllPost(1));
+    setPage(1);
     return () => dispatch(cleanPost());
   }, [dispatch, id])
-
-  //Seteo el estado local getPost en true al actualizar el estado global "posts", para que se pueda realizar nuevas peticiones
-  useEffect(() => {
-    setGetPost(true)
-  }, [arrayPosts])
 
   //-------- Coloca handlerScroll al montar componente y lo retira al desmontar------- 
   useEffect(() => {
@@ -37,10 +34,12 @@ const PostSocialContainer = () => {
   // Hace Dispatch al llegar al final de la pagina y cumplir las condiciones
   function handleScroll() {
     if (next && getPost && ((window.innerHeight + window.scrollY + 1) >= document.documentElement.scrollHeight)) {
-      setGetPost(false);
+      console.log("handleScroll")
+      getPost = false;
       dispatch(getAllPost(page + 1))
       setPage(page + 1)
     }
+    
   };
 
   return (
@@ -50,6 +49,7 @@ const PostSocialContainer = () => {
           return (
             <CardPost 
             key={post.id} 
+            imagenPost={post.image}
             postId={post.id}
             userId={userId}
             content={post.content}

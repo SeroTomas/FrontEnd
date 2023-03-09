@@ -11,8 +11,9 @@ import { cleanPost, getUserById } from "../../redux/action";
 import NavBar from "../NavBar/NavBar";
 import FormSocialPost from "../AuxComponents/FormSocialPost/FormSocialPost";
 import PostSocialContainer from "../AuxComponents/PostSocialContainer/PostSocialContainer";
-// import MATERIAL UI
 import NoTokenFooter from "../NavBar/NotTokenComponents/NoTokenFooter";
+import Footer from "../blueprints/Footer/Footer";
+// import MATERIAL UI
 import { Box } from "@mui/material";
 
 const Social = () => {
@@ -35,6 +36,7 @@ const Social = () => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id")
   localStorage.setItem("status", user.status)
+  
   useEffect(() => {
     dispatch(getUserById(token, id));
     window.scrollTo(0,0);
@@ -49,6 +51,7 @@ const Social = () => {
         <PostSocialContainer />
         {!token ? <NoTokenFooter /> : null}
       </Box>
+        
     </>
   );
 };

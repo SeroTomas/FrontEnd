@@ -104,7 +104,7 @@ export default function FormEditUser() {
         edit.skills,
         edit.github,
         edit.about,
-        imagen ? imagen : "",
+        imagen ? imagen.imagen : imagen ?imagen : "",
         token
       );
       if (res?.status === 200) {

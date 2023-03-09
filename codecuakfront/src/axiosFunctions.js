@@ -43,10 +43,11 @@ export const sendComment = async (content, userId, postId, token) => {
     const data = await axios.post(
       `${URL_BASE}/socialcuak/${postId}/comment`,
       { content, userId },
-      { headers: { "x-auth-token": token } });
+      { headers: { "x-auth-token": token } }
+    );
     return data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 // RUTA PARA EDITAR UN POST
@@ -60,13 +61,11 @@ export const editPost = async (content, id, token) => {
 };
 // RUTA PARA BORRAR UN POST
 
-export const deletePost = async (id) => {
+export const deletePost = async (id, token) => {
   try {
-    const data = await axios.delete(`${URL_BASE}/socialcuak/${id}`);
-    return "Se ha eliminado la publicacion";
+    const data = await axios.delete(`${URL_BASE}/socialcuak/${id}`, { headers: { "x-auth-token": token } });  
   } catch (error) {
     console.log(error.message);
-    return "Algo ha salido mal";
   }
 };
 // RUTA POST DEL MERCADO PAGO
@@ -139,19 +138,26 @@ export const editUser = async (
   name,
   description,
   skills,
+  github,
+  about,
   image,
   token
-  
 ) => {
   console.log(id);
-  console.log(token);
+
   try {
-    const response = await axios.put(`${URL_BASE}/users/${id}`, {
-      name,
-  description,
-  skills,
-  image
-    },{ headers: { "x-auth-token": token } });
+    const response = await axios.put(
+      `${URL_BASE}/users/${id}`,
+      {
+        name,
+        description,
+        skills,
+        github,
+        about,
+        image,
+      },
+      { headers: { "x-auth-token": token } }
+    );
     console.log(response);
     return response;
   } catch (error) {

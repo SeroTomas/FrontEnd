@@ -4,7 +4,7 @@ import style from "./NavBar.module.css";
 //hooks
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUsersByName } from "../../redux/action";
+import { getUsersByName, getUserById } from "../../redux/action";
 import { useSelector, useDispatch } from "react-redux";
 
 //componentes
@@ -34,8 +34,14 @@ const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const user = useSelector((state) => state.userData);
+  const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if(!user.image) dispatch(getUserById(token, id));
+  },[])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -57,7 +63,6 @@ const NavBar = () => {
   const [notiExpanded, setNotiExpanded] = useState(false);
   const usersByName = useSelector((state) => state.users);
 
-  const token = localStorage.getItem("token");
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -85,8 +90,8 @@ const NavBar = () => {
   }, [usersByName]);
 
   const pages = [
-    { name: "SocialCuak", link: "/social" },
-    { name: "Donacion", link: "/donaciones" }
+    { name: "SocialCuak", link: "/social", doSomething: ()=> {window.scrollTo(0,0)}},
+    { name: "Donacion", link: "/donaciones", doSomething: null }
   ];
 
   return (
@@ -98,7 +103,7 @@ const NavBar = () => {
       >
         <Box display="flex" justifyContent="space-evenly" alignItems="center">
           <Box>
-            <Link to={"/"}>
+            <Link to={"/"} >
               <img height="70px" src={logo} alt="loguito" />
             </Link>
           </Box>
@@ -144,8 +149,9 @@ const NavBar = () => {
             className={search ? style.searchExpanded : style.searchNotExpanded}
           ></Box>
           {pages.map((page) => (
-            <MenuItem key={page}>
+            <MenuItem key={page} onClick={page.doSomething}>
               <Link
+              className={style.a}
                 to={page.link}
                 style={{ textDecoration: "none", color: "white" }}
               >

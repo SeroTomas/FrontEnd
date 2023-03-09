@@ -1,8 +1,9 @@
 //hooks
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import {Link} from "react-router-dom"
 //actions
-import { postLike } from "../../../../redux/action";
+import {  postLike } from "../../../../redux/action";
 //auxiliares
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -12,6 +13,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ComentContainer from "../ComentContainer/ComentContainer";
 import LongMenu from "../../LongMenu/LongMenu";
 import FormDialog from "../../FormDialog/FormDialog";
+import { deletePost } from "../../../../axiosFunctions";
 
 // datos del posteo por props
 const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost }) => {
@@ -22,20 +24,27 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
   const { name, image, id } = userDev || user ? userDev || user : { name: null, image: null };
   const [viewComents, setViewComents] = useState(false);
   const [option, setOption] = useState("")
+  const idUserlog = localStorage.getItem("Id")
   // traemos el status para poder verificar que categoria es el usuario
   // y saber si renderizar el menu desplegable de opciones para hacer
   // put y delete de los posteos
   const status = localStorage.getItem("status");
 
   const handlerClick = () => {
-    dispatch(postLike(postId, id, token));
+    dispatch(postLike(postId, idUserlog, token));
   };
 
   const handlerComment = () => {
     setViewComents(!viewComents);
   };
 
-  console.log(option)
+  useEffect(()=>{
+    if (option === "Eliminar") {
+     deletePost(postId, token)
+     setTimeout(()=>{window.location.reload()}, 1000)
+    }
+  },[option])
+
   return (
     <>
       <Box
@@ -51,7 +60,9 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
       >
         <Box display="flex" flexDirection="row" alignItems="start" width={1}>
           <Box display="flex" gap="15px" alignItems="center" flexGrow={1}>
+            <Link to={`/users/${userDev?.id}`}>
             <Avatar src={image} alt="Foto de perfil" />
+            </Link>
             <Typography fontFamily="sen" variant="h6" color="black">
               {name}
             </Typography>
@@ -99,7 +110,7 @@ const CardPost = ({ postId, content, likes, userDev, user, userId, imagenPost })
           gap="10px"
         >
           <Button onClick={() => handlerClick()} sx={{ color: "#1E8449" }}>
-            {likes.includes(userId) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {likes.includes(idUserlog) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             {likes.length}
           </Button>
           <Button

@@ -10,21 +10,22 @@ import { Box } from '@mui/system';
 import { editPost } from '../../../axiosFunctions';
 
 export default function FormDialog({ setOption, postId, content }) {
+
   const [open, setOpen] = useState(true);
 
-  const [post, setPost] = useState(content)
+  const [post, setPost] = useState(content);
 
   const token = localStorage.getItem("token");
 
   const handleClose = () => {
     setOpen(false);
-    setOption("")
+    setOption("");
   };
 
   const handleChange = (event) => {
     const value = event.target.value;
     setPost(value);
-  }
+  };
 
   const handleEdit = () => {
     editPost(post, postId, token)
@@ -37,8 +38,12 @@ export default function FormDialog({ setOption, postId, content }) {
     <Box>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Editar</DialogTitle>
-        <DialogContent>
+        <DialogContent sx={{ width: "35rem", height: "30rem" }}>
           <TextField
+            autoFocus
+            multiline
+            color="success"
+            margin="dense"
             id="name"
             label="Que quieres editar?"
             type="text"
@@ -46,12 +51,15 @@ export default function FormDialog({ setOption, postId, content }) {
             value={post}
             onChange={handleChange}
             variant="standard"
-            multiline
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleEdit}>Confirmar edicion</Button>
+          <Button onClick={handleClose} color="success">
+            Cancelar
+          </Button>
+          <Button onClick={handleEdit} color="success">
+            Confirmar edicion
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>

@@ -8,10 +8,10 @@ import SendIcon from "@mui/icons-material/Send";
 
 const Contacto = () => {
   const [submit, setSubmit] = useState(false);
-  const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
-  const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
-  const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
-
+  const SERVICE_ID = "service_oaksvac";
+  const TEMPLATE_ID = "template_trfjcil";
+  const PUBLIC_KEY = "O7jgSb2G6PiunQMKB";
+  const [result, setResult] = useState(false);
   const navigateTo = useNavigate();
   const form = useRef();
   const sendEmail = (e) => {
@@ -94,7 +94,7 @@ const Contacto = () => {
               <TextField
                 required
                 fullWidth
-                name="name"
+                name="user_name"
                 label="Nombre"
                 margin="normal"
               ></TextField>
@@ -122,6 +122,7 @@ const Contacto = () => {
               <TextField
                 fullWidth
                 id="outlined-multiline-static"
+                name="message"
                 label="Mensaje"
                 multiline
                 rows={4}

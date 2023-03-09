@@ -42,7 +42,7 @@ export const getAllPost = (page) => {
   return function (dispatch) {
     try {
       axios.get(`${URL_BASE}/socialcuak?page=${page}`).then((response) => {
-        dispatch({ type: GET_ALL_POST, payload: {data: response.data, origin: "social"} });
+        dispatch({ type: GET_ALL_POST, payload: { data: response.data, origin: "social" } });
       });
     } catch (error) {
       console.log(error.message)
@@ -56,7 +56,7 @@ export const getPostsByUserId = (userId, page) => {
   return async (dispatch) => {
     try {
       const data = await axios.get(`${URL_BASE}/socialcuak/user/${userId}?page=${page}`)
-      dispatch({ type: GET_ALL_POST, payload: {data: data.data, origin: "user"} })
+      dispatch({ type: GET_ALL_POST, payload: { data: data.data, origin: "user" } })
     } catch (error) {
       console.log(error)
     }
@@ -84,10 +84,14 @@ export const modifyPost = ({ postId, content }) => {
   };
 };
 // DELETE DEL POST
-export const deletePost = ({ postId }) => {
+export const deletePost = ( postId, token ) => {
   return async function (dispatch) {
-    let data = await axios.put(`${URL_BASE}/socialcuak/${postId}`);
-    return dispatch({ type: DELETE_POST, data });
+    try {
+      let data = await axios.delete(`${URL_BASE}/socialcuak/${postId}`, { headers: { "x-auth-token": token } });
+      return dispatch({ type: DELETE_POST, payload: postId });
+    } catch (error) {
+      console.log(error)
+    }
   };
 };
 
@@ -100,22 +104,22 @@ export const cleanPost = () => {
 
 // POST LIKE
 export const postLike = (postId, userId, token) => {
-  return async function(dispatch){
+  return async function (dispatch) {
     try {
-      const response = await axios.post(`${URL_BASE}/socialcuak/${postId}/like`, null, { headers: { "x-auth-token": token }});
+      const response = await axios.post(`${URL_BASE}/socialcuak/${postId}/like`, null, { headers: { "x-auth-token": token } });
       const message = response.data.msg;
-      return dispatch({type: POST_LIKE, payload: {message, postId, userId}});
+      return dispatch({ type: POST_LIKE, payload: { message, postId, userId } });
     } catch (error) {
       console.log(error)
     }
   }
 }
 // COMENTARIOS  🛑
-export const getComments = (postId, page) =>{
-  return async function(dispatch) {
+export const getComments = (postId, page) => {
+  return async function (dispatch) {
     try {
       const response = await axios.get(`${URL_BASE}/socialcuak/${postId}/comments`)
-      return dispatch ({type:GET_COMMENTS, payload:response.data.results})
+      return dispatch({ type: GET_COMMENTS, payload: response.data.results })
     } catch (error) {
       console.log(error.message)
     }
@@ -220,16 +224,16 @@ export const getUserDetailById = (userId, token) => {
   };
 }
 
-export const cleanUserDetail = ()=>{
-  return function(dispatch){
-    dispatch({type: CLEAN_USER_DETAIL})
+export const cleanUserDetail = () => {
+  return function (dispatch) {
+    dispatch({ type: CLEAN_USER_DETAIL })
   }
 }
 ///////// ADMIN ///////////////////////////////////////////////////////////////////////////
 export const allUserAdmin = (token) => {
   return async (dispatch) => {
     try {
-      let response = await axios.get(`${URL_BASE}/users/admins`,{ headers: { 'x-auth-token': token } });
+      let response = await axios.get(`${URL_BASE}/users/admins`, { headers: { 'x-auth-token': token } });
       console.log(response)
       dispatch({ type: GET_ALL_USER_ADMIN, payload: response });
     } catch (error) {
@@ -238,21 +242,21 @@ export const allUserAdmin = (token) => {
   }
 }
 
-export const deleteUser = async(id,token)=>{
-    try{
+export const deleteUser = async (id, token) => {
+  try {
 
-      let response = await axios.delete(`${URL_BASE}/users/${id}`,{ headers: { 'x-auth-token': token } })
-    }catch(error){
-      console.log(error)
-    }
+    let response = await axios.delete(`${URL_BASE}/users/${id}`, { headers: { 'x-auth-token': token } })
+  } catch (error) {
+    console.log(error)
+  }
 }
-export const changeStatus = async(id,token,status)=>{
-console.log(status)
-  try{
-    console.log(token,"token")
-    let response = await axios.put(`${URL_BASE}/users/${id}/status`,{status: status},{headers:{ 'x-auth-token': token }})
+export const changeStatus = async (id, token, status) => {
+  console.log(status)
+  try {
+    console.log(token, "token")
+    let response = await axios.put(`${URL_BASE}/users/${id}/status`, { status: status }, { headers: { 'x-auth-token': token } })
     console.log(response)
-  }catch(error){
+  } catch (error) {
     console.log(error)
   }
 }

@@ -61,13 +61,11 @@ export const editPost = async (content, id, token) => {
 };
 // RUTA PARA BORRAR UN POST
 
-export const deletePost = async (id) => {
+export const deletePost = async (id, token) => {
   try {
-    const data = await axios.delete(`${URL_BASE}/socialcuak/${id}`);
-    return "Se ha eliminado la publicacion";
+    const data = await axios.delete(`${URL_BASE}/socialcuak/${id}`, { headers: { "x-auth-token": token } });  
   } catch (error) {
     console.log(error.message);
-    return "Algo ha salido mal";
   }
 };
 // RUTA POST DEL MERCADO PAGO

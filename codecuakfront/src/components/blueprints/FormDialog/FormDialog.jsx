@@ -1,15 +1,16 @@
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Box } from "@mui/system";
-import { editPost } from "../../../axiosFunctions";
+import { useState } from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { Box } from '@mui/system';
+import { editPost } from '../../../axiosFunctions';
 
 export default function FormDialog({ setOption, postId, content }) {
+
   const [open, setOpen] = useState(true);
 
   const [post, setPost] = useState(content);
@@ -27,9 +28,11 @@ export default function FormDialog({ setOption, postId, content }) {
   };
 
   const handleEdit = () => {
-    editPost(post, postId, token);
-    setOpen(false);
-  };
+    editPost(post, postId, token)
+    setOpen(false)
+    setTimeout(()=>{window.location.reload()}, 1000)
+  }
+
 
   return (
     <Box>
